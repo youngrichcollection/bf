@@ -1,1 +1,859 @@
+<!DOCTYPE html>
+<html lang="fr" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ibrahim Accessoires - Imposez votre style : Montres de Prestige POEDAGAR 857™</title>
+    <!-- Chargement de Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Chargement de FontAwesome pour les icônes -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Police Google Fonts : Inter -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                    },
+                    colors: {
+                        brandNavy: '#0f172a',
+                        brandBlue: '#2563eb',
+                        brandGreen: '#14532d',
+                        brandOrangeStart: '#f97316',
+                        brandOrangeEnd: '#ef4444',
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        /* Styles personnalisés pour les animations et dégradés spécifiques */
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #ffffff;
+            color: #0f172a;
+            padding-bottom: 80px; /* Espace pour le bouton collant en bas */
+        }
 
+        .cta-gradient {
+            background: linear-gradient(90deg, #ff7e29 0%, #f43f5e 100%);
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+        }
+
+        .cta-gradient:hover {
+            transform: translateY(-1px);
+            box-shadow: 0 10px 20px -5px rgba(244, 63, 94, 0.4);
+        }
+
+        .cta-gradient:active {
+            transform: scale(0.98);
+        }
+
+        @keyframes pulse-subtle {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.02); }
+        }
+
+        .animate-cta {
+            animation: pulse-subtle 2.5s infinite ease-in-out;
+        }
+
+        /* Masquer la barre de défilement sur les galeries horizontales */
+        .no-scrollbar::-webkit-scrollbar {
+            display: none;
+        }
+        .no-scrollbar {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+    </style>
+</head>
+<body class="antialiased selection:bg-blue-600 selection:text-white">
+
+    <!-- EN-TÊTE (HEADER) -->
+    <header class="sticky top-0 z-40 bg-white/95 backdrop-blur-sm border-b border-gray-100">
+        <div class="max-w-xl mx-auto px-4 h-14 flex items-center justify-between">
+            <!-- Bouton Menu -->
+            <button id="menu-btn" aria-label="Menu" class="p-2 text-slate-800 hover:bg-gray-100 rounded-lg transition">
+                <i class="fa-solid fa-bars text-xl"></i>
+            </button>
+
+            <!-- Logo Central -->
+            <a href="#" class="text-xl sm:text-2xl font-extrabold tracking-tight text-slate-900">
+                Ibrahim Accessoires
+            </a>
+
+            <!-- Icônes Droite -->
+            <div class="flex items-center space-x-1">
+                <button onclick="scrollToForm()" aria-label="Compte" class="p-2 text-slate-800 hover:bg-gray-100 rounded-lg transition">
+                    <i class="fa-regular fa-user text-lg"></i>
+                </button>
+                <button onclick="toggleSearch()" aria-label="Rechercher" class="p-2 text-slate-800 hover:bg-gray-100 rounded-lg transition">
+                    <i class="fa-solid fa-magnifying-glass text-lg"></i>
+                </button>
+            </div>
+        </div>
+
+        <!-- Barre de recherche masquée par défaut -->
+        <div id="search-bar" class="hidden bg-gray-50 px-4 py-2 border-b border-gray-200">
+            <div class="max-w-xl mx-auto flex gap-2">
+                <input type="text" placeholder="Rechercher une montre..." class="w-full px-3 py-1.5 text-sm border border-gray-300 rounded-lg focus:outline-none focus:border-blue-600">
+                <button onclick="toggleSearch()" class="text-xs font-semibold text-gray-500 px-2">Fermer</button>
+            </div>
+        </div>
+    </header>
+
+    <!-- MENU TIROIR MOBILE (DRAWER) -->
+    <div id="mobile-drawer" class="fixed inset-0 z-50 hidden">
+        <div onclick="toggleDrawer()" class="fixed inset-0 bg-black/50 backdrop-blur-xs transition-opacity"></div>
+        <div class="relative w-72 max-w-[80vw] bg-white h-full shadow-2xl p-6 flex flex-col justify-between">
+            <div>
+                <div class="flex items-center justify-between border-b pb-4 mb-6">
+                    <span class="text-lg font-extrabold text-slate-900">Ibrahim Accessoires</span>
+                    <button onclick="toggleDrawer()" class="p-2 text-gray-500 hover:text-black rounded-lg">
+                        <i class="fa-solid fa-xmark text-xl"></i>
+                    </button>
+                </div>
+                <nav class="space-y-4 font-medium text-slate-800">
+                    <a href="#produit" onclick="toggleDrawer()" class="block py-2 hover:text-blue-600">Accueil</a>
+                    <a href="#formulaire-commande" onclick="toggleDrawer()" class="block py-2 hover:text-blue-600">Commander maintenant</a>
+                    <a href="#caracteristiques" onclick="toggleDrawer()" class="block py-2 hover:text-blue-600">Caractéristiques</a>
+                    <a href="#faq" onclick="toggleDrawer()" class="block py-2 hover:text-blue-600">Questions fréquentes</a>
+                    <a href="#engagements" onclick="toggleDrawer()" class="block py-2 hover:text-blue-600">Nos engagements</a>
+                </nav>
+            </div>
+            <div class="border-t pt-4 text-xs text-gray-500">
+                <p>Service client disponible 24h/24 et 7j/7 via WhatsApp.</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- CONTENEUR PRINCIPAL CENTRÉ (FORMAT MOBILE-FIRST COMME SHOPIFY) -->
+    <main id="produit" class="max-w-xl mx-auto bg-white">
+
+        <!-- CARROUSEL D'IMAGES PRODUIT -->
+        <section class="relative">
+            <div class="relative aspect-square w-full overflow-hidden bg-gray-100">
+                <img id="main-product-image" 
+                     src="https://images.unsplash.com/photo-1523275335684-37898b6baf30?auto=format&fit=crop&w=900&q=85" 
+                     onerror="this.src='https://placehold.co/800x800/0f172a/ffffff?text=Montre+POEDAGAR+857'"
+                     alt="Montre de Prestige POEDAGAR 857" 
+                     class="w-full h-full object-cover transition-all duration-300">
+
+                <!-- Bouton Précédent -->
+                <button onclick="prevImage()" aria-label="Image précédente" class="absolute left-3 top-1/2 -translate-y-1/2 w-9 h-9 rounded-full bg-white/80 hover:bg-white shadow-md flex items-center justify-center text-slate-800 transition">
+                    <i class="fa-solid fa-chevron-left text-sm"></i>
+                </button>
+
+                <!-- Bouton Suivant -->
+                <button onclick="nextImage()" aria-label="Image suivante" class="absolute right-3 top-1/2 -translate-y-1/2 w-9 h-9 rounded-full bg-white/80 hover:bg-white shadow-md flex items-center justify-center text-slate-800 transition">
+                    <i class="fa-solid fa-chevron-right text-sm"></i>
+                </button>
+
+                <!-- Points indicateurs -->
+                <div class="absolute bottom-3 left-1/2 -translate-x-1/2 flex space-x-1.5">
+                    <span id="dot-0" class="w-2 h-2 rounded-full bg-blue-600 transition-all"></span>
+                    <span id="dot-1" class="w-2 h-2 rounded-full bg-white/70 transition-all"></span>
+                    <span id="dot-2" class="w-2 h-2 rounded-full bg-white/70 transition-all"></span>
+                </div>
+            </div>
+
+            <!-- Miniatures (Thumbnails) -->
+            <div class="px-4 pt-3 flex items-center space-x-2.5">
+                <button onclick="selectImage(0)" id="thumb-0" class="w-14 h-14 rounded-lg overflow-hidden border-2 border-slate-900 transition">
+                    <img src="https://images.unsplash.com/photo-1523275335684-37898b6baf30?auto=format&fit=crop&w=200&q=80" alt="Vue 1" class="w-full h-full object-cover">
+                </button>
+                <button onclick="selectImage(1)" id="thumb-1" class="w-14 h-14 rounded-lg overflow-hidden border-2 border-transparent opacity-65 hover:opacity-100 transition">
+                    <img src="https://images.unsplash.com/photo-1542496658-e33a6d0d50f6?auto=format&fit=crop&w=200&q=80" alt="Vue 2" class="w-full h-full object-cover">
+                </button>
+                <button onclick="selectImage(2)" id="thumb-2" class="w-14 h-14 rounded-lg overflow-hidden border-2 border-transparent opacity-65 hover:opacity-100 transition">
+                    <img src="https://images.unsplash.com/photo-1524592094714-0f0654e20314?auto=format&fit=crop&w=200&q=80" alt="Vue 3" class="w-full h-full object-cover">
+                </button>
+            </div>
+        </section>
+
+        <!-- TITRE, AVIS, PRIX ET PREUVE SOCIALE -->
+        <section class="px-4 pt-5 pb-4 text-center">
+            <h1 class="text-[22px] sm:text-2xl font-extrabold text-slate-900 leading-snug tracking-tight">
+                Imposez votre style en toute circonstance : Montres de Prestige POEDAGAR 857™
+            </h1>
+
+            <!-- Ligne bleue décorative -->
+            <div class="w-24 h-1 bg-blue-600 mx-auto my-3 rounded-full"></div>
+
+            <!-- Étoiles et Évaluations -->
+            <div class="flex items-center justify-center space-x-1.5 text-sm mb-3">
+                <div class="flex text-blue-500 text-base">
+                    <i class="fa-solid fa-star"></i>
+                    <i class="fa-solid fa-star"></i>
+                    <i class="fa-solid fa-star"></i>
+                    <i class="fa-solid fa-star"></i>
+                    <i class="fa-solid fa-star-half-stroke"></i>
+                </div>
+                <span class="font-medium text-slate-700">4.8/5 (Basé sur 148 évaluations)</span>
+            </div>
+
+            <!-- Prix et Prix Barré -->
+            <div class="flex items-center justify-center space-x-3 mb-2">
+                <span class="text-2xl sm:text-3xl font-extrabold text-[#14532d]">22,500 FCFA</span>
+                <span class="text-lg sm:text-xl font-medium text-slate-500 line-through">35,000 FCFA</span>
+            </div>
+
+            <!-- Badge Offre Expire Aujourd'hui -->
+            <div class="inline-block bg-[#14532d] text-white text-xs sm:text-sm font-semibold px-3.5 py-1 rounded-md mb-2 shadow-xs">
+                Cette offre expire aujourd'hui
+            </div>
+
+            <!-- Économie -->
+            <p class="text-xs sm:text-sm font-bold text-slate-800 uppercase tracking-wide mb-3">
+                VOUS ECONOMISEZ <span class="text-blue-600">12,500 FCFA (35%)</span>
+            </p>
+
+            <!-- Urgence dynamique : Commandes en cours & Visiteurs -->
+            <div class="space-y-1.5 text-sm font-semibold mb-4">
+                <p class="text-green-700 flex items-center justify-center gap-1.5">
+                    <i class="fa-solid fa-cart-shopping"></i>
+                    <span>Il y a <span id="live-orders">19</span> Commandes en cours</span>
+                </p>
+                <p class="text-slate-800 flex items-center justify-center gap-1.5">
+                    <i class="fa-solid fa-eye"></i>
+                    <span><span id="live-visitors">52</span> Visiteurs actuellement</span>
+                </p>
+            </div>
+
+            <!-- Encadré des 3 Garanties Rapides -->
+            <div class="bg-gray-50/90 border border-gray-200/80 rounded-xl p-4 shadow-sm space-y-2.5 text-sm font-medium text-slate-800">
+                <div class="flex items-center justify-center gap-2.5">
+                    <i class="fa-solid fa-thumbs-up text-slate-900"></i>
+                    <span>Paiement à la livraison</span>
+                </div>
+                <div class="flex items-center justify-center gap-2.5">
+                    <i class="fa-solid fa-lock text-slate-900"></i>
+                    <span>100% Satisfaction ou remboursement.</span>
+                </div>
+                <div class="flex items-center justify-center gap-2.5">
+                    <i class="fa-solid fa-truck-fast text-slate-900"></i>
+                    <span>Livraison gratuite</span>
+                </div>
+            </div>
+        </section>
+
+        <!-- FORMULAIRE DE COMMANDE COD (PAIEMENT À LA LIVRAISON) -->
+        <section id="formulaire-commande" class="px-4 py-3">
+            <div class="flex items-center justify-center gap-2 text-sm font-semibold text-slate-900 mb-3">
+                <i class="fa-solid fa-check text-slate-900"></i>
+                <span>Achetez maintenant et payez à la livraison</span>
+            </div>
+
+            <!-- Cadre noir arrondi du formulaire -->
+            <form id="cod-form" onsubmit="handleOrderSubmit(event)" class="border-2 border-slate-900 rounded-2xl p-4 sm:p-5 bg-white shadow-md space-y-3.5">
+                
+                <!-- Champ : Nom complet -->
+                <div class="flex items-center border border-gray-300 rounded-lg overflow-hidden focus-within:border-blue-600 focus-within:ring-1 focus-within:ring-blue-600 transition">
+                    <div class="w-11 h-11 bg-gray-200/80 flex items-center justify-center text-slate-800 shrink-0 border-r border-gray-300">
+                        <i class="fa-solid fa-circle-user text-lg"></i>
+                    </div>
+                    <input type="text" id="fullName" name="fullName" required placeholder="Nom complet" 
+                           class="w-full h-11 px-3 text-sm text-slate-900 placeholder-gray-400 focus:outline-none">
+                </div>
+
+                <!-- Champ : Numéro Joignable -->
+                <div class="flex items-center border border-gray-300 rounded-lg overflow-hidden focus-within:border-blue-600 focus-within:ring-1 focus-within:ring-blue-600 transition">
+                    <div class="w-11 h-11 bg-gray-200/80 flex items-center justify-center text-slate-800 shrink-0 border-r border-gray-300">
+                        <i class="fa-solid fa-phone text-base"></i>
+                    </div>
+                    <input type="tel" id="phone" name="phone" required placeholder="Numéro Joignable" 
+                           class="w-full h-11 px-3 text-sm text-slate-900 placeholder-gray-400 focus:outline-none">
+                </div>
+
+                <!-- Champ : Numéro WhatsApp -->
+                <div class="flex items-center border border-gray-300 rounded-lg overflow-hidden focus-within:border-blue-600 focus-within:ring-1 focus-within:ring-blue-600 transition">
+                    <div class="w-11 h-11 bg-gray-200/80 flex items-center justify-center text-slate-800 shrink-0 border-r border-gray-300">
+                        <i class="fa-brands fa-whatsapp text-xl"></i>
+                    </div>
+                    <input type="tel" id="whatsapp" name="whatsapp" required placeholder="Numéro WhatsApp" 
+                           class="w-full h-11 px-3 text-sm text-slate-900 placeholder-gray-400 focus:outline-none">
+                </div>
+
+                <!-- Champ : Ville / Quartier -->
+                <div class="flex items-center border border-gray-300 rounded-lg overflow-hidden focus-within:border-blue-600 focus-within:ring-1 focus-within:ring-blue-600 transition">
+                    <div class="w-11 h-11 bg-gray-200/80 flex items-center justify-center text-slate-800 shrink-0 border-r border-gray-300">
+                        <i class="fa-solid fa-location-dot text-lg"></i>
+                    </div>
+                    <input type="text" id="city" name="city" required placeholder="Ville/Quartier" 
+                           class="w-full h-11 px-3 text-sm text-slate-900 placeholder-gray-400 focus:outline-none">
+                </div>
+
+                <!-- Case à cocher de confirmation -->
+                <label class="flex items-center gap-3 pt-1 cursor-pointer select-none">
+                    <input type="checkbox" id="readyCheck" required checked 
+                           class="w-5 h-5 rounded border-gray-400 text-[#25D366] focus:ring-[#25D366] shrink-0">
+                    <span class="text-xs sm:text-sm font-bold text-slate-900 uppercase leading-tight text-center flex-1">
+                        JE SUIS PRÊT, VOUS POUVEZ ME LIVRER OU EXPÉDIER
+                    </span>
+                </label>
+
+                <!-- Bouton de soumission Vert WhatsApp -->
+                <button type="submit" 
+                        class="w-full py-3.5 px-4 rounded-xl bg-[#25D366] hover:bg-[#1ebe5d] animate-cta text-white font-bold text-sm sm:text-base shadow-lg flex items-center justify-center gap-2 transition">
+                    <i class="fa-brands fa-whatsapp text-xl"></i>
+                    <span>Confirmer la commande sur WhatsApp</span>
+                </button>
+            </form>
+        </section>
+
+        <!-- SECTION ARGUMENTAIRE MARKETING -->
+        <section id="caracteristiques" class="px-4 py-6 space-y-5 text-slate-900">
+            <div class="space-y-2">
+                <h2 class="text-base sm:text-lg font-extrabold uppercase tracking-wide text-slate-900">
+                    ÉLÉGANCE . PUISSANCE . CONFIANCE
+                </h2>
+                <p class="text-sm sm:text-base font-bold uppercase text-slate-800 leading-snug">
+                    L'ACCESSOIRE QUI IMPOSE LE RESPECT AVANT MÊME QUE VOUS NE PRENIEZ LA PAROLE.
+                </p>
+            </div>
+
+            <div class="space-y-3 text-sm sm:text-[15px] text-slate-700 leading-relaxed">
+                <p class="font-bold text-slate-900">
+                    Un homme de valeur ne laisse rien au hasard. Votre style est votre première carte de visite.
+                </p>
+                <p>
+                    Conçue pour les hommes ambitieux qui veulent affirmer leur succès et leur leadership, la <strong class="text-slate-900">Montre Prestige POEDAGAR™</strong> allie la noblesse d'un boîtier en acier à la distinction d'un cadran d'exception. Que ce soit lors d'un rendez-vous d'affaires important, au bureau ou lors d'une soirée chic, elle attire instantanément les regards et affirme votre charisme.
+                </p>
+            </div>
+
+            <!-- Image Lifestyle 1 -->
+            <div class="rounded-xl overflow-hidden shadow-md">
+                <img src="https://images.unsplash.com/photo-1522312346375-d1a52e2b99b3?auto=format&fit=crop&w=800&q=85" 
+                     onerror="this.src='https://placehold.co/800x600/1e293b/ffffff?text=Style+et+Prestige'"
+                     alt="Montre de luxe portée au poignet" 
+                     class="w-full h-auto object-cover">
+            </div>
+
+            <!-- Liste des Caractéristiques -->
+            <div class="pt-2 space-y-3">
+                <h3 class="text-lg font-extrabold text-slate-900">caractère :</h3>
+                <ul class="space-y-2.5 text-sm sm:text-[15px] text-slate-800 font-medium">
+                    <li class="flex items-start gap-2.5">
+                        <span class="inline-flex items-center justify-center w-5 h-5 rounded bg-green-600 text-white text-xs shrink-0 mt-0.5">
+                            <i class="fa-solid fa-check"></i>
+                        </span>
+                        <span>Esthétique Élégante et finition impeccable</span>
+                    </li>
+                    <li class="flex items-start gap-2.5">
+                        <span class="inline-flex items-center justify-center w-5 h-5 rounded bg-green-600 text-white text-xs shrink-0 mt-0.5">
+                            <i class="fa-solid fa-check"></i>
+                        </span>
+                        <span>Visibilité parfaite, de jour comme de nuit</span>
+                    </li>
+                    <li class="flex items-start gap-2.5">
+                        <span class="inline-flex items-center justify-center w-5 h-5 rounded bg-green-600 text-white text-xs shrink-0 mt-0.5">
+                            <i class="fa-solid fa-check"></i>
+                        </span>
+                        <span>Idéale pour les réunions, déplacements et rendez-vous</span>
+                    </li>
+                    <li class="flex items-start gap-2.5">
+                        <span class="inline-flex items-center justify-center w-5 h-5 rounded bg-green-600 text-white text-xs shrink-0 mt-0.5">
+                            <i class="fa-solid fa-check"></i>
+                        </span>
+                        <span>Montre à quartz précise avec date intégrée</span>
+                    </li>
+                    <li class="flex items-start gap-2.5">
+                        <span class="inline-flex items-center justify-center w-5 h-5 rounded bg-green-600 text-white text-xs shrink-0 mt-0.5">
+                            <i class="fa-solid fa-check"></i>
+                        </span>
+                        <span>Résistante et confortable pour un usage intensif</span>
+                    </li>
+                </ul>
+            </div>
+
+            <!-- Image Lifestyle 2 -->
+            <div class="rounded-xl overflow-hidden shadow-md">
+                <img src="https://images.unsplash.com/photo-1614164185128-e4ec99c436d7?auto=format&fit=crop&w=800&q=85" 
+                     onerror="this.src='https://placehold.co/800x600/0f172a/ffffff?text=Finition+Haute+Precision'"
+                     alt="Détail du boîtier en acier POEDAGAR" 
+                     class="w-full h-auto object-cover">
+            </div>
+
+            <!-- Coffret / Présentation -->
+            <div class="rounded-xl overflow-hidden shadow-md bg-gray-100">
+                <img src="https://images.unsplash.com/photo-1547996160-81dfa63595aa?auto=format&fit=crop&w=800&q=85" 
+                     onerror="this.src='https://placehold.co/800x500/334155/ffffff?text=Coffret+Cadeau+Luxe'"
+                     alt="Coffret de présentation montre luxe" 
+                     class="w-full h-auto object-cover">
+            </div>
+        </section>
+
+        <!-- SECTION QUESTIONS FRÉQUENTES (FAQ ACCORDÉON BLEU) -->
+        <section id="faq" class="px-4 py-6">
+            <h2 class="text-2xl font-bold text-center text-slate-900">Questions fréquentes</h2>
+            <div class="w-24 h-0.5 bg-blue-600 mx-auto mt-2 mb-6 rounded-full"></div>
+
+            <div class="space-y-3" id="faq-container">
+                <!-- Question 1 -->
+                <div class="faq-item">
+                    <button type="button" onclick="toggleFaq(0)" class="w-full bg-[#2474c9] hover:bg-[#1d63ae] text-white font-semibold text-left px-4 py-3.5 rounded-lg flex items-center justify-between gap-3 transition shadow-xs">
+                        <span class="text-sm sm:text-[15px] leading-snug">Je suis intéressé par un produit. Comment j'effectue ma commande et mon paiement ?</span>
+                        <span class="w-7 h-7 rounded-full bg-white text-[#2474c9] flex items-center justify-center shrink-0 transition-transform duration-200" id="faq-icon-0">
+                            <i class="fa-solid fa-plus text-xs"></i>
+                        </span>
+                    </button>
+                    <div id="faq-content-0" class="hidden px-2 pt-3 pb-2 text-sm text-slate-800 space-y-3 leading-relaxed">
+                        <p>Tous nos paiements se font uniquement à livraison.</p>
+                        <p>Lorsque vous êtes intéressé par un produit sur notre site internet, vous cliquez sur <strong>&lt;&lt;Achetez maintenant&gt;&gt;</strong></p>
+                        <p>Ensuite, vous serez redirigé vers un formulaire que vous allez remplir avec au moins un numéro de téléphone WhatsApp auquel nous pourrons vous joindre pour fixer l'heure du rendez-vous qui vous arrange avec notre équipe de livreur.</p>
+                        <p>Le livreur vient vous remettre le produit en main propre et vous lui payer ensuite.</p>
+                    </div>
+                </div>
+
+                <!-- Question 2 -->
+                <div class="faq-item">
+                    <button type="button" onclick="toggleFaq(1)" class="w-full bg-[#2474c9] hover:bg-[#1d63ae] text-white font-semibold text-left px-4 py-3.5 rounded-lg flex items-center justify-between gap-3 transition shadow-xs">
+                        <span class="text-sm sm:text-[15px] leading-snug">Quels sont les délais de livraison ?</span>
+                        <span class="w-7 h-7 rounded-full bg-white text-[#2474c9] flex items-center justify-center shrink-0 transition-transform duration-200" id="faq-icon-1">
+                            <i class="fa-solid fa-plus text-xs"></i>
+                        </span>
+                    </button>
+                    <div id="faq-content-1" class="hidden px-2 pt-3 pb-2 text-sm text-slate-800 space-y-3 leading-relaxed">
+                        <p>Les commandes sont généralement expédiées dans un délai de 24h ou moins.</p>
+                        <p>Après avoir validé commande sur notre site internet, vous êtes immédiatement contacté par l'un de nos agents via WhatsApp pour confirmer l'heure du rendez-vous qui vous arrange dans le quartier ou la ville de votre choix.</p>
+                        <p>Notre équipe de livreur vient vous remettre le colis directement en main propre</p>
+                        <p>Vous effectuez le paiement directement auprès du livreur après avoir reçu votre commande.</p>
+                    </div>
+                </div>
+
+                <!-- Question 3 -->
+                <div class="faq-item">
+                    <button type="button" onclick="toggleFaq(2)" class="w-full bg-[#2474c9] hover:bg-[#1d63ae] text-white font-semibold text-left px-4 py-3.5 rounded-lg flex items-center justify-between gap-3 transition shadow-xs">
+                        <span class="text-sm sm:text-[15px] leading-snug">Je souhaite Commander un de vos produits, mais le stock est fini pour mon pays de résidence. Que faire ?</span>
+                        <span class="w-7 h-7 rounded-full bg-white text-[#2474c9] flex items-center justify-center shrink-0 transition-transform duration-200" id="faq-icon-2">
+                            <i class="fa-solid fa-plus text-xs"></i>
+                        </span>
+                    </button>
+                    <div id="faq-content-2" class="hidden px-2 pt-3 pb-2 text-sm text-slate-800 space-y-3 leading-relaxed">
+                        <p>Si le stock est momentanément épuisé dans votre ville ou pays, contactez directement notre service client sur WhatsApp afin de réserver votre exemplaire sur le prochain arrivage prioritaire sans frais supplémentaires.</p>
+                    </div>
+                </div>
+
+                <!-- Question 4 -->
+                <div class="faq-item">
+                    <button type="button" onclick="toggleFaq(3)" class="w-full bg-[#2474c9] hover:bg-[#1d63ae] text-white font-semibold text-left px-4 py-3.5 rounded-lg flex items-center justify-between gap-3 transition shadow-xs">
+                        <span class="text-sm sm:text-[15px] leading-snug">Quelle est la garantie de remboursement ?</span>
+                        <span class="w-7 h-7 rounded-full bg-white text-[#2474c9] flex items-center justify-center shrink-0 transition-transform duration-200" id="faq-icon-3">
+                            <i class="fa-solid fa-plus text-xs"></i>
+                        </span>
+                    </button>
+                    <div id="faq-content-3" class="hidden px-2 pt-3 pb-2 text-sm text-slate-800 space-y-3 leading-relaxed">
+                        <p>Si vous n'êtes pas entièrement satisfait du produit à sa réception, vous avez la possibilité de le retourner au livreur et d'obtenir un remboursement complet du montant que vous avez payé à la livraison.</p>
+                    </div>
+                </div>
+
+                <!-- Question 5 -->
+                <div class="faq-item">
+                    <button type="button" onclick="toggleFaq(4)" class="w-full bg-[#2474c9] hover:bg-[#1d63ae] text-white font-semibold text-left px-4 py-3.5 rounded-lg flex items-center justify-between gap-3 transition shadow-xs">
+                        <span class="text-sm sm:text-[15px] leading-snug">Qui puis-je contacter si j'ai un problème avec ma commande ?</span>
+                        <span class="w-7 h-7 rounded-full bg-white text-[#2474c9] flex items-center justify-center shrink-0 transition-transform duration-200" id="faq-icon-4">
+                            <i class="fa-solid fa-plus text-xs"></i>
+                        </span>
+                    </button>
+                    <div id="faq-content-4" class="hidden px-2 pt-3 pb-2 text-sm text-slate-800 space-y-3 leading-relaxed">
+                        <p>Si vous avez des questions concernant votre commande ou le produit, notre équipe du service clientèle peut vous aider en les contactant sur le site web.</p>
+                        <p>Pour cela Cliquez sur le bouton WhatsApp qui s'affiche sur notre page web et vous serez directement redirigé dans une discussion avec l'un de nos agents qui répondra à toutes vos questions.</p>
+                    </div>
+                </div>
+
+                <!-- Question 6 -->
+                <div class="faq-item">
+                    <button type="button" onclick="toggleFaq(5)" class="w-full bg-[#2474c9] hover:bg-[#1d63ae] text-white font-semibold text-left px-4 py-3.5 rounded-lg flex items-center justify-between gap-3 transition shadow-xs">
+                        <span class="text-sm sm:text-[15px] leading-snug">Quels sont les pays d'afrique dans lesquelles vous êtes basés et vous livrez ?</span>
+                        <span class="w-7 h-7 rounded-full bg-white text-[#2474c9] flex items-center justify-center shrink-0 transition-transform duration-200" id="faq-icon-5">
+                            <i class="fa-solid fa-plus text-xs"></i>
+                        </span>
+                    </button>
+                    <div id="faq-content-5" class="hidden px-2 pt-3 pb-2 text-sm text-slate-800 space-y-3 leading-relaxed">
+                        <p>Nous livrons rapidement dans plusieurs pays d'Afrique de l'Ouest et Centrale : <strong>Burkina Faso, Côte d'Ivoire, Sénégal, Mali, Bénin, Togo, Cameroun, Gabon et Congo</strong>, avec paiement en espèces à la livraison.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- SECTION NOS ENGAGEMENTS (GRILLE 2x2) -->
+        <section id="engagements" class="pt-6 pb-8 bg-white">
+            <h2 class="text-xl sm:text-2xl font-bold text-center text-slate-900 uppercase">NOS ENGAGEMENTS!</h2>
+            <div class="w-24 h-0.5 bg-blue-600 mx-auto mt-2 mb-6 rounded-full"></div>
+
+            <div class="grid grid-cols-2 gap-1.5 px-2">
+                <!-- Carte 1 : Satisfaction Garantie -->
+                <div class="bg-[#f3f4f6] p-4 rounded-lg text-center flex flex-col items-center">
+                    <div class="w-12 h-12 mb-3 text-slate-900 flex items-center justify-center">
+                        <svg class="w-11 h-11" viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="2">
+                            <rect x="8" y="6" width="32" height="14" rx="2"/>
+                            <path d="M14 13l1.5 1.5L18 12M22 13l1.5 1.5L26 12M30 13l1.5 1.5L34 12"/>
+                            <circle cx="24" cy="28" r="5"/>
+                            <path d="M14 42c0-5.5 4.5-9 10-9s10 3.5 10 9"/>
+                        </svg>
+                    </div>
+                    <h3 class="font-extrabold text-xs sm:text-sm text-slate-900 uppercase mb-2 leading-tight">
+                        SATISFACTION GARANTIE
+                    </h3>
+                    <p class="text-[11px] sm:text-xs text-slate-700 leading-relaxed">
+                        Nos normes de qualité élevées garantissent une satisfaction exceptionnelle de nos clients. En outre, nous offrons une garantie de remboursement de 14 jours si vous n'êtes pas satisfait par l'un de nos produits
+                    </p>
+                </div>
+
+                <!-- Carte 2 : Expédition Rapide -->
+                <div class="bg-[#f3f4f6] p-4 rounded-lg text-center flex flex-col items-center">
+                    <div class="w-12 h-12 mb-3 text-slate-900 flex items-center justify-center">
+                        <svg class="w-11 h-11" viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="2">
+                            <rect x="4" y="14" width="26" height="18" rx="2"/>
+                            <path d="M30 20h8l5 6v6h-13V20z"/>
+                            <circle cx="13" cy="34" r="4" fill="#f3f4f6"/>
+                            <circle cx="36" cy="34" r="4" fill="#f3f4f6"/>
+                            <path d="M13 23l3 3 6-6"/>
+                        </svg>
+                    </div>
+                    <h3 class="font-extrabold text-xs sm:text-sm text-slate-900 uppercase mb-2 leading-tight">
+                        EXPÉDITION RAPIDE ET ASSURÉE
+                    </h3>
+                    <p class="text-[11px] sm:text-xs text-slate-700 leading-relaxed">
+                        Votre article est expédié et livré dans les 24 heures après avoir validé votre commande et remplie le formulaire avec votre numéro WhatsApp où nous pourrons vous joindre pour fixer l'heure et lieu du rendez-vous qui vous arrange.
+                    </p>
+                </div>
+
+                <!-- Carte 3 : Soutien à la clientèle -->
+                <div class="bg-[#f3f4f6] p-4 rounded-lg text-center flex flex-col items-center">
+                    <div class="w-12 h-12 mb-3 text-slate-900 flex items-center justify-center">
+                        <svg class="w-11 h-11" viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="2">
+                            <circle cx="24" cy="20" r="7"/>
+                            <path d="M13 20c0-6.1 4.9-11 11-11s11 4.9 11 11v4c0 2-1.5 3-3 3h-2"/>
+                            <path d="M12 42c0-6.6 5.4-11 12-11s12 4.4 12 11"/>
+                        </svg>
+                    </div>
+                    <h3 class="font-extrabold text-xs sm:text-sm text-slate-900 uppercase mb-2 leading-tight">
+                        SOUTIEN À LA CLIENTÈLE
+                    </h3>
+                    <p class="text-[11px] sm:text-xs text-slate-700 leading-relaxed">
+                        Notre équipe est là pour répondre à toutes vos questions 24 heures sur 24 et 7 jours sur 7. Laissez-nous un message en cliquant sur le logo WhatsApp au pied de cette page
+                    </p>
+                </div>
+
+                <!-- Carte 4 : Paiement à la livraison -->
+                <div class="bg-[#f3f4f6] p-4 rounded-lg text-center flex flex-col items-center">
+                    <div class="w-12 h-12 mb-3 text-slate-900 flex items-center justify-center">
+                        <svg class="w-11 h-11" viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="2">
+                            <rect x="6" y="10" width="32" height="22" rx="3"/>
+                            <line x1="6" y1="17" x2="38" y2="17"/>
+                            <path d="M34 24l7 3v6c0 5-3.5 8.5-7 10-3.5-1.5-7-5-7-10v-6l7-3z" fill="#f3f4f6"/>
+                            <path d="M31.5 33l2 2 3.5-3.5"/>
+                        </svg>
+                    </div>
+                    <h3 class="font-extrabold text-xs sm:text-sm text-slate-900 uppercase mb-2 leading-tight">
+                        PAIEMENT A LA LIVRAISON
+                    </h3>
+                    <p class="text-[11px] sm:text-xs text-slate-700 leading-relaxed">
+                        Vous payez pour votre commande une fois que vous l'avez reçue en main propre par nos chauffeurs-livreurs
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <!-- PIED DE PAGE BLEU (FOOTER) -->
+        <footer class="bg-[#0b66d4] text-white px-5 pt-6 pb-10">
+            <!-- Accordéons Footer -->
+            <div class="border-b border-white/25">
+                <button type="button" onclick="toggleFooterSection('footer-info')" class="w-full py-3.5 flex items-center justify-between font-bold text-sm uppercase tracking-wider">
+                    <span>INFORMATIONS</span>
+                    <i id="icon-footer-info" class="fa-solid fa-plus text-sm"></i>
+                </button>
+                <div id="footer-info" class="hidden pb-4 text-xs text-blue-100 space-y-2">
+                    <a href="#engagements" class="block hover:underline">Politique de remboursement</a>
+                    <a href="#engagements" class="block hover:underline">Politique de livraison</a>
+                    <a href="#faq" class="block hover:underline">Conditions générales de vente</a>
+                </div>
+            </div>
+
+            <div class="border-b border-white/25 mb-6">
+                <button type="button" onclick="toggleFooterSection('footer-links')" class="w-full py-3.5 flex items-center justify-between font-bold text-sm uppercase tracking-wider">
+                    <span>LIENS RAPIDES</span>
+                    <i id="icon-footer-links" class="fa-solid fa-plus text-sm"></i>
+                </button>
+                <div id="footer-links" class="hidden pb-4 text-xs text-blue-100 space-y-2">
+                    <a href="#produit" class="block hover:underline">Montre POEDAGAR 857™</a>
+                    <a href="#formulaire-commande" class="block hover:underline">Commander maintenant</a>
+                    <a href="#faq" class="block hover:underline">Aide & Contact</a>
+                </div>
+            </div>
+
+            <!-- Newsletter Ibrahim Accessoires -->
+            <div class="space-y-3">
+                <h3 class="text-xl font-bold">Ibrahim Accessoires</h3>
+                <p class="text-xs font-bold uppercase tracking-wider text-blue-100">FIL D'ACTUALITÉ</p>
+                
+                <form onsubmit="handleNewsletter(event)" class="flex bg-white rounded-md overflow-hidden">
+                    <input type="email" required placeholder="Your email" class="w-full px-3.5 py-2.5 text-sm text-slate-900 placeholder-gray-400 focus:outline-none">
+                    <button type="submit" aria-label="S'inscrire" class="px-4 text-slate-600 hover:text-blue-600 transition">
+                        <i class="fa-solid fa-arrow-right"></i>
+                    </button>
+                </form>
+
+                <p class="text-xs text-blue-100 leading-relaxed">
+                    En saisissant votre adresse e-mail, vous acceptez de recevoir nos offres commerciales chaque semaine. Vous pouvez vous désinscrire à tout moment en utilisant les liens de désinscription.
+                </p>
+
+                <!-- Réseaux sociaux -->
+                <div class="flex items-center justify-center space-x-5 pt-4 text-lg">
+                    <a href="#" aria-label="Facebook" class="hover:text-blue-200 transition"><i class="fa-brands fa-facebook"></i></a>
+                    <a href="#" aria-label="Twitter" class="hover:text-blue-200 transition"><i class="fa-brands fa-twitter"></i></a>
+                    <a href="#" aria-label="Instagram" class="hover:text-blue-200 transition"><i class="fa-brands fa-instagram"></i></a>
+                </div>
+
+                <p class="text-center text-[11px] text-blue-200 pt-4">
+                    © 2026 Ibrahim Accessoires - Tous droits réservés.
+                </p>
+            </div>
+        </footer>
+    </main>
+
+    <!-- BOUTON FLOTTANT WHATSAPP -->
+    <a href="https://wa.me/22657615645?text=Bonjour%20Ibrahim%20Accessoires,%20je%20souhaite%20commander%20la%20Montre%20de%20Prestige%20POEDAGAR%20857" 
+       target="_blank" 
+       rel="noopener noreferrer"
+       aria-label="Discuter sur WhatsApp"
+       class="fixed bottom-20 right-4 z-40 w-13 h-13 p-3.5 rounded-full bg-[#25D366] text-white shadow-xl hover:scale-105 transition flex items-center justify-center">
+        <i class="fa-brands fa-whatsapp text-2xl"></i>
+    </a>
+
+    <!-- BARRE DE COMMANDE COLLANTE EN BAS DE L'ÉCRAN (STICKY CTA) -->
+    <div class="fixed bottom-0 left-0 right-0 z-40 p-2 bg-white/90 backdrop-blur-md border-t border-gray-200 shadow-lg">
+        <div class="max-w-xl mx-auto">
+            <button onclick="scrollToForm()" 
+                    class="w-full py-3 px-4 rounded-xl bg-[#25D366] hover:bg-[#1ebe5d] text-white font-bold text-sm sm:text-base shadow-md flex items-center justify-center gap-2 transition">
+                <i class="fa-brands fa-whatsapp text-xl"></i>
+                <span>Confirmer la commande sur WhatsApp</span>
+            </button>
+        </div>
+    </div>
+
+    <!-- MODALE DE CONFIRMATION DE COMMANDE (REMPLACE ALERT) -->
+    <div id="order-modal" class="fixed inset-0 z-50 hidden items-center justify-center p-4 bg-black/60 backdrop-blur-xs">
+        <div class="bg-white rounded-2xl max-w-md w-full p-6 shadow-2xl text-center space-y-4 transform transition-all">
+            <div class="w-16 h-16 rounded-full bg-green-100 text-green-600 mx-auto flex items-center justify-center text-3xl">
+                <i class="fa-solid fa-circle-check"></i>
+            </div>
+            <h3 class="text-xl font-extrabold text-slate-900">Commande Validée avec Succès !</h3>
+            <p class="text-sm text-slate-600 leading-relaxed">
+                Merci <strong id="modal-customer-name" class="text-slate-900"></strong> ! Votre commande de la <strong class="text-slate-900">Montre POEDAGAR 857™ (22,500 FCFA)</strong> a bien été enregistrée.
+            </p>
+            <div class="bg-gray-50 border border-gray-200 rounded-xl p-3 text-xs text-left space-y-1.5 text-slate-700">
+                <p><i class="fa-brands fa-whatsapp text-green-600 mr-1.5"></i> <strong>WhatsApp :</strong> <span id="modal-whatsapp"></span></p>
+                <p><i class="fa-solid fa-location-dot text-blue-600 mr-1.5"></i> <strong>Livraison :</strong> <span id="modal-city"></span></p>
+                <p><i class="fa-solid fa-hand-holding-dollar text-amber-600 mr-1.5"></i> <strong>Paiement :</strong> En espèces à la livraison (Gratuit)</p>
+            </div>
+            <p class="text-xs text-slate-500">
+                Un de nos agents vous contactera sur WhatsApp d'ici quelques minutes pour confirmer l'heure de livraison.
+            </p>
+            <div class="pt-2 flex flex-col gap-2">
+                <a id="modal-wa-redirect" href="#" target="_blank" class="w-full py-3 rounded-xl bg-[#25D366] hover:bg-[#20bd5a] text-white font-bold text-sm flex items-center justify-center gap-2 transition">
+                    <i class="fa-brands fa-whatsapp text-lg"></i>
+                    <span>Confirmer directement sur WhatsApp</span>
+                </a>
+                <button onclick="closeOrderModal()" class="w-full py-2.5 rounded-xl bg-gray-100 hover:bg-gray-200 text-slate-800 font-semibold text-sm transition">
+                    Fermer
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- TOAST DE NOTIFICATION POUR LA NEWSLETTER -->
+    <div id="toast-notification" class="fixed top-16 left-1/2 -translate-x-1/2 z-50 hidden bg-slate-900 text-white text-xs sm:text-sm font-medium px-4 py-2.5 rounded-full shadow-xl">
+        Merci pour votre inscription à notre newsletter !
+    </div>
+
+    <!-- SCRIPTS INTERACTIFS -->
+    <script>
+        // 1. Gestion de la galerie d'images produit
+        const productImages = [
+            "https://images.unsplash.com/photo-1523275335684-37898b6baf30?auto=format&fit=crop&w=900&q=85",
+            "https://images.unsplash.com/photo-1542496658-e33a6d0d50f6?auto=format&fit=crop&w=900&q=85",
+            "https://images.unsplash.com/photo-1524592094714-0f0654e20314?auto=format&fit=crop&w=900&q=85"
+        ];
+        let currentImageIndex = 0;
+
+        function selectImage(index) {
+            currentImageIndex = index;
+            const mainImg = document.getElementById('main-product-image');
+            mainImg.src = productImages[index];
+
+            // Mise à jour des bordures des miniatures et des points
+            productImages.forEach((_, i) => {
+                const thumb = document.getElementById(`thumb-${i}`);
+                const dot = document.getElementById(`dot-${i}`);
+                if (i === index) {
+                    thumb.classList.remove('border-transparent', 'opacity-65');
+                    thumb.classList.add('border-slate-900', 'opacity-100');
+                    dot.classList.remove('bg-white/70');
+                    dot.classList.add('bg-blue-600');
+                } else {
+                    thumb.classList.add('border-transparent', 'opacity-65');
+                    thumb.classList.remove('border-slate-900', 'opacity-100');
+                    dot.classList.add('bg-white/70');
+                    dot.classList.remove('bg-blue-600');
+                }
+            });
+        }
+
+        function nextImage() {
+            const next = (currentImageIndex + 1) % productImages.length;
+            selectImage(next);
+        }
+
+        function prevImage() {
+            const prev = (currentImageIndex - 1 + productImages.length) % productImages.length;
+            selectImage(prev);
+        }
+
+        // 2. Défilement fluide vers le formulaire de commande
+        function scrollToForm() {
+            const formSection = document.getElementById('formulaire-commande');
+            formSection.scrollIntoView({ behavior: 'smooth', block: 'center' });
+            setTimeout(() => {
+                document.getElementById('fullName').focus();
+            }, 600);
+        }
+
+        // 3. Menu tiroir et recherche
+        document.getElementById('menu-btn').addEventListener('click', toggleDrawer);
+
+        function toggleDrawer() {
+            const drawer = document.getElementById('mobile-drawer');
+            drawer.classList.toggle('hidden');
+        }
+
+        function toggleSearch() {
+            const searchBar = document.getElementById('search-bar');
+            searchBar.classList.toggle('hidden');
+        }
+
+        // 4. Gestion de l'accordéon FAQ
+        function toggleFaq(index) {
+            const content = document.getElementById(`faq-content-${index}`);
+            const iconWrapper = document.getElementById(`faq-icon-${index}`);
+            const icon = iconWrapper.querySelector('i');
+
+            const isHidden = content.classList.contains('hidden');
+
+            // Fermer toutes les autres questions pour un rendu épuré
+            for (let i = 0; i < 6; i++) {
+                const otherContent = document.getElementById(`faq-content-${i}`);
+                const otherIcon = document.getElementById(`faq-icon-${i}`).querySelector('i');
+                if (otherContent && i !== index) {
+                    otherContent.classList.add('hidden');
+                    otherIcon.classList.remove('fa-xmark');
+                    otherIcon.classList.add('fa-plus');
+                }
+            }
+
+            if (isHidden) {
+                content.classList.remove('hidden');
+                icon.classList.remove('fa-plus');
+                icon.classList.add('fa-xmark');
+            } else {
+                content.classList.add('hidden');
+                icon.classList.remove('fa-xmark');
+                icon.classList.add('fa-plus');
+            }
+        }
+
+        // 5. Accordéon Footer
+        function toggleFooterSection(id) {
+            const section = document.getElementById(id);
+            const icon = document.getElementById(`icon-${id}`);
+            section.classList.toggle('hidden');
+            if (section.classList.contains('hidden')) {
+                icon.classList.remove('fa-minus');
+                icon.classList.add('fa-plus');
+            } else {
+                icon.classList.remove('fa-plus');
+                icon.classList.add('fa-minus');
+            }
+        }
+
+        // 6. Simulation dynamique des visiteurs et commandes en cours (Preuve sociale)
+        setInterval(() => {
+            const visitorsEl = document.getElementById('live-visitors');
+            const currentVisitors = parseInt(visitorsEl.textContent, 10);
+            const delta = Math.floor(Math.random() * 5) - 2; // entre -2 et +2
+            const nextVisitors = Math.max(24, Math.min(85, currentVisitors + delta));
+            visitorsEl.textContent = nextVisitors;
+        }, 4500);
+
+        setInterval(() => {
+            const ordersEl = document.getElementById('live-orders');
+            const currentOrders = parseInt(ordersEl.textContent, 10);
+            const delta = Math.random() > 0.5 ? 1 : -1;
+            const nextOrders = Math.max(11, Math.min(27, currentOrders + delta));
+            ordersEl.textContent = nextOrders;
+        }, 7000);
+
+        // 7. Traitement du formulaire de commande COD
+        function handleOrderSubmit(event) {
+            event.preventDefault();
+
+            const fullName = document.getElementById('fullName').value.trim();
+            const phone = document.getElementById('phone').value.trim();
+            const whatsapp = document.getElementById('whatsapp').value.trim();
+            const city = document.getElementById('city').value.trim();
+
+            // Remplir la modale de confirmation
+            document.getElementById('modal-customer-name').textContent = fullName;
+            document.getElementById('modal-whatsapp').textContent = whatsapp;
+            document.getElementById('modal-city').textContent = city;
+
+            // Numéro WhatsApp Business : +226 57 61 56 45
+            const businessPhone = "22657615645";
+            const message = encodeURIComponent(
+                `Bonjour Ibrahim Accessoires, je souhaite confirmer ma commande (Paiement à la livraison) :\n\n` +
+                `⌚ *Produit :* Montre POEDAGAR 857™ (22,500 FCFA)\n` +
+                `👤 *Nom complet :* ${fullName}\n` +
+                `📞 *Numéro Joignable :* ${phone}\n` +
+                `💬 *WhatsApp :* ${whatsapp}\n` +
+                `📍 *Ville / Quartier :* ${city}`
+            );
+            const whatsappUrl = `https://wa.me/${businessPhone}?text=${message}`;
+            document.getElementById('modal-wa-redirect').href = whatsappUrl;
+
+            // Afficher la modale
+            const modal = document.getElementById('order-modal');
+            modal.classList.remove('hidden');
+            modal.classList.add('flex');
+
+            // Ouvrir directement WhatsApp avec les détails de la commande
+            window.open(whatsappUrl, '_blank');
+
+            // Réinitialiser le formulaire
+            document.getElementById('cod-form').reset();
+            document.getElementById('readyCheck').checked = true;
+        }
+
+        function closeOrderModal() {
+            const modal = document.getElementById('order-modal');
+            modal.classList.add('hidden');
+            modal.classList.remove('flex');
+        }
+
+        // 8. Newsletter
+        function handleNewsletter(event) {
+            event.preventDefault();
+            event.target.reset();
+            const toast = document.getElementById('toast-notification');
+            toast.classList.remove('hidden');
+            setTimeout(() => {
+                toast.classList.add('hidden');
+            }, 3500);
+        }
+    </script>
+</body>
+</html>
