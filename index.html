@@ -75,19 +75,25 @@
 
     <!-- EN-TÊTE (HEADER) -->
     <header class="sticky top-0 z-40 bg-white/95 backdrop-blur-sm border-b border-gray-100">
-        <div class="max-w-xl mx-auto px-4 h-14 flex items-center justify-between">
+        <div class="max-w-xl mx-auto px-3 sm:px-4 py-2.5 flex items-center justify-between">
             <!-- Bouton Menu -->
-            <button id="menu-btn" aria-label="Menu" class="p-2 text-slate-800 hover:bg-gray-100 rounded-lg transition">
+            <button id="menu-btn" aria-label="Menu" class="p-2 text-slate-800 hover:bg-gray-100 rounded-lg transition shrink-0">
                 <i class="fa-solid fa-bars text-xl"></i>
             </button>
 
-            <!-- Logo Central -->
-            <a href="#" class="text-xl sm:text-2xl font-extrabold tracking-tight text-slate-900">
-                Ibrahim Accessoires
+            <!-- Logo Central + Mention Livraison gratuite & Paiement à la livraison -->
+            <a href="#" class="flex flex-col items-center text-center px-1">
+                <span class="text-lg sm:text-xl font-extrabold tracking-tight text-slate-900 leading-tight">
+                    Ibrahim Accessoires
+                </span>
+                <span class="text-[11px] sm:text-xs font-bold text-[#14532d] flex items-center justify-center gap-1.5 mt-0.5 leading-tight">
+                    <i class="fa-solid fa-truck text-xs"></i>
+                    <span>Livraison gratuite • Paiement à la livraison</span>
+                </span>
             </a>
 
             <!-- Icônes Droite -->
-            <div class="flex items-center space-x-1">
+            <div class="flex items-center space-x-0.5 shrink-0">
                 <button onclick="scrollToForm()" aria-label="Compte" class="p-2 text-slate-800 hover:bg-gray-100 rounded-lg transition">
                     <i class="fa-regular fa-user text-lg"></i>
                 </button>
@@ -153,25 +159,63 @@
                     <i class="fa-solid fa-chevron-right text-sm"></i>
                 </button>
 
-                <!-- Points indicateurs -->
+                <!-- Points indicateurs des 6 modèles -->
                 <div class="absolute bottom-3 left-1/2 -translate-x-1/2 flex space-x-1.5">
                     <span id="dot-0" class="w-2 h-2 rounded-full bg-blue-600 transition-all"></span>
                     <span id="dot-1" class="w-2 h-2 rounded-full bg-white/70 transition-all"></span>
                     <span id="dot-2" class="w-2 h-2 rounded-full bg-white/70 transition-all"></span>
+                    <span id="dot-3" class="w-2 h-2 rounded-full bg-white/70 transition-all"></span>
+                    <span id="dot-4" class="w-2 h-2 rounded-full bg-white/70 transition-all"></span>
+                    <span id="dot-5" class="w-2 h-2 rounded-full bg-white/70 transition-all"></span>
                 </div>
             </div>
 
-            <!-- Miniatures (Thumbnails) -->
-            <div class="px-4 pt-3 flex items-center space-x-2.5">
-                <button onclick="selectImage(0)" id="thumb-0" class="w-14 h-14 rounded-lg overflow-hidden border-2 border-slate-900 transition">
-                    <img src="https://images.unsplash.com/photo-1523275335684-37898b6baf30?auto=format&fit=crop&w=200&q=80" alt="Vue 1" class="w-full h-full object-cover">
-                </button>
-                <button onclick="selectImage(1)" id="thumb-1" class="w-14 h-14 rounded-lg overflow-hidden border-2 border-transparent opacity-65 hover:opacity-100 transition">
-                    <img src="https://images.unsplash.com/photo-1542496658-e33a6d0d50f6?auto=format&fit=crop&w=200&q=80" alt="Vue 2" class="w-full h-full object-cover">
-                </button>
-                <button onclick="selectImage(2)" id="thumb-2" class="w-14 h-14 rounded-lg overflow-hidden border-2 border-transparent opacity-65 hover:opacity-100 transition">
-                    <img src="https://images.unsplash.com/photo-1524592094714-0f0654e20314?auto=format&fit=crop&w=200&q=80" alt="Vue 3" class="w-full h-full object-cover">
-                </button>
+            <!-- Galerie unique alignée des 6 modèles disponibles (défilement horizontal) -->
+            <div class="px-4 pt-3">
+                <div class="flex items-center justify-between mb-2">
+                    <span class="text-xs font-bold uppercase tracking-wide text-slate-700">
+                        Modèle choisi : <span id="selected-color-name" class="text-blue-600">Noir & Bleu</span>
+                    </span>
+                    <span class="text-[11px] text-slate-500 font-medium">Glissez (6 modèles) <i class="fa-solid fa-arrow-right text-[10px]"></i></span>
+                </div>
+
+                <div class="flex items-center gap-2.5 overflow-x-auto no-scrollbar pb-1.5">
+                    <!-- Modèle 1 -->
+                    <button type="button" onclick="selectModel(0)" id="model-thumb-0" class="shrink-0 w-20 rounded-xl p-1 border-2 border-blue-600 bg-blue-50/40 text-center transition">
+                        <img src="https://images.unsplash.com/photo-1523275335684-37898b6baf30?auto=format&fit=crop&w=200&q=80" alt="Noir & Bleu" class="w-full h-14 object-cover rounded-lg mb-1">
+                        <span class="block text-[11px] font-bold text-slate-900 truncate">Noir & Bleu</span>
+                    </button>
+
+                    <!-- Modèle 2 -->
+                    <button type="button" onclick="selectModel(1)" id="model-thumb-1" class="shrink-0 w-20 rounded-xl p-1 border-2 border-gray-200 opacity-75 hover:opacity-100 text-center transition">
+                        <img src="https://images.unsplash.com/photo-1542496658-e33a6d0d50f6?auto=format&fit=crop&w=200&q=80" alt="Cuir Marron" class="w-full h-14 object-cover rounded-lg mb-1">
+                        <span class="block text-[11px] font-bold text-slate-900 truncate">Cuir Marron</span>
+                    </button>
+
+                    <!-- Modèle 3 -->
+                    <button type="button" onclick="selectModel(2)" id="model-thumb-2" class="shrink-0 w-20 rounded-xl p-1 border-2 border-gray-200 opacity-75 hover:opacity-100 text-center transition">
+                        <img src="https://images.unsplash.com/photo-1524592094714-0f0654e20314?auto=format&fit=crop&w=200&q=80" alt="Or & Noir" class="w-full h-14 object-cover rounded-lg mb-1">
+                        <span class="block text-[11px] font-bold text-slate-900 truncate">Or & Noir</span>
+                    </button>
+
+                    <!-- Modèle 4 -->
+                    <button type="button" onclick="selectModel(3)" id="model-thumb-3" class="shrink-0 w-20 rounded-xl p-1 border-2 border-gray-200 opacity-75 hover:opacity-100 text-center transition">
+                        <img src="https://images.unsplash.com/photo-1522312346375-d1a52e2b99b3?auto=format&fit=crop&w=200&q=80" alt="Argent Acier" class="w-full h-14 object-cover rounded-lg mb-1">
+                        <span class="block text-[11px] font-bold text-slate-900 truncate">Argent Acier</span>
+                    </button>
+
+                    <!-- Modèle 5 -->
+                    <button type="button" onclick="selectModel(4)" id="model-thumb-4" class="shrink-0 w-20 rounded-xl p-1 border-2 border-gray-200 opacity-75 hover:opacity-100 text-center transition">
+                        <img src="https://images.unsplash.com/photo-1614164185128-e4ec99c436d7?auto=format&fit=crop&w=200&q=80" alt="Full Black" class="w-full h-14 object-cover rounded-lg mb-1">
+                        <span class="block text-[11px] font-bold text-slate-900 truncate">Full Black</span>
+                    </button>
+
+                    <!-- Modèle 6 -->
+                    <button type="button" onclick="selectModel(5)" id="model-thumb-5" class="shrink-0 w-20 rounded-xl p-1 border-2 border-gray-200 opacity-75 hover:opacity-100 text-center transition">
+                        <img src="https://images.unsplash.com/photo-1547996160-81dfa63595aa?auto=format&fit=crop&w=200&q=80" alt="Bleu Nuit" class="w-full h-14 object-cover rounded-lg mb-1">
+                        <span class="block text-[11px] font-bold text-slate-900 truncate">Bleu Nuit</span>
+                    </button>
+                </div>
             </div>
         </section>
 
@@ -180,12 +224,10 @@
             <h1 class="text-[22px] sm:text-2xl font-extrabold text-slate-900 leading-snug tracking-tight">
                 Imposez votre style en toute circonstance : Montres de Prestige POEDAGAR 857™
             </h1>
+            <div class="w-24 h-0.5 bg-blue-600 mx-auto my-3 rounded-full"></div>
 
-            <!-- Ligne bleue décorative -->
-            <div class="w-24 h-1 bg-blue-600 mx-auto my-3 rounded-full"></div>
-
-            <!-- Étoiles et Évaluations -->
-            <div class="flex items-center justify-center space-x-1.5 text-sm mb-3">
+            <!-- Étoiles et Avis -->
+            <div class="flex items-center justify-center gap-1.5 text-sm mb-3">
                 <div class="flex text-blue-500 text-base">
                     <i class="fa-solid fa-star"></i>
                     <i class="fa-solid fa-star"></i>
@@ -193,49 +235,49 @@
                     <i class="fa-solid fa-star"></i>
                     <i class="fa-solid fa-star-half-stroke"></i>
                 </div>
-                <span class="font-medium text-slate-700">4.8/5 (Basé sur 148 évaluations)</span>
+                <span class="font-semibold text-slate-800">4.8/5 <span class="font-normal text-slate-600">(Basé sur 148 évaluations)</span></span>
             </div>
 
-            <!-- Prix et Prix Barré -->
-            <div class="flex items-center justify-center space-x-3 mb-2">
-                <span class="text-2xl sm:text-3xl font-extrabold text-[#14532d]">22,500 FCFA</span>
-                <span class="text-lg sm:text-xl font-medium text-slate-500 line-through">35,000 FCFA</span>
+            <!-- Prix et Réduction -->
+            <div class="flex items-center justify-center gap-2.5 mb-2">
+                <span class="text-2xl sm:text-[26px] font-extrabold text-[#14532d]">22,500 FCFA</span>
+                <span class="text-lg text-slate-500 line-through font-medium">35,000 FCFA</span>
             </div>
 
-            <!-- Badge Offre Expire Aujourd'hui -->
+            <!-- Badge Offre Expire -->
             <div class="inline-block bg-[#14532d] text-white text-xs sm:text-sm font-semibold px-3.5 py-1 rounded-md mb-2 shadow-xs">
                 Cette offre expire aujourd'hui
             </div>
 
             <!-- Économie -->
-            <p class="text-xs sm:text-sm font-bold text-slate-800 uppercase tracking-wide mb-3">
-                VOUS ECONOMISEZ <span class="text-blue-600">12,500 FCFA (35%)</span>
+            <p class="text-xs sm:text-sm font-semibold text-slate-800 uppercase tracking-wide mb-3">
+                VOUS ECONOMISEZ <span class="text-blue-600 font-bold">12,500 FCFA (35%)</span>
             </p>
 
-            <!-- Urgence dynamique : Commandes en cours & Visiteurs -->
-            <div class="space-y-1.5 text-sm font-semibold mb-4">
-                <p class="text-green-700 flex items-center justify-center gap-1.5">
+            <!-- Commandes en cours & Visiteurs -->
+            <div class="space-y-1.5 text-sm font-bold mb-4">
+                <p class="text-green-600 flex items-center justify-center gap-2">
                     <i class="fa-solid fa-cart-shopping"></i>
                     <span>Il y a <span id="live-orders">19</span> Commandes en cours</span>
                 </p>
-                <p class="text-slate-800 flex items-center justify-center gap-1.5">
+                <p class="text-slate-900 flex items-center justify-center gap-2">
                     <i class="fa-solid fa-eye"></i>
                     <span><span id="live-visitors">52</span> Visiteurs actuellement</span>
                 </p>
             </div>
 
-            <!-- Encadré des 3 Garanties Rapides -->
-            <div class="bg-gray-50/90 border border-gray-200/80 rounded-xl p-4 shadow-sm space-y-2.5 text-sm font-medium text-slate-800">
+            <!-- Encadré des 3 Garanties -->
+            <div class="bg-[#f4f5f7] border border-gray-200/80 rounded-xl p-4 shadow-xs space-y-3 text-sm font-medium text-slate-800">
                 <div class="flex items-center justify-center gap-2.5">
-                    <i class="fa-solid fa-thumbs-up text-slate-900"></i>
+                    <i class="fa-solid fa-thumbs-up text-slate-900 text-base"></i>
                     <span>Paiement à la livraison</span>
                 </div>
                 <div class="flex items-center justify-center gap-2.5">
-                    <i class="fa-solid fa-lock text-slate-900"></i>
+                    <i class="fa-solid fa-lock text-slate-900 text-base"></i>
                     <span>100% Satisfaction ou remboursement.</span>
                 </div>
                 <div class="flex items-center justify-center gap-2.5">
-                    <i class="fa-solid fa-truck-fast text-slate-900"></i>
+                    <i class="fa-solid fa-truck text-slate-900 text-base"></i>
                     <span>Livraison gratuite</span>
                 </div>
             </div>
@@ -243,6 +285,17 @@
 
         <!-- FORMULAIRE DE COMMANDE COD (PAIEMENT À LA LIVRAISON) -->
         <section id="formulaire-commande" class="px-4 py-3">
+            <!-- Encadré rassurant WhatsApp + Paiement à la livraison -->
+            <div class="bg-green-50 border border-green-300 rounded-xl p-3.5 mb-3.5 text-center shadow-xs">
+                <p class="text-xs sm:text-sm font-bold text-green-900 flex items-center justify-center gap-1.5 mb-1">
+                    <i class="fa-brands fa-whatsapp text-[#25D366] text-lg"></i>
+                    <span>Comment commander ? C'est simple et 100% sécurisé !</span>
+                </p>
+                <p class="text-xs sm:text-sm text-slate-800 leading-snug">
+                    Remplissez simplement le formulaire ci-dessous pour <strong>passer votre commande sur WhatsApp</strong>. <strong>Aucun paiement en ligne requis</strong> : vous payez en espèces <strong>uniquement à la livraison</strong> après vérification de votre montre.
+                </p>
+            </div>
+
             <div class="flex items-center justify-center gap-2 text-sm font-semibold text-slate-900 mb-3">
                 <i class="fa-solid fa-check text-slate-900"></i>
                 <span>Achetez maintenant et payez à la livraison</span>
@@ -251,7 +304,58 @@
             <!-- Cadre noir arrondi du formulaire -->
             <form id="cod-form" onsubmit="handleOrderSubmit(event)" class="border-2 border-slate-900 rounded-2xl p-4 sm:p-5 bg-white shadow-md space-y-3.5">
                 
-                <!-- Champ : Nom complet -->
+                <!-- Récapitulatif Produit + Sélecteur de Quantité -->
+                <div class="pb-3 border-b border-gray-200 space-y-3">
+                    <div class="flex items-center justify-between gap-3">
+                        <div class="flex items-center gap-3">
+                            <div class="relative w-14 h-14 rounded-lg bg-gray-100 border border-gray-200 shrink-0">
+                                <img id="summary-product-img" src="https://images.unsplash.com/photo-1523275335684-37898b6baf30?auto=format&fit=crop&w=200&q=80" alt="Montre POEDAGAR 857" class="w-full h-full object-cover rounded-lg">
+                                <span id="summary-qty-badge" class="absolute -top-2 -right-2 w-5 h-5 rounded-full bg-slate-600 text-white text-xs font-bold flex items-center justify-center shadow-xs">1</span>
+                            </div>
+                            <div>
+                                <p class="text-xs sm:text-sm font-bold text-slate-900 leading-snug">Montre Prestige POEDAGAR 857™</p>
+                                <p class="text-xs font-medium text-blue-600">Modèle : <span id="summary-model-name">Noir & Bleu</span></p>
+                            </div>
+                        </div>
+                        <span id="summary-unit-price" class="text-sm font-extrabold text-slate-900 shrink-0">22,500 FCFA</span>
+                    </div>
+
+                    <!-- Sélecteur de Quantité (- / +) -->
+                    <div class="flex items-center justify-between bg-gray-50 px-3 py-2 rounded-lg border border-gray-200">
+                        <span class="text-xs sm:text-sm font-bold text-slate-800">Quantité souhaitée :</span>
+                        <div class="flex items-center gap-2">
+                            <button type="button" onclick="updateQuantity(-1)" aria-label="Diminuer la quantité" class="w-8 h-8 rounded-lg bg-white border border-gray-300 font-extrabold text-slate-900 hover:bg-gray-100 active:scale-95 transition flex items-center justify-center">
+                                -
+                            </button>
+                            <span id="qty-display" class="w-8 text-center font-extrabold text-sm text-slate-900">1</span>
+                            <button type="button" onclick="updateQuantity(1)" aria-label="Augmenter la quantité" class="w-8 h-8 rounded-lg bg-white border border-gray-300 font-extrabold text-slate-900 hover:bg-gray-100 active:scale-95 transition flex items-center justify-center">
+                                +
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Encadré Sous-total / Livraison / Total -->
+                    <div class="bg-[#f3f4f6] rounded-xl p-3.5 space-y-2 text-sm">
+                        <div class="flex items-center justify-between text-slate-700">
+                            <span>Sous-total</span>
+                            <span id="summary-subtotal" class="font-bold text-slate-900">22,500 FCFA</span>
+                        </div>
+                        <div class="flex items-center justify-between text-slate-700 pb-2 border-b border-gray-300">
+                            <span>Livraison</span>
+                            <span class="font-bold text-green-700">Gratuit</span>
+                        </div>
+                        <div class="flex items-center justify-between text-base font-extrabold text-slate-900 pt-0.5">
+                            <span>Total</span>
+                            <span id="summary-total">22,500 FCFA</span>
+                        </div>
+                    </div>
+
+                    <p class="text-center text-xs sm:text-sm font-bold text-slate-900 pt-1">
+                        Veuillez saisir correctement vos informations, puis cliquez sur le bouton Confirmer la commande
+                    </p>
+                </div>
+
+                <!-- Champ 1 : Nom complet -->
                 <div class="flex items-center border border-gray-300 rounded-lg overflow-hidden focus-within:border-blue-600 focus-within:ring-1 focus-within:ring-blue-600 transition">
                     <div class="w-11 h-11 bg-gray-200/80 flex items-center justify-center text-slate-800 shrink-0 border-r border-gray-300">
                         <i class="fa-solid fa-circle-user text-lg"></i>
@@ -260,16 +364,7 @@
                            class="w-full h-11 px-3 text-sm text-slate-900 placeholder-gray-400 focus:outline-none">
                 </div>
 
-                <!-- Champ : Numéro Joignable -->
-                <div class="flex items-center border border-gray-300 rounded-lg overflow-hidden focus-within:border-blue-600 focus-within:ring-1 focus-within:ring-blue-600 transition">
-                    <div class="w-11 h-11 bg-gray-200/80 flex items-center justify-center text-slate-800 shrink-0 border-r border-gray-300">
-                        <i class="fa-solid fa-phone text-base"></i>
-                    </div>
-                    <input type="tel" id="phone" name="phone" required placeholder="Numéro Joignable" 
-                           class="w-full h-11 px-3 text-sm text-slate-900 placeholder-gray-400 focus:outline-none">
-                </div>
-
-                <!-- Champ : Numéro WhatsApp -->
+                <!-- Champ 2 : Numéro WhatsApp -->
                 <div class="flex items-center border border-gray-300 rounded-lg overflow-hidden focus-within:border-blue-600 focus-within:ring-1 focus-within:ring-blue-600 transition">
                     <div class="w-11 h-11 bg-gray-200/80 flex items-center justify-center text-slate-800 shrink-0 border-r border-gray-300">
                         <i class="fa-brands fa-whatsapp text-xl"></i>
@@ -278,12 +373,38 @@
                            class="w-full h-11 px-3 text-sm text-slate-900 placeholder-gray-400 focus:outline-none">
                 </div>
 
-                <!-- Champ : Ville / Quartier -->
+                <!-- Champ 3 : Sélection de la Ville (Burkina Faso) -->
+                <div class="flex items-center border border-gray-300 rounded-lg overflow-hidden focus-within:border-blue-600 focus-within:ring-1 focus-within:ring-blue-600 transition bg-white">
+                    <div class="w-11 h-11 bg-gray-200/80 flex items-center justify-center text-slate-800 shrink-0 border-r border-gray-300">
+                        <i class="fa-solid fa-city text-base"></i>
+                    </div>
+                    <select id="city" name="city" required 
+                            class="w-full h-11 px-3 text-sm text-slate-900 bg-white focus:outline-none cursor-pointer">
+                        <option value="" disabled selected>Choisissez votre ville...</option>
+                        <option value="Ouagadougou">Ouagadougou</option>
+                        <option value="Bobo-Dioulasso">Bobo-Dioulasso</option>
+                        <option value="Koudougou">Koudougou</option>
+                        <option value="Ouahigouya">Ouahigouya</option>
+                        <option value="Banfora">Banfora</option>
+                        <option value="Dédougou">Dédougou</option>
+                        <option value="Kaya">Kaya</option>
+                        <option value="Tenkodogo">Tenkodogo</option>
+                        <option value="Fada N'Gourma">Fada N'Gourma</option>
+                        <option value="Pouytenga">Pouytenga</option>
+                        <option value="Ziniaré">Ziniaré</option>
+                        <option value="Manga">Manga</option>
+                        <option value="Gaoua">Gaoua</option>
+                        <option value="Dori">Dori</option>
+                        <option value="Autre ville">Autre ville</option>
+                    </select>
+                </div>
+
+                <!-- Champ 4 : Quartier séparé -->
                 <div class="flex items-center border border-gray-300 rounded-lg overflow-hidden focus-within:border-blue-600 focus-within:ring-1 focus-within:ring-blue-600 transition">
                     <div class="w-11 h-11 bg-gray-200/80 flex items-center justify-center text-slate-800 shrink-0 border-r border-gray-300">
                         <i class="fa-solid fa-location-dot text-lg"></i>
                     </div>
-                    <input type="text" id="city" name="city" required placeholder="Ville/Quartier" 
+                    <input type="text" id="quartier" name="quartier" required placeholder="Quartier (ex: Quartier 4e, Patte d'Oie...)" 
                            class="w-full h-11 px-3 text-sm text-slate-900 placeholder-gray-400 focus:outline-none">
                 </div>
 
@@ -425,56 +546,30 @@
                     </div>
                 </div>
 
-                <!-- Question 3 -->
+                <!-- Question 3 : Garantie de remboursement -->
                 <div class="faq-item">
                     <button type="button" onclick="toggleFaq(2)" class="w-full bg-[#2474c9] hover:bg-[#1d63ae] text-white font-semibold text-left px-4 py-3.5 rounded-lg flex items-center justify-between gap-3 transition shadow-xs">
-                        <span class="text-sm sm:text-[15px] leading-snug">Je souhaite Commander un de vos produits, mais le stock est fini pour mon pays de résidence. Que faire ?</span>
+                        <span class="text-sm sm:text-[15px] leading-snug">Quelle est la garantie de remboursement ?</span>
                         <span class="w-7 h-7 rounded-full bg-white text-[#2474c9] flex items-center justify-center shrink-0 transition-transform duration-200" id="faq-icon-2">
                             <i class="fa-solid fa-plus text-xs"></i>
                         </span>
                     </button>
                     <div id="faq-content-2" class="hidden px-2 pt-3 pb-2 text-sm text-slate-800 space-y-3 leading-relaxed">
-                        <p>Si le stock est momentanément épuisé dans votre ville ou pays, contactez directement notre service client sur WhatsApp afin de réserver votre exemplaire sur le prochain arrivage prioritaire sans frais supplémentaires.</p>
+                        <p>Si vous n'êtes pas entièrement satisfait du produit à sa réception, vous avez la possibilité de le retourner au livreur et d'obtenir un remboursement complet du montant que vous avez payé à la livraison.</p>
                     </div>
                 </div>
 
-                <!-- Question 4 -->
+                <!-- Question 4 : Contact service client -->
                 <div class="faq-item">
                     <button type="button" onclick="toggleFaq(3)" class="w-full bg-[#2474c9] hover:bg-[#1d63ae] text-white font-semibold text-left px-4 py-3.5 rounded-lg flex items-center justify-between gap-3 transition shadow-xs">
-                        <span class="text-sm sm:text-[15px] leading-snug">Quelle est la garantie de remboursement ?</span>
+                        <span class="text-sm sm:text-[15px] leading-snug">Qui puis-je contacter si j'ai un problème avec ma commande ?</span>
                         <span class="w-7 h-7 rounded-full bg-white text-[#2474c9] flex items-center justify-center shrink-0 transition-transform duration-200" id="faq-icon-3">
                             <i class="fa-solid fa-plus text-xs"></i>
                         </span>
                     </button>
                     <div id="faq-content-3" class="hidden px-2 pt-3 pb-2 text-sm text-slate-800 space-y-3 leading-relaxed">
-                        <p>Si vous n'êtes pas entièrement satisfait du produit à sa réception, vous avez la possibilité de le retourner au livreur et d'obtenir un remboursement complet du montant que vous avez payé à la livraison.</p>
-                    </div>
-                </div>
-
-                <!-- Question 5 -->
-                <div class="faq-item">
-                    <button type="button" onclick="toggleFaq(4)" class="w-full bg-[#2474c9] hover:bg-[#1d63ae] text-white font-semibold text-left px-4 py-3.5 rounded-lg flex items-center justify-between gap-3 transition shadow-xs">
-                        <span class="text-sm sm:text-[15px] leading-snug">Qui puis-je contacter si j'ai un problème avec ma commande ?</span>
-                        <span class="w-7 h-7 rounded-full bg-white text-[#2474c9] flex items-center justify-center shrink-0 transition-transform duration-200" id="faq-icon-4">
-                            <i class="fa-solid fa-plus text-xs"></i>
-                        </span>
-                    </button>
-                    <div id="faq-content-4" class="hidden px-2 pt-3 pb-2 text-sm text-slate-800 space-y-3 leading-relaxed">
                         <p>Si vous avez des questions concernant votre commande ou le produit, notre équipe du service clientèle peut vous aider en les contactant sur le site web.</p>
                         <p>Pour cela Cliquez sur le bouton WhatsApp qui s'affiche sur notre page web et vous serez directement redirigé dans une discussion avec l'un de nos agents qui répondra à toutes vos questions.</p>
-                    </div>
-                </div>
-
-                <!-- Question 6 -->
-                <div class="faq-item">
-                    <button type="button" onclick="toggleFaq(5)" class="w-full bg-[#2474c9] hover:bg-[#1d63ae] text-white font-semibold text-left px-4 py-3.5 rounded-lg flex items-center justify-between gap-3 transition shadow-xs">
-                        <span class="text-sm sm:text-[15px] leading-snug">Quels sont les pays d'afrique dans lesquelles vous êtes basés et vous livrez ?</span>
-                        <span class="w-7 h-7 rounded-full bg-white text-[#2474c9] flex items-center justify-center shrink-0 transition-transform duration-200" id="faq-icon-5">
-                            <i class="fa-solid fa-plus text-xs"></i>
-                        </span>
-                    </button>
-                    <div id="faq-content-5" class="hidden px-2 pt-3 pb-2 text-sm text-slate-800 space-y-3 leading-relaxed">
-                        <p>Nous livrons rapidement dans plusieurs pays d'Afrique de l'Ouest et Centrale : <strong>Burkina Faso, Côte d'Ivoire, Sénégal, Mali, Bénin, Togo, Cameroun, Gabon et Congo</strong>, avec paiement en espèces à la livraison.</p>
                     </div>
                 </div>
             </div>
@@ -645,7 +740,7 @@
             </div>
             <h3 class="text-xl font-extrabold text-slate-900">Commande Validée avec Succès !</h3>
             <p class="text-sm text-slate-600 leading-relaxed">
-                Merci <strong id="modal-customer-name" class="text-slate-900"></strong> ! Votre commande de la <strong class="text-slate-900">Montre POEDAGAR 857™ (22,500 FCFA)</strong> a bien été enregistrée.
+                Merci <strong id="modal-customer-name" class="text-slate-900"></strong> ! Votre commande de <strong id="modal-qty-text" class="text-slate-900">1x</strong> <strong class="text-slate-900">Montre POEDAGAR 857™</strong> (<strong id="modal-model-text" class="text-slate-900">Noir & Bleu</strong>) d'un total de <strong id="modal-total-text" class="text-green-700">22,500 FCFA</strong> a bien été enregistrée.
             </p>
             <div class="bg-gray-50 border border-gray-200 rounded-xl p-3 text-xs text-left space-y-1.5 text-slate-700">
                 <p><i class="fa-brands fa-whatsapp text-green-600 mr-1.5"></i> <strong>WhatsApp :</strong> <span id="modal-whatsapp"></span></p>
@@ -674,45 +769,96 @@
 
     <!-- SCRIPTS INTERACTIFS -->
     <script>
-        // 1. Gestion de la galerie d'images produit
-        const productImages = [
-            "https://images.unsplash.com/photo-1523275335684-37898b6baf30?auto=format&fit=crop&w=900&q=85",
-            "https://images.unsplash.com/photo-1542496658-e33a6d0d50f6?auto=format&fit=crop&w=900&q=85",
-            "https://images.unsplash.com/photo-1524592094714-0f0654e20314?auto=format&fit=crop&w=900&q=85"
+        // 1. Gestion unifiée du carrousel et des 6 modèles disponibles
+        const productModels = [
+            {
+                name: "Noir & Bleu",
+                image: "https://images.unsplash.com/photo-1523275335684-37898b6baf30?auto=format&fit=crop&w=900&q=85"
+            },
+            {
+                name: "Cuir Marron",
+                image: "https://images.unsplash.com/photo-1542496658-e33a6d0d50f6?auto=format&fit=crop&w=900&q=85"
+            },
+            {
+                name: "Or & Noir",
+                image: "https://images.unsplash.com/photo-1524592094714-0f0654e20314?auto=format&fit=crop&w=900&q=85"
+            },
+            {
+                name: "Argent Acier",
+                image: "https://images.unsplash.com/photo-1522312346375-d1a52e2b99b3?auto=format&fit=crop&w=900&q=85"
+            },
+            {
+                name: "Full Black",
+                image: "https://images.unsplash.com/photo-1614164185128-e4ec99c436d7?auto=format&fit=crop&w=900&q=85"
+            },
+            {
+                name: "Bleu Nuit",
+                image: "https://images.unsplash.com/photo-1547996160-81dfa63595aa?auto=format&fit=crop&w=900&q=85"
+            }
         ];
-        let currentImageIndex = 0;
+        let currentModelIndex = 0;
 
-        function selectImage(index) {
-            currentImageIndex = index;
+        function selectModel(index) {
+            currentModelIndex = index;
+            const selectedModel = productModels[index];
             const mainImg = document.getElementById('main-product-image');
-            mainImg.src = productImages[index];
+            mainImg.src = selectedModel.image;
 
-            // Mise à jour des bordures des miniatures et des points
-            productImages.forEach((_, i) => {
-                const thumb = document.getElementById(`thumb-${i}`);
+            // Mettre à jour le nom du modèle et la vignette dans le formulaire
+            document.getElementById('selected-color-name').textContent = selectedModel.name;
+            document.getElementById('summary-model-name').textContent = selectedModel.name;
+            document.getElementById('summary-product-img').src = selectedModel.image;
+
+            // Mise à jour visuelle des 6 cartes modèles et des points du carrousel
+            productModels.forEach((_, i) => {
+                const thumb = document.getElementById(`model-thumb-${i}`);
                 const dot = document.getElementById(`dot-${i}`);
                 if (i === index) {
-                    thumb.classList.remove('border-transparent', 'opacity-65');
-                    thumb.classList.add('border-slate-900', 'opacity-100');
+                    thumb.classList.remove('border-gray-200', 'opacity-75');
+                    thumb.classList.add('border-blue-600', 'bg-blue-50/40', 'opacity-100');
                     dot.classList.remove('bg-white/70');
                     dot.classList.add('bg-blue-600');
                 } else {
-                    thumb.classList.add('border-transparent', 'opacity-65');
-                    thumb.classList.remove('border-slate-900', 'opacity-100');
+                    thumb.classList.add('border-gray-200', 'opacity-75');
+                    thumb.classList.remove('border-blue-600', 'bg-blue-50/40', 'opacity-100');
                     dot.classList.add('bg-white/70');
                     dot.classList.remove('bg-blue-600');
                 }
             });
+
+            // Faire défiler doucement la vignette sélectionnée dans la vue
+            const activeThumb = document.getElementById(`model-thumb-${index}`);
+            if (activeThumb) {
+                activeThumb.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'center' });
+            }
         }
 
         function nextImage() {
-            const next = (currentImageIndex + 1) % productImages.length;
-            selectImage(next);
+            const next = (currentModelIndex + 1) % productModels.length;
+            selectModel(next);
         }
 
         function prevImage() {
-            const prev = (currentImageIndex - 1 + productImages.length) % productImages.length;
-            selectImage(prev);
+            const prev = (currentModelIndex - 1 + productModels.length) % productModels.length;
+            selectModel(prev);
+        }
+
+        // 1c. Gestion dynamique de la quantité et du prix total
+        const UNIT_PRICE = 22500;
+        let quantity = 1;
+
+        function formatFCFA(amount) {
+            return amount.toLocaleString('en-US') + ' FCFA';
+        }
+
+        function updateQuantity(delta) {
+            quantity = Math.max(1, Math.min(20, quantity + delta));
+            const total = UNIT_PRICE * quantity;
+
+            document.getElementById('qty-display').textContent = quantity;
+            document.getElementById('summary-qty-badge').textContent = quantity;
+            document.getElementById('summary-subtotal').textContent = formatFCFA(total);
+            document.getElementById('summary-total').textContent = formatFCFA(total);
         }
 
         // 2. Défilement fluide vers le formulaire de commande
@@ -737,7 +883,7 @@
             searchBar.classList.toggle('hidden');
         }
 
-        // 4. Gestion de l'accordéon FAQ
+        // 4. Gestion de l'accordéon FAQ (4 questions)
         function toggleFaq(index) {
             const content = document.getElementById(`faq-content-${index}`);
             const iconWrapper = document.getElementById(`faq-icon-${index}`);
@@ -746,7 +892,7 @@
             const isHidden = content.classList.contains('hidden');
 
             // Fermer toutes les autres questions pour un rendu épuré
-            for (let i = 0; i < 6; i++) {
+            for (let i = 0; i < 4; i++) {
                 const otherContent = document.getElementById(`faq-content-${i}`);
                 const otherIcon = document.getElementById(`faq-icon-${i}`).querySelector('i');
                 if (otherContent && i !== index) {
@@ -803,24 +949,33 @@
             event.preventDefault();
 
             const fullName = document.getElementById('fullName').value.trim();
-            const phone = document.getElementById('phone').value.trim();
             const whatsapp = document.getElementById('whatsapp').value.trim();
             const city = document.getElementById('city').value.trim();
+            const quartier = document.getElementById('quartier').value.trim();
+            const selectedModelName = productModels[currentModelIndex].name;
+            const totalPriceFormatted = formatFCFA(UNIT_PRICE * quantity);
+            const fullAddress = `${city} - ${quartier}`;
 
             // Remplir la modale de confirmation
             document.getElementById('modal-customer-name').textContent = fullName;
+            document.getElementById('modal-qty-text').textContent = `${quantity}x`;
+            document.getElementById('modal-model-text').textContent = selectedModelName;
+            document.getElementById('modal-total-text').textContent = totalPriceFormatted;
             document.getElementById('modal-whatsapp').textContent = whatsapp;
-            document.getElementById('modal-city').textContent = city;
+            document.getElementById('modal-city').textContent = fullAddress;
 
             // Numéro WhatsApp Business : +226 57 61 56 45
             const businessPhone = "22657615645";
             const message = encodeURIComponent(
                 `Bonjour Ibrahim Accessoires, je souhaite confirmer ma commande (Paiement à la livraison) :\n\n` +
-                `⌚ *Produit :* Montre POEDAGAR 857™ (22,500 FCFA)\n` +
+                `⌚ *Produit :* Montre POEDAGAR 857™\n` +
+                `🎨 *Modèle / Couleur :* ${selectedModelName}\n` +
+                `🔢 *Quantité :* ${quantity}\n` +
+                `💰 *Total à payer à la livraison :* ${totalPriceFormatted} (Livraison gratuite)\n` +
                 `👤 *Nom complet :* ${fullName}\n` +
-                `📞 *Numéro Joignable :* ${phone}\n` +
                 `💬 *WhatsApp :* ${whatsapp}\n` +
-                `📍 *Ville / Quartier :* ${city}`
+                `🏙️ *Ville :* ${city}\n` +
+                `📍 *Quartier :* ${quartier}`
             );
             const whatsappUrl = `https://wa.me/${businessPhone}?text=${message}`;
             document.getElementById('modal-wa-redirect').href = whatsappUrl;
@@ -833,9 +988,11 @@
             // Ouvrir directement WhatsApp avec les détails de la commande
             window.open(whatsappUrl, '_blank');
 
-            // Réinitialiser le formulaire
+            // Réinitialiser le formulaire et la quantité
             document.getElementById('cod-form').reset();
             document.getElementById('readyCheck').checked = true;
+            quantity = 1;
+            updateQuantity(0);
         }
 
         function closeOrderModal() {
