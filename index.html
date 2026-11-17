@@ -61,6 +61,15 @@
             animation: pulse-subtle 2.5s infinite ease-in-out;
         }
 
+        @keyframes check-attention {
+            0%, 100% { transform: scale(1); box-shadow: 0 0 0 0 rgba(239, 68, 68, 0.5); }
+            50% { transform: scale(1.03); box-shadow: 0 0 0 6px rgba(239, 68, 68, 0); }
+        }
+
+        .animate-check-attention {
+            animation: check-attention 1.4s infinite ease-in-out;
+        }
+
         /* Masquer la barre de défilement sur les galeries horizontales */
         .no-scrollbar::-webkit-scrollbar {
             display: none;
@@ -145,8 +154,8 @@
             <div class="relative aspect-square w-full overflow-hidden bg-gray-100">
                 <img id="main-product-image" 
                      src="https://images.unsplash.com/photo-1523275335684-37898b6baf30?auto=format&fit=crop&w=900&q=85" 
-                     onerror="this.src='https://placehold.co/800x800/0f172a/ffffff?text=Montre+POEDAGAR+857'"
-                     alt="Montre de Prestige POEDAGAR 857" 
+                     onerror="this.src='https://placehold.co/800x800/0f172a/ffffff?text=Montre+Richard+Mille'"
+                     alt="Montre de Prestige Richard Mille" 
                      class="w-full h-full object-cover transition-all duration-300">
 
                 <!-- Bouton Précédent -->
@@ -159,61 +168,75 @@
                     <i class="fa-solid fa-chevron-right text-sm"></i>
                 </button>
 
-                <!-- Points indicateurs des 6 modèles -->
-                <div class="absolute bottom-3 left-1/2 -translate-x-1/2 flex space-x-1.5">
+                <!-- Points indicateurs des 8 modèles -->
+                <div class="absolute bottom-3 left-1/2 -translate-x-1/2 flex space-x-1.5" id="carousel-dots">
                     <span id="dot-0" class="w-2 h-2 rounded-full bg-blue-600 transition-all"></span>
                     <span id="dot-1" class="w-2 h-2 rounded-full bg-white/70 transition-all"></span>
                     <span id="dot-2" class="w-2 h-2 rounded-full bg-white/70 transition-all"></span>
                     <span id="dot-3" class="w-2 h-2 rounded-full bg-white/70 transition-all"></span>
                     <span id="dot-4" class="w-2 h-2 rounded-full bg-white/70 transition-all"></span>
                     <span id="dot-5" class="w-2 h-2 rounded-full bg-white/70 transition-all"></span>
+                    <span id="dot-6" class="w-2 h-2 rounded-full bg-white/70 transition-all"></span>
+                    <span id="dot-7" class="w-2 h-2 rounded-full bg-white/70 transition-all"></span>
                 </div>
             </div>
 
-            <!-- Galerie unique alignée des 6 modèles disponibles (défilement horizontal) -->
+            <!-- Galerie unique alignée des 8 modèles Richard Mille (défilement horizontal) -->
             <div class="px-4 pt-3">
                 <div class="flex items-center justify-between mb-2">
                     <span class="text-xs font-bold uppercase tracking-wide text-slate-700">
-                        Modèle choisi : <span id="selected-color-name" class="text-blue-600">Noir & Bleu</span>
+                        Modèle choisi : <span id="selected-color-name" class="text-blue-600">Carbone Gris</span>
                     </span>
-                    <span class="text-[11px] text-slate-500 font-medium">Glissez (6 modèles) <i class="fa-solid fa-arrow-right text-[10px]"></i></span>
+                    <span class="text-[11px] text-slate-500 font-medium">Glissez (8 modèles) <i class="fa-solid fa-arrow-right text-[10px]"></i></span>
                 </div>
 
-                <div class="flex items-center gap-2.5 overflow-x-auto no-scrollbar pb-1.5">
+                <div class="flex items-center gap-2.5 overflow-x-auto no-scrollbar pb-1.5" id="models-thumbnails-container">
                     <!-- Modèle 1 -->
                     <button type="button" onclick="selectModel(0)" id="model-thumb-0" class="shrink-0 w-20 rounded-xl p-1 border-2 border-blue-600 bg-blue-50/40 text-center transition">
-                        <img src="https://images.unsplash.com/photo-1523275335684-37898b6baf30?auto=format&fit=crop&w=200&q=80" alt="Noir & Bleu" class="w-full h-14 object-cover rounded-lg mb-1">
-                        <span class="block text-[11px] font-bold text-slate-900 truncate">Noir & Bleu</span>
+                        <img src="https://images.unsplash.com/photo-1523275335684-37898b6baf30?auto=format&fit=crop&w=200&q=80" alt="Carbone Gris" class="w-full h-14 object-cover rounded-lg mb-1">
+                        <span class="block text-[11px] font-bold text-slate-900 truncate">Carbone</span>
                     </button>
 
                     <!-- Modèle 2 -->
                     <button type="button" onclick="selectModel(1)" id="model-thumb-1" class="shrink-0 w-20 rounded-xl p-1 border-2 border-gray-200 opacity-75 hover:opacity-100 text-center transition">
-                        <img src="https://images.unsplash.com/photo-1542496658-e33a6d0d50f6?auto=format&fit=crop&w=200&q=80" alt="Cuir Marron" class="w-full h-14 object-cover rounded-lg mb-1">
-                        <span class="block text-[11px] font-bold text-slate-900 truncate">Cuir Marron</span>
+                        <img src="https://images.unsplash.com/photo-1542496658-e33a6d0d50f6?auto=format&fit=crop&w=200&q=80" alt="Bleu & Blanc" class="w-full h-14 object-cover rounded-lg mb-1">
+                        <span class="block text-[11px] font-bold text-slate-900 truncate">Bleu-Blanc</span>
                     </button>
 
                     <!-- Modèle 3 -->
                     <button type="button" onclick="selectModel(2)" id="model-thumb-2" class="shrink-0 w-20 rounded-xl p-1 border-2 border-gray-200 opacity-75 hover:opacity-100 text-center transition">
-                        <img src="https://images.unsplash.com/photo-1524592094714-0f0654e20314?auto=format&fit=crop&w=200&q=80" alt="Or & Noir" class="w-full h-14 object-cover rounded-lg mb-1">
-                        <span class="block text-[11px] font-bold text-slate-900 truncate">Or & Noir</span>
+                        <img src="https://images.unsplash.com/photo-1524592094714-0f0654e20314?auto=format&fit=crop&w=200&q=80" alt="Bleu Lagon" class="w-full h-14 object-cover rounded-lg mb-1">
+                        <span class="block text-[11px] font-bold text-slate-900 truncate">Bleu Lagon</span>
                     </button>
 
                     <!-- Modèle 4 -->
                     <button type="button" onclick="selectModel(3)" id="model-thumb-3" class="shrink-0 w-20 rounded-xl p-1 border-2 border-gray-200 opacity-75 hover:opacity-100 text-center transition">
-                        <img src="https://images.unsplash.com/photo-1522312346375-d1a52e2b99b3?auto=format&fit=crop&w=200&q=80" alt="Argent Acier" class="w-full h-14 object-cover rounded-lg mb-1">
-                        <span class="block text-[11px] font-bold text-slate-900 truncate">Argent Acier</span>
+                        <img src="https://images.unsplash.com/photo-1522312346375-d1a52e2b99b3?auto=format&fit=crop&w=200&q=80" alt="Blanc & Bleu" class="w-full h-14 object-cover rounded-lg mb-1">
+                        <span class="block text-[11px] font-bold text-slate-900 truncate">Blanc-Bleu</span>
                     </button>
 
                     <!-- Modèle 5 -->
                     <button type="button" onclick="selectModel(4)" id="model-thumb-4" class="shrink-0 w-20 rounded-xl p-1 border-2 border-gray-200 opacity-75 hover:opacity-100 text-center transition">
-                        <img src="https://images.unsplash.com/photo-1614164185128-e4ec99c436d7?auto=format&fit=crop&w=200&q=80" alt="Full Black" class="w-full h-14 object-cover rounded-lg mb-1">
-                        <span class="block text-[11px] font-bold text-slate-900 truncate">Full Black</span>
+                        <img src="https://images.unsplash.com/photo-1614164185128-e4ec99c436d7?auto=format&fit=crop&w=200&q=80" alt="Vert Jungle" class="w-full h-14 object-cover rounded-lg mb-1">
+                        <span class="block text-[11px] font-bold text-slate-900 truncate">Vert Jungle</span>
                     </button>
 
                     <!-- Modèle 6 -->
                     <button type="button" onclick="selectModel(5)" id="model-thumb-5" class="shrink-0 w-20 rounded-xl p-1 border-2 border-gray-200 opacity-75 hover:opacity-100 text-center transition">
-                        <img src="https://images.unsplash.com/photo-1547996160-81dfa63595aa?auto=format&fit=crop&w=200&q=80" alt="Bleu Nuit" class="w-full h-14 object-cover rounded-lg mb-1">
-                        <span class="block text-[11px] font-bold text-slate-900 truncate">Bleu Nuit</span>
+                        <img src="https://images.unsplash.com/photo-1547996160-81dfa63595aa?auto=format&fit=crop&w=200&q=80" alt="Jaune Acier" class="w-full h-14 object-cover rounded-lg mb-1">
+                        <span class="block text-[11px] font-bold text-slate-900 truncate">Jaune Acier</span>
+                    </button>
+
+                    <!-- Modèle 7 -->
+                    <button type="button" onclick="selectModel(6)" id="model-thumb-6" class="shrink-0 w-20 rounded-xl p-1 border-2 border-gray-200 opacity-75 hover:opacity-100 text-center transition">
+                        <img src="https://images.unsplash.com/photo-1523275335684-37898b6baf30?auto=format&fit=crop&w=200&q=80" alt="Blanc Pur" class="w-full h-14 object-cover rounded-lg mb-1">
+                        <span class="block text-[11px] font-bold text-slate-900 truncate">Blanc Pur</span>
+                    </button>
+
+                    <!-- Modèle 8 -->
+                    <button type="button" onclick="selectModel(7)" id="model-thumb-7" class="shrink-0 w-20 rounded-xl p-1 border-2 border-gray-200 opacity-75 hover:opacity-100 text-center transition">
+                        <img src="https://images.unsplash.com/photo-1542496658-e33a6d0d50f6?auto=format&fit=crop&w=200&q=80" alt="Jaune Sport" class="w-full h-14 object-cover rounded-lg mb-1">
+                        <span class="block text-[11px] font-bold text-slate-900 truncate">Jaune Sport</span>
                     </button>
                 </div>
             </div>
@@ -222,7 +245,7 @@
         <!-- TITRE, AVIS, PRIX ET PREUVE SOCIALE -->
         <section class="px-4 pt-5 pb-4 text-center">
             <h1 class="text-[22px] sm:text-2xl font-extrabold text-slate-900 leading-snug tracking-tight">
-                Imposez votre style en toute circonstance : Montres de Prestige POEDAGAR 857™
+                Imposez votre style en toute circonstance : Montres de Prestige Richard Mille™
             </h1>
             <div class="w-24 h-0.5 bg-blue-600 mx-auto my-3 rounded-full"></div>
 
@@ -238,10 +261,10 @@
                 <span class="font-semibold text-slate-800">4.8/5 <span class="font-normal text-slate-600">(Basé sur 148 évaluations)</span></span>
             </div>
 
-            <!-- Prix et Réduction -->
+            <!-- Prix et Réduction (12 000 FCFA au lieu de 20 000 FCFA) -->
             <div class="flex items-center justify-center gap-2.5 mb-2">
-                <span class="text-2xl sm:text-[26px] font-extrabold text-[#14532d]">22,500 FCFA</span>
-                <span class="text-lg text-slate-500 line-through font-medium">35,000 FCFA</span>
+                <span class="text-2xl sm:text-[26px] font-extrabold text-[#14532d]">12,000 FCFA</span>
+                <span class="text-lg text-slate-500 line-through font-medium">20,000 FCFA</span>
             </div>
 
             <!-- Badge Offre Expire -->
@@ -251,7 +274,7 @@
 
             <!-- Économie -->
             <p class="text-xs sm:text-sm font-semibold text-slate-800 uppercase tracking-wide mb-3">
-                VOUS ECONOMISEZ <span class="text-blue-600 font-bold">12,500 FCFA (35%)</span>
+                VOUS ECONOMISEZ <span class="text-blue-600 font-bold">8,000 FCFA (40%)</span>
             </p>
 
             <!-- Commandes en cours & Visiteurs -->
@@ -285,17 +308,6 @@
 
         <!-- FORMULAIRE DE COMMANDE COD (PAIEMENT À LA LIVRAISON) -->
         <section id="formulaire-commande" class="px-4 py-3">
-            <!-- Encadré rassurant WhatsApp + Paiement à la livraison -->
-            <div class="bg-green-50 border border-green-300 rounded-xl p-3.5 mb-3.5 text-center shadow-xs">
-                <p class="text-xs sm:text-sm font-bold text-green-900 flex items-center justify-center gap-1.5 mb-1">
-                    <i class="fa-brands fa-whatsapp text-[#25D366] text-lg"></i>
-                    <span>Comment commander ? C'est simple et 100% sécurisé !</span>
-                </p>
-                <p class="text-xs sm:text-sm text-slate-800 leading-snug">
-                    Remplissez simplement le formulaire ci-dessous pour <strong>passer votre commande sur WhatsApp</strong>. <strong>Aucun paiement en ligne requis</strong> : vous payez en espèces <strong>uniquement à la livraison</strong> après vérification de votre montre.
-                </p>
-            </div>
-
             <div class="flex items-center justify-center gap-2 text-sm font-semibold text-slate-900 mb-3">
                 <i class="fa-solid fa-check text-slate-900"></i>
                 <span>Achetez maintenant et payez à la livraison</span>
@@ -309,44 +321,56 @@
                     <div class="flex items-center justify-between gap-3">
                         <div class="flex items-center gap-3">
                             <div class="relative w-14 h-14 rounded-lg bg-gray-100 border border-gray-200 shrink-0">
-                                <img id="summary-product-img" src="https://images.unsplash.com/photo-1523275335684-37898b6baf30?auto=format&fit=crop&w=200&q=80" alt="Montre POEDAGAR 857" class="w-full h-full object-cover rounded-lg">
+                                <img id="summary-product-img" src="https://images.unsplash.com/photo-1523275335684-37898b6baf30?auto=format&fit=crop&w=200&q=80" alt="Montre Richard Mille" class="w-full h-full object-cover rounded-lg">
                                 <span id="summary-qty-badge" class="absolute -top-2 -right-2 w-5 h-5 rounded-full bg-slate-600 text-white text-xs font-bold flex items-center justify-center shadow-xs">1</span>
                             </div>
                             <div>
-                                <p class="text-xs sm:text-sm font-bold text-slate-900 leading-snug">Montre Prestige POEDAGAR 857™</p>
-                                <p class="text-xs font-medium text-blue-600">Modèle : <span id="summary-model-name">Noir & Bleu</span></p>
+                                <p class="text-xs sm:text-sm font-bold text-slate-900 leading-snug">Montre Prestige Richard Mille™</p>
+                                <p class="text-xs font-medium text-blue-600">Modèle : <span id="summary-model-name">Carbone Gris</span></p>
                             </div>
                         </div>
-                        <span id="summary-unit-price" class="text-sm font-extrabold text-slate-900 shrink-0">22,500 FCFA</span>
+                        <span id="summary-unit-price" class="text-sm font-extrabold text-slate-900 shrink-0">12,000 FCFA</span>
                     </div>
 
-                    <!-- Sélecteur de Quantité (- / +) -->
-                    <div class="flex items-center justify-between bg-gray-50 px-3 py-2 rounded-lg border border-gray-200">
-                        <span class="text-xs sm:text-sm font-bold text-slate-800">Quantité souhaitée :</span>
-                        <div class="flex items-center gap-2">
-                            <button type="button" onclick="updateQuantity(-1)" aria-label="Diminuer la quantité" class="w-8 h-8 rounded-lg bg-white border border-gray-300 font-extrabold text-slate-900 hover:bg-gray-100 active:scale-95 transition flex items-center justify-center">
-                                -
-                            </button>
-                            <span id="qty-display" class="w-8 text-center font-extrabold text-sm text-slate-900">1</span>
-                            <button type="button" onclick="updateQuantity(1)" aria-label="Augmenter la quantité" class="w-8 h-8 rounded-lg bg-white border border-gray-300 font-extrabold text-slate-900 hover:bg-gray-100 active:scale-95 transition flex items-center justify-center">
-                                +
-                            </button>
+                    <!-- Sélecteur de Quantité -->
+                    <div class="flex items-center justify-between bg-gray-50 px-3 py-2 rounded-xl border border-gray-200">
+                        <span class="text-xs sm:text-sm font-bold text-slate-800">Quantité :</span>
+                        <div class="flex items-center gap-3">
+                            <button type="button" onclick="updateQuantity(-1)" aria-label="Diminuer la quantité" class="w-8 h-8 rounded-lg bg-white border border-gray-300 text-slate-900 font-bold text-base hover:bg-gray-100 active:scale-95 transition flex items-center justify-center shadow-2xs">−</button>
+                            <span id="qty-display" class="w-6 text-center text-sm font-extrabold text-slate-900">1</span>
+                            <button type="button" onclick="updateQuantity(1)" aria-label="Augmenter la quantité" class="w-8 h-8 rounded-lg bg-white border border-gray-300 text-slate-900 font-bold text-base hover:bg-gray-100 active:scale-95 transition flex items-center justify-center shadow-2xs">+</button>
                         </div>
                     </div>
 
-                    <!-- Encadré Sous-total / Livraison / Total -->
+                    <!-- Encadré Sous-total / Expédition / Livraison / Total -->
                     <div class="bg-[#f3f4f6] rounded-xl p-3.5 space-y-2 text-sm">
                         <div class="flex items-center justify-between text-slate-700">
                             <span>Sous-total</span>
-                            <span id="summary-subtotal" class="font-bold text-slate-900">22,500 FCFA</span>
+                            <span id="summary-subtotal" class="font-bold text-slate-900">12,000 FCFA</span>
                         </div>
-                        <div class="flex items-center justify-between text-slate-700 pb-2 border-b border-gray-300">
-                            <span>Livraison</span>
-                            <span class="font-bold text-green-700">Gratuit</span>
-                        </div>
+                        <label class="flex items-center justify-between text-slate-700 cursor-pointer select-none">
+                            <span>Expédition (Autres villes)</span>
+                            <span class="flex items-center gap-2.5">
+                                <span class="font-bold text-slate-900">À partir de 1,000 FCFA</span>
+                                <input type="radio" name="shippingMode" id="mode-expedition" onchange="toggleShippingOption('expedition')" class="sr-only peer">
+                                <span class="w-5 h-5 rounded-full border-2 border-gray-400 bg-white flex items-center justify-center peer-checked:border-green-600 transition shrink-0">
+                                    <span id="dot-expedition" class="w-2.5 h-2.5 rounded-full bg-green-600 scale-0 transition-transform"></span>
+                                </span>
+                            </span>
+                        </label>
+                        <label class="flex items-center justify-between text-slate-700 pb-2 border-b border-gray-300 cursor-pointer select-none">
+                            <span>Livraison (Ouagadougou)</span>
+                            <span class="flex items-center gap-2.5">
+                                <span class="font-bold text-green-700">Gratuit</span>
+                                <input type="radio" name="shippingMode" id="mode-livraison" checked onchange="toggleShippingOption('livraison')" class="sr-only peer">
+                                <span class="w-5 h-5 rounded-full border-2 border-gray-400 bg-white flex items-center justify-center peer-checked:border-green-600 transition shrink-0">
+                                    <span id="dot-livraison" class="w-2.5 h-2.5 rounded-full bg-green-600 scale-100 transition-transform"></span>
+                                </span>
+                            </span>
+                        </label>
                         <div class="flex items-center justify-between text-base font-extrabold text-slate-900 pt-0.5">
                             <span>Total</span>
-                            <span id="summary-total">22,500 FCFA</span>
+                            <span id="summary-total">12,000 FCFA</span>
                         </div>
                     </div>
 
@@ -378,7 +402,7 @@
                     <div class="w-11 h-11 bg-gray-200/80 flex items-center justify-center text-slate-800 shrink-0 border-r border-gray-300">
                         <i class="fa-solid fa-city text-base"></i>
                     </div>
-                    <select id="city" name="city" required 
+                    <select id="city" name="city" required onchange="onCitySelectChange()"
                             class="w-full h-11 px-3 text-sm text-slate-900 bg-white focus:outline-none cursor-pointer">
                         <option value="" disabled selected>Choisissez votre ville...</option>
                         <option value="Ouagadougou">Ouagadougou</option>
@@ -408,14 +432,19 @@
                            class="w-full h-11 px-3 text-sm text-slate-900 placeholder-gray-400 focus:outline-none">
                 </div>
 
-                <!-- Case à cocher de confirmation -->
-                <label class="flex items-center gap-3 pt-1 cursor-pointer select-none">
-                    <input type="checkbox" id="readyCheck" required checked 
-                           class="w-5 h-5 rounded border-gray-400 text-[#25D366] focus:ring-[#25D366] shrink-0">
-                    <span class="text-xs sm:text-sm font-bold text-slate-900 uppercase leading-tight text-center flex-1">
-                        JE SUIS PRÊT, VOUS POUVEZ ME LIVRER OU EXPÉDIER
-                    </span>
-                </label>
+                <!-- Case à cocher obligatoire avec animation d'attention -->
+                <div class="pt-1 space-y-1">
+                    <label id="readyCheckWrapper" class="flex items-center justify-center gap-2.5 p-2.5 rounded-xl border-2 border-red-400 bg-red-50/60 cursor-pointer select-none animate-check-attention transition">
+                        <input type="checkbox" id="readyCheck" onchange="onReadyCheckChange()"
+                               class="w-5 h-5 rounded border-gray-400 text-[#25D366] focus:ring-[#25D366] shrink-0 cursor-pointer">
+                        <span class="text-xs sm:text-sm font-extrabold text-slate-900 uppercase leading-tight">
+                            JE SUIS PRÊT POUR ME FAIRE LIVRER
+                        </span>
+                    </label>
+                    <p id="readyCheckError" class="hidden text-xs font-bold text-red-600 text-center">
+                        <i class="fa-solid fa-hand-pointer mr-1"></i> Cochez d'abord « Je suis prêt pour me faire livrer » pour confirmer sur WhatsApp.
+                    </p>
+                </div>
 
                 <!-- Bouton de soumission Vert WhatsApp -->
                 <button type="submit" 
@@ -442,7 +471,7 @@
                     Un homme de valeur ne laisse rien au hasard. Votre style est votre première carte de visite.
                 </p>
                 <p>
-                    Conçue pour les hommes ambitieux qui veulent affirmer leur succès et leur leadership, la <strong class="text-slate-900">Montre Prestige POEDAGAR™</strong> allie la noblesse d'un boîtier en acier à la distinction d'un cadran d'exception. Que ce soit lors d'un rendez-vous d'affaires important, au bureau ou lors d'une soirée chic, elle attire instantanément les regards et affirme votre charisme.
+                    Conçue pour les hommes ambitieux qui veulent affirmer leur succès et leur leadership, la <strong class="text-slate-900">Montre Prestige Richard Mille™</strong> allie la noblesse d'un boîtier squelette à la distinction d'un design d'exception. Que ce soit lors d'un rendez-vous d'affaires important, au bureau ou lors d'une soirée chic, elle attire instantanément les regards et affirme votre charisme.
                 </p>
             </div>
 
@@ -450,7 +479,7 @@
             <div class="rounded-xl overflow-hidden shadow-md">
                 <img src="https://images.unsplash.com/photo-1522312346375-d1a52e2b99b3?auto=format&fit=crop&w=800&q=85" 
                      onerror="this.src='https://placehold.co/800x600/1e293b/ffffff?text=Style+et+Prestige'"
-                     alt="Montre de luxe portée au poignet" 
+                     alt="Montre de luxe Richard Mille portée au poignet" 
                      class="w-full h-auto object-cover">
             </div>
 
@@ -462,7 +491,7 @@
                         <span class="inline-flex items-center justify-center w-5 h-5 rounded bg-green-600 text-white text-xs shrink-0 mt-0.5">
                             <i class="fa-solid fa-check"></i>
                         </span>
-                        <span>Esthétique Élégante et finition impeccable</span>
+                        <span>Esthétique Élégante et finition squelette impeccable</span>
                     </li>
                     <li class="flex items-start gap-2.5">
                         <span class="inline-flex items-center justify-center w-5 h-5 rounded bg-green-600 text-white text-xs shrink-0 mt-0.5">
@@ -480,7 +509,7 @@
                         <span class="inline-flex items-center justify-center w-5 h-5 rounded bg-green-600 text-white text-xs shrink-0 mt-0.5">
                             <i class="fa-solid fa-check"></i>
                         </span>
-                        <span>Montre à quartz précise avec date intégrée</span>
+                        <span>Mouvement automatique de précision avec cadran d'exception</span>
                     </li>
                     <li class="flex items-start gap-2.5">
                         <span class="inline-flex items-center justify-center w-5 h-5 rounded bg-green-600 text-white text-xs shrink-0 mt-0.5">
@@ -495,7 +524,7 @@
             <div class="rounded-xl overflow-hidden shadow-md">
                 <img src="https://images.unsplash.com/photo-1614164185128-e4ec99c436d7?auto=format&fit=crop&w=800&q=85" 
                      onerror="this.src='https://placehold.co/800x600/0f172a/ffffff?text=Finition+Haute+Precision'"
-                     alt="Détail du boîtier en acier POEDAGAR" 
+                     alt="Détail du boîtier Richard Mille" 
                      class="w-full h-auto object-cover">
             </div>
 
@@ -748,14 +777,15 @@
                 <p><i class="fa-solid fa-hand-holding-dollar text-amber-600 mr-1.5"></i> <strong>Paiement :</strong> En espèces à la livraison (Gratuit)</p>
             </div>
             <p class="text-xs text-slate-500">
-                Un de nos agents vous contactera sur WhatsApp d'ici quelques minutes pour confirmer l'heure de livraison.
+                Un agent va vous contacter sur WhatsApp dans quelques instants pour fixer l'heure de livraison.
             </p>
-            <div class="pt-2 flex flex-col gap-2">
-                <a id="modal-wa-redirect" href="#" target="_blank" class="w-full py-3 rounded-xl bg-[#25D366] hover:bg-[#20bd5a] text-white font-bold text-sm flex items-center justify-center gap-2 transition">
-                    <i class="fa-brands fa-whatsapp text-lg"></i>
-                    <span>Confirmer directement sur WhatsApp</span>
+            <div class="flex flex-col sm:flex-row gap-2 pt-2">
+                <a id="modal-wa-redirect" href="#" target="_blank" rel="noopener noreferrer"
+                   class="flex-1 py-2.5 px-4 rounded-xl bg-[#25D366] text-white font-bold text-sm hover:bg-[#1ebe5d] transition flex items-center justify-center gap-2">
+                    <i class="fa-brands fa-whatsapp text-base"></i> Ouvrir WhatsApp
                 </a>
-                <button onclick="closeOrderModal()" class="w-full py-2.5 rounded-xl bg-gray-100 hover:bg-gray-200 text-slate-800 font-semibold text-sm transition">
+                <button type="button" onclick="closeOrderModal()" 
+                        class="py-2.5 px-4 rounded-xl border border-gray-300 text-slate-700 font-semibold text-sm hover:bg-gray-100 transition">
                     Fermer
                 </button>
             </div>
@@ -769,31 +799,39 @@
 
     <!-- SCRIPTS INTERACTIFS -->
     <script>
-        // 1. Gestion unifiée du carrousel et des 6 modèles disponibles
+        // 1. Gestion unifiée du carrousel et des 8 modèles Richard Mille fournis
         const productModels = [
             {
-                name: "Noir & Bleu",
+                name: "Carbone Gris",
                 image: "https://images.unsplash.com/photo-1523275335684-37898b6baf30?auto=format&fit=crop&w=900&q=85"
             },
             {
-                name: "Cuir Marron",
+                name: "Bleu & Blanc",
                 image: "https://images.unsplash.com/photo-1542496658-e33a6d0d50f6?auto=format&fit=crop&w=900&q=85"
             },
             {
-                name: "Or & Noir",
+                name: "Bleu Lagon",
                 image: "https://images.unsplash.com/photo-1524592094714-0f0654e20314?auto=format&fit=crop&w=900&q=85"
             },
             {
-                name: "Argent Acier",
+                name: "Blanc & Bleu",
                 image: "https://images.unsplash.com/photo-1522312346375-d1a52e2b99b3?auto=format&fit=crop&w=900&q=85"
             },
             {
-                name: "Full Black",
+                name: "Vert Jungle",
                 image: "https://images.unsplash.com/photo-1614164185128-e4ec99c436d7?auto=format&fit=crop&w=900&q=85"
             },
             {
-                name: "Bleu Nuit",
+                name: "Jaune Acier",
                 image: "https://images.unsplash.com/photo-1547996160-81dfa63595aa?auto=format&fit=crop&w=900&q=85"
+            },
+            {
+                name: "Blanc Pur",
+                image: "https://images.unsplash.com/photo-1523275335684-37898b6baf30?auto=format&fit=crop&w=900&q=85"
+            },
+            {
+                name: "Jaune Sport",
+                image: "https://images.unsplash.com/photo-1542496658-e33a6d0d50f6?auto=format&fit=crop&w=900&q=85"
             }
         ];
         let currentModelIndex = 0;
@@ -809,20 +847,17 @@
             document.getElementById('summary-model-name').textContent = selectedModel.name;
             document.getElementById('summary-product-img').src = selectedModel.image;
 
-            // Mise à jour visuelle des 6 cartes modèles et des points du carrousel
+            // Mise à jour visuelle des 8 cartes modèles et des points du carrousel
             productModels.forEach((_, i) => {
                 const thumb = document.getElementById(`model-thumb-${i}`);
-                const dot = document.getElementById(`dot-${i}`);
-                if (i === index) {
-                    thumb.classList.remove('border-gray-200', 'opacity-75');
-                    thumb.classList.add('border-blue-600', 'bg-blue-50/40', 'opacity-100');
-                    dot.classList.remove('bg-white/70');
-                    dot.classList.add('bg-blue-600');
-                } else {
-                    thumb.classList.add('border-gray-200', 'opacity-75');
-                    thumb.classList.remove('border-blue-600', 'bg-blue-50/40', 'opacity-100');
-                    dot.classList.add('bg-white/70');
-                    dot.classList.remove('bg-blue-600');
+                if (thumb) {
+                    if (i === index) {
+                        thumb.classList.remove('border-gray-200', 'opacity-75');
+                        thumb.classList.add('border-blue-600', 'bg-blue-50/40', 'opacity-100');
+                    } else {
+                        thumb.classList.add('border-gray-200', 'opacity-75');
+                        thumb.classList.remove('border-blue-600', 'bg-blue-50/40', 'opacity-100');
+                    }
                 }
             });
 
@@ -843,22 +878,64 @@
             selectModel(prev);
         }
 
-        // 1c. Gestion dynamique de la quantité et du prix total
-        const UNIT_PRICE = 22500;
+        // 1c. Gestion dynamique de la quantité et du prix total (12 000 FCFA)
+        const UNIT_PRICE = 12000;
         let quantity = 1;
 
         function formatFCFA(amount) {
             return amount.toLocaleString('en-US') + ' FCFA';
         }
 
+        function toggleShippingOption(selected) {
+            const livBox = document.getElementById('mode-livraison');
+            const expBox = document.getElementById('mode-expedition');
+            const dotLiv = document.getElementById('dot-livraison');
+            const dotExp = document.getElementById('dot-expedition');
+            const citySelect = document.getElementById('city');
+
+            if (selected === 'expedition') {
+                expBox.checked = true;
+                livBox.checked = false;
+                dotExp.classList.remove('scale-0');
+                dotExp.classList.add('scale-100');
+                dotLiv.classList.remove('scale-100');
+                dotLiv.classList.add('scale-0');
+                if (citySelect.value === 'Ouagadougou') {
+                    citySelect.value = '';
+                }
+            } else {
+                livBox.checked = true;
+                expBox.checked = false;
+                dotLiv.classList.remove('scale-0');
+                dotLiv.classList.add('scale-100');
+                dotExp.classList.remove('scale-100');
+                dotExp.classList.add('scale-0');
+                citySelect.value = 'Ouagadougou';
+            }
+            updateQuantity(0);
+        }
+
+        function onCitySelectChange() {
+            const cityVal = document.getElementById('city').value;
+            if (cityVal === 'Ouagadougou') {
+                toggleShippingOption('livraison');
+            } else if (cityVal !== '') {
+                toggleShippingOption('expedition');
+                document.getElementById('city').value = cityVal;
+            }
+        }
+
         function updateQuantity(delta) {
             quantity = Math.max(1, Math.min(20, quantity + delta));
-            const total = UNIT_PRICE * quantity;
+            const subtotal = UNIT_PRICE * quantity;
+            const isExpedition = document.getElementById('mode-expedition')?.checked;
 
             document.getElementById('qty-display').textContent = quantity;
             document.getElementById('summary-qty-badge').textContent = quantity;
-            document.getElementById('summary-subtotal').textContent = formatFCFA(total);
-            document.getElementById('summary-total').textContent = formatFCFA(total);
+            document.getElementById('summary-subtotal').textContent = formatFCFA(subtotal);
+            document.getElementById('summary-total').textContent = isExpedition
+                ? `${formatFCFA(subtotal)} + expédition (dès 1,000 FCFA)`
+                : formatFCFA(subtotal);
         }
 
         // 2. Défilement fluide vers le formulaire de commande
@@ -945,15 +1022,45 @@
         }, 7000);
 
         // 7. Traitement du formulaire de commande COD
+        function onReadyCheckChange() {
+            const readyCheck = document.getElementById('readyCheck');
+            const errorEl = document.getElementById('readyCheckError');
+            const wrapperEl = document.getElementById('readyCheckWrapper');
+
+            if (readyCheck.checked) {
+                errorEl.classList.add('hidden');
+                wrapperEl.classList.remove('border-red-400', 'bg-red-50/60', 'animate-check-attention');
+                wrapperEl.classList.add('border-green-500', 'bg-green-50');
+            } else {
+                wrapperEl.classList.remove('border-green-500', 'bg-green-50');
+                wrapperEl.classList.add('border-red-400', 'bg-red-50/60', 'animate-check-attention');
+            }
+        }
+
         function handleOrderSubmit(event) {
             event.preventDefault();
+
+            const readyCheck = document.getElementById('readyCheck');
+            if (!readyCheck.checked) {
+                const errorEl = document.getElementById('readyCheckError');
+                errorEl.classList.remove('hidden');
+                readyCheck.focus();
+                return;
+            }
 
             const fullName = document.getElementById('fullName').value.trim();
             const whatsapp = document.getElementById('whatsapp').value.trim();
             const city = document.getElementById('city').value.trim();
             const quartier = document.getElementById('quartier').value.trim();
             const selectedModelName = productModels[currentModelIndex].name;
-            const totalPriceFormatted = formatFCFA(UNIT_PRICE * quantity);
+            const isExpedition = document.getElementById('mode-expedition').checked;
+            const subtotalFormatted = formatFCFA(UNIT_PRICE * quantity);
+            const deliveryText = isExpedition
+                ? 'Expédition hors Ouagadougou (à partir de 1,000 FCFA selon la ville)'
+                : 'Livraison gratuite (Ouagadougou)';
+            const totalPriceFormatted = isExpedition
+                ? `${subtotalFormatted} + frais d'expédition (dès 1,000 FCFA)`
+                : subtotalFormatted;
             const fullAddress = `${city} - ${quartier}`;
 
             // Remplir la modale de confirmation
@@ -962,16 +1069,17 @@
             document.getElementById('modal-model-text').textContent = selectedModelName;
             document.getElementById('modal-total-text').textContent = totalPriceFormatted;
             document.getElementById('modal-whatsapp').textContent = whatsapp;
-            document.getElementById('modal-city').textContent = fullAddress;
+            document.getElementById('modal-city').textContent = `${fullAddress} (${isExpedition ? 'Expédition' : 'Livraison'})`;
 
             // Numéro WhatsApp Business : +226 57 61 56 45
             const businessPhone = "22657615645";
             const message = encodeURIComponent(
                 `Bonjour Ibrahim Accessoires, je souhaite confirmer ma commande (Paiement à la livraison) :\n\n` +
-                `⌚ *Produit :* Montre POEDAGAR 857™\n` +
+                `⌚ *Produit :* Montre Richard Mille™\n` +
                 `🎨 *Modèle / Couleur :* ${selectedModelName}\n` +
                 `🔢 *Quantité :* ${quantity}\n` +
-                `💰 *Total à payer à la livraison :* ${totalPriceFormatted} (Livraison gratuite)\n` +
+                `🚚 *Mode :* ${deliveryText}\n` +
+                `💰 *Total :* ${totalPriceFormatted}\n` +
                 `👤 *Nom complet :* ${fullName}\n` +
                 `💬 *WhatsApp :* ${whatsapp}\n` +
                 `🏙️ *Ville :* ${city}\n` +
@@ -988,9 +1096,11 @@
             // Ouvrir directement WhatsApp avec les détails de la commande
             window.open(whatsappUrl, '_blank');
 
-            // Réinitialiser le formulaire et la quantité
+            // Réinitialiser le formulaire et la quantité (case décochée par défaut)
             document.getElementById('cod-form').reset();
-            document.getElementById('readyCheck').checked = true;
+            toggleShippingOption('livraison');
+            document.getElementById('readyCheck').checked = false;
+            onReadyCheckChange();
             quantity = 1;
             updateQuantity(0);
         }
