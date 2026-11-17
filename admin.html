@@ -2,324 +2,509 @@
 <html lang="fr">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Administration - Ibrahim Accessoires</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Ibrahim Accessoires | Administration</title>
 <style>
-*{box-sizing:border-box;margin:0;padding:0}
-body{font-family:Arial,sans-serif;background:#f3f5f9;color:#202938}
-header{background:#111827;color:white;padding:20px}
-header h2{font-size:21px}
-header p{color:#aeb8c8;margin-top:6px;font-size:13px}
-.container{padding:18px;max-width:1200px;margin:auto}
-h3{margin:22px 0 13px}
-.stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(145px,1fr));gap:12px}
-.card{background:white;padding:18px;border-radius:13px;box-shadow:0 2px 8px #0000000a}
-.card p{font-size:12px;color:#687386;margin-bottom:10px}
-.card strong{font-size:22px;color:#111827}
-.green{color:#059669!important}
-.orange{color:#d97706!important}
-.blue{color:#2563eb!important}
-.controls{display:flex;gap:10px;flex-wrap:wrap;margin:15px 0}
-input,select,button{padding:11px;border:1px solid #d9deea;border-radius:8px;font-size:14px}
-button{background:#111827;color:white;border:none;cursor:pointer}
-button.danger{background:#dc2626}
-button.greenbtn{background:#059669}
-table{width:100%;border-collapse:collapse;background:white;min-width:750px}
-th,td{padding:12px;text-align:left;border-bottom:1px solid #edf0f5;font-size:13px}
-th{background:#f8fafc}
-.tablewrap{overflow-x:auto;border-radius:10px}
-.badge{padding:5px 8px;border-radius:20px;font-size:11px;background:#e5e7eb}
-.status-Livrée{background:#d1fae5;color:#047857}
-.status-Confirmée{background:#dbeafe;color:#1d4ed8}
-.status-Annulée{background:#fee2e2;color:#b91c1c}
-.status-En-livraison{background:#fef3c7;color:#92400e}
-.chart{display:flex;align-items:end;gap:8px;height:180px;padding:15px 5px 25px;background:white;border-radius:12px}
-.barbox{flex:1;text-align:center;height:100%;display:flex;flex-direction:column;justify-content:end;gap:5px}
-.bar{background:#059669;border-radius:5px 5px 0 0;min-height:3px;width:100%}
-.barbox small{font-size:10px;color:#64748b}
-.panel{background:white;padding:16px;border-radius:12px;margin-top:15px}
-.muted{color:#64748b;font-size:12px}
-@media(max-width:600px){.container{padding:12px}.card strong{font-size:19px}}
+:root{
+  --bg:#f6f6f7;--white:#fff;--text:#202223;
+  --muted:#6d7175;--border:#e3e5e7;
+  --green:#008060;--blue:#2c6ecb;
+}
+*{box-sizing:border-box}
+body{margin:0;font-family:Arial,sans-serif;background:var(--bg);color:var(--text)}
+button,input,select{font:inherit}
+button{cursor:pointer}
+.topbar{
+  height:65px;background:#202223;color:white;
+  display:flex;align-items:center;justify-content:space-between;
+  padding:0 22px;position:sticky;top:0;z-index:20
+}
+.brand{font-size:19px;font-weight:bold}
+.top-actions{display:flex;gap:12px;align-items:center}
+.avatar{background:#e5e7eb;color:#202223;padding:10px;border-radius:50%}
+.layout{display:flex;min-height:calc(100vh - 65px)}
+.sidebar{
+ width:230px;background:white;border-right:1px solid var(--border);
+ padding:18px 12px;flex-shrink:0
+}
+.nav-title{font-size:11px;color:var(--muted);padding:12px}
+.nav{
+ display:flex;gap:12px;padding:12px;border-radius:8px;
+ margin-bottom:4px;color:#404446;cursor:pointer;font-size:14px
+}
+.nav:hover,.nav.active{background:#eaf4f0;color:#006e52;font-weight:bold}
+.main{flex:1;min-width:0;padding:25px;max-width:1500px;margin:auto;width:100%}
+.page-head{display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap;margin-bottom:22px}
+h1{font-size:25px;margin:0}
+h2{font-size:17px;margin:0 0 17px}
+.muted{color:var(--muted);font-size:13px}
+.btn{border:1px solid var(--border);background:white;border-radius:8px;padding:10px 15px}
+.btn.primary{background:#202223;color:white;border-color:#202223}
+.btn.green{background:var(--green);color:white;border-color:var(--green)}
+.btn.danger{color:#b42318}
+.filters{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:18px}
+select,input{padding:10px 12px;border:1px solid var(--border);border-radius:8px;background:white;min-width:0}
+.grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:14px}
+.card{background:white;border:1px solid var(--border);border-radius:13px;padding:18px;min-width:0}
+.metric-label{font-size:13px;color:var(--muted);margin-bottom:13px}
+.metric{font-size:25px;font-weight:700}
+.metric-sub{font-size:12px;color:var(--muted);margin-top:8px}
+.section{margin-top:22px}
+.two{display:grid;grid-template-columns:1.4fr 1fr;gap:15px}
+.chart{height:210px;display:flex;align-items:end;gap:12px;padding:15px 5px 25px;border-bottom:1px solid var(--border)}
+.chart-col{flex:1;display:flex;flex-direction:column;justify-content:end;align-items:center;height:100%;gap:7px}
+.chart-bar{width:70%;background:#79b8a4;border-radius:5px 5px 0 0;min-height:2px}
+.chart-col small{font-size:10px;color:var(--muted)}
+.table-wrap{overflow-x:auto}
+table{border-collapse:collapse;width:100%;min-width:650px}
+th,td{padding:13px 10px;text-align:left;border-bottom:1px solid #eee;font-size:13px}
+th{color:var(--muted);font-weight:600;background:#fafafa}
+.status{display:inline-block;padding:5px 9px;border-radius:20px;font-size:11px;background:#eee}
+.status.livree{background:#d9f2e7;color:#08744e}
+.status.confirmee{background:#e2efff;color:#205ba7}
+.status.annulee{background:#fee4e2;color:#b42318}
+.status.attente{background:#fff0d5;color:#936000}
+.row-between{display:flex;align-items:center;justify-content:space-between;gap:10px;margin-bottom:15px}
+.hidden{display:none!important}
+.empty{text-align:center;padding:30px;color:var(--muted)}
+.product-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px}
+.product-card{background:white;border:1px solid var(--border);border-radius:12px;padding:17px}
+.product-card h3{font-size:15px}
+.notice{background:#fff5db;border:1px solid #f0d48b;padding:13px;border-radius:9px;font-size:13px;line-height:1.5;margin-bottom:17px}
+.blue-link{color:var(--blue)}
+.bottomnav{display:none}
+@media(max-width:950px){
+ .grid{grid-template-columns:repeat(2,minmax(0,1fr))}
+ .sidebar{width:190px}
+ .two{grid-template-columns:1fr}
+ .product-grid{grid-template-columns:repeat(2,minmax(0,1fr))}
+}
+@media(max-width:650px){
+ .topbar{height:58px;padding:0 14px}
+ .brand{font-size:16px}
+ .sidebar{display:none}
+ .main{padding:17px 13px 90px}
+ h1{font-size:22px}
+ .grid{gap:9px}
+ .card{padding:14px}
+ .metric{font-size:21px}
+ .metric-label{font-size:12px}
+ .product-grid{grid-template-columns:1fr 1fr}
+ .bottomnav{
+  display:flex;position:fixed;bottom:0;left:0;right:0;
+  background:white;border-top:1px solid var(--border);
+  justify-content:space-around;padding:10px 3px;z-index:30
+ }
+ .bottomnav button{border:0;background:none;font-size:11px;color:#555;display:flex;flex-direction:column;gap:4px;align-items:center}
+ .bottomnav button.active{color:var(--green);font-weight:bold}
+ .page-head{margin-bottom:16px}
+}
 </style>
 </head>
 <body>
 
-<header>
-<h2>IBRAHIM ACCESSOIRES</h2>
-<p>Tableau de bord administratif</p>
+<header class="topbar">
+ <div class="brand">IBRAHIM ACCESSOIRES</div>
+ <div class="top-actions">
+  <span class="muted" style="color:#ddd">Administration</span>
+  <span class="avatar">IA</span>
+ </div>
 </header>
 
-<div class="container">
+<div class="layout">
+<aside class="sidebar">
+ <div class="nav-title">GESTION DE LA BOUTIQUE</div>
+ <div class="nav active" data-page="dashboard">▦ Tableau de bord</div>
+ <div class="nav" data-page="analytics">▥ Analyses</div>
+ <div class="nav" data-page="orders">▣ Commandes</div>
+ <div class="nav" data-page="products">◇ Produits</div>
+ <div class="nav" data-page="stock">▤ Stock</div>
+ <div class="nav" data-page="customers">♙ Clients</div>
+ <div class="nav" data-page="reports">▧ Rapports</div>
+ <div class="nav-title">AUTRES</div>
+ <div class="nav" data-page="settings">⚙ Paramètres</div>
+</aside>
 
-<h3>Vue générale</h3>
-<div class="controls">
-<select id="period" onchange="render()">
-<option value="all">Toute la période</option>
-<option value="today">Aujourd'hui</option>
-<option value="week">Cette semaine</option>
-<option value="month">Ce mois</option>
-</select>
-<button onclick="exportCSV()">Exporter les commandes</button>
-<button onclick="loadOrders()">Actualiser</button>
+<main class="main">
+
+<div id="dashboard" class="page">
+ <div class="page-head">
+  <div><h1>Vue d'ensemble</h1><p class="muted">Bienvenue dans votre espace de gestion.</p></div>
+  <button class="btn" onclick="loadData()">↻ Actualiser</button>
+ </div>
+
+ <div class="notice">
+  Les données affichées dépendent des commandes enregistrées sur cet appareil.
+  La connexion aux commandes réelles de la boutique nécessite une synchronisation avec une base de données.
+ </div>
+
+ <div class="filters">
+  <select id="period" onchange="render()">
+   <option value="all">Toute la période</option>
+   <option value="today">Aujourd'hui</option>
+   <option value="week">7 derniers jours</option>
+   <option value="month">Ce mois</option>
+  </select>
+  <button class="btn" onclick="exportCSV()">Exporter les commandes</button>
+ </div>
+
+ <div class="grid">
+  <div class="card"><div class="metric-label">Ventes livrées</div><div class="metric" id="revenue">0 F</div><div class="metric-sub">Chiffre d'affaires encaissé</div></div>
+  <div class="card"><div class="metric-label">Commandes totales</div><div class="metric" id="ordersCount">0</div><div class="metric-sub">Toutes les commandes</div></div>
+  <div class="card"><div class="metric-label">Clients uniques</div><div class="metric" id="customersCount">0</div><div class="metric-sub">Clients identifiés</div></div>
+  <div class="card"><div class="metric-label">Panier moyen livré</div><div class="metric" id="average">0 F</div><div class="metric-sub">Par commande livrée</div></div>
+  <div class="card"><div class="metric-label">Commandes en attente</div><div class="metric" id="waiting">0</div><div class="metric-sub">À traiter</div></div>
+  <div class="card"><div class="metric-label">Commandes livrées</div><div class="metric" id="delivered">0</div><div class="metric-sub">Livraisons terminées</div></div>
+  <div class="card"><div class="metric-label">Quantités vendues</div><div class="metric" id="quantity">0</div><div class="metric-sub">Articles commandés</div></div>
+  <div class="card"><div class="metric-label">Bénéfice estimé</div><div class="metric" id="profit">0 F</div><div class="metric-sub">Sur les commandes livrées</div></div>
+ </div>
+
+ <div class="section two">
+  <div class="card">
+   <h2>Évolution des ventes</h2>
+   <div class="chart" id="salesChart"></div>
+   <p class="muted">Montants des commandes livrées sur les 7 derniers jours.</p>
+  </div>
+  <div class="card">
+   <h2>Répartition des commandes</h2>
+   <div id="statusSummary"></div>
+  </div>
+ </div>
+<div class="section card">
+  <div class="row-between"><h2>Dernières commandes</h2><button class="btn" onclick="showPage('orders')">Voir tout</button></div>
+  <div class="table-wrap"><table>
+   <thead><tr><th>Référence</th><th>Client</th><th>Date</th><th>Montant</th><th>Statut</th></tr></thead>
+   <tbody id="recentOrders"></tbody>
+  </table></div>
+ </div>
 </div>
 
-<div class="stats">
-<div class="card"><p>Chiffre d'affaires livré</p><strong id="revenue">0 F</strong></div>
-<div class="card"><p>Ventes confirmées et en cours</p><strong id="pendingRevenue">0 F</strong></div>
-<div class="card"><p>Commandes totales</p><strong id="totalOrders">0</strong></div>
-<div class="card"><p>Commandes livrées</p><strong id="delivered">0</strong></div>
-<div class="card"><p>Commandes en attente</p><strong id="pending">0</strong></div>
-<div class="card"><p>Clients uniques</p><strong id="customers">0</strong></div>
-<div class="card"><p>Quantités vendues</p><strong id="quantity">0</strong></div>
-<div class="card"><p>Bénéfice estimé des livraisons</p><strong id="profit">0 F</strong></div>
+<div id="analytics" class="page hidden">
+ <div class="page-head"><h1>Analyses de données</h1></div>
+ <div class="filters">
+  <select id="analyticsPeriod" onchange="renderAnalytics()">
+   <option value="today">Aujourd'hui</option><option value="week">7 derniers jours</option>
+   <option value="month">Ce mois</option><option value="all">Toute la période</option>
+  </select>
+ </div>
+ <div class="grid">
+  <div class="card"><div class="metric-label">Ventes brutes</div><div class="metric" id="gross">0 F</div></div>
+  <div class="card"><div class="metric-label">Ventes nettes livrées</div><div class="metric" id="net">0 F</div></div>
+  <div class="card"><div class="metric-label">Commandes traitées</div><div class="metric" id="processed">0</div></div>
+  <div class="card"><div class="metric-label">Taux de livraison</div><div class="metric" id="deliveryRate">0 %</div></div>
+ </div>
+ <div class="section card"><h2>Ventilation des ventes</h2><div id="salesBreakdown"></div></div>
+ <div class="section two">
+  <div class="card"><h2>Ventes par jour</h2><div class="chart" id="analyticsChart"></div></div>
+  <div class="card"><h2>Indicateurs</h2><div id="analyticsInfo"></div></div>
+ </div>
 </div>
 
-<div class="panel">
-<h3>Évolution des ventes sur 7 jours</h3>
-<div class="chart" id="chart"></div>
+<div id="orders" class="page hidden">
+ <div class="page-head"><div><h1>Commandes</h1><p class="muted">Suivi des commandes clients</p></div><button class="btn" onclick="exportCSV()">Exporter CSV</button></div>
+ <div class="filters">
+  <input id="orderSearch" placeholder="Rechercher un client ou numéro..." oninput="renderOrders()">
+  <select id="orderStatus" onchange="renderOrders()">
+   <option value="">Tous les statuts</option>
+   <option>À confirmer</option><option>Confirmée</option><option>En préparation</option>
+   <option>En livraison</option><option>Livrée</option><option>Annulée</option>
+  </select>
+ </div>
+ <div class="card table-wrap"><table>
+  <thead><tr><th>Référence</th><th>Date</th><th>Client</th><th>Téléphone</th><th>Produit</th><th>Qté</th><th>Total</th><th>Statut</th></tr></thead>
+  <tbody id="ordersTable"></tbody>
+ </table></div>
 </div>
 
-<div class="panel">
-<h3>Commandes par client</h3>
-<div class="tablewrap">
-<table>
-<thead><tr><th>Client</th><th>Téléphone</th><th>Commandes</th><th>Montant livré</th></tr></thead>
-<tbody id="customerTable"></tbody>
-</table>
-</div>
+<div id="products" class="page hidden">
+ <div class="page-head"><div><h1>Produits</h1><p class="muted">Catalogue de la boutique</p></div></div>
+ <div class="notice">Cette rubrique présente les produits identifiés dans les commandes. La création et la modification des produits devront être reliées au catalogue de la boutique.</div>
+ <div class="product-grid" id="productGrid"></div>
 </div>
 
-<h3>Gestion des commandes</h3>
-<div class="controls">
-<input id="search" placeholder="Rechercher un client..." oninput="render()">
-<select id="statusFilter" onchange="render()">
-<option value="">Tous les statuts</option>
-<option>À confirmer</option>
-<option>Confirmée</option>
-<option>En préparation</option>
-<option>En livraison</option>
-<option>Livrée</option>
-<option>Annulée</option>
-</select>
+<div id="stock" class="page hidden">
+ <div class="page-head"><h1>Gestion du stock</h1></div>
+ <div class="notice">Le stock réel doit être synchronisé avec le catalogue et les ventes pour éviter les écarts.</div>
+ <div class="card table-wrap"><table>
+  <thead><tr><th>Produit</th><th>Quantité vendue enregistrée</th><th>Coût d'achat connu</th></tr></thead>
+  <tbody id="stockTable"></tbody>
+ </table></div>
 </div>
 
-<div class="tablewrap">
-<table>
-<thead>
-<tr>
-<th>Référence</th><th>Date</th><th>Client</th><th>Téléphone</th>
-<th>Produit</th><th>Qté</th><th>Total</th><th>Statut</th>
-</tr>
-</thead>
-<tbody id="orderTable"></tbody>
-</table>
+<div id="customers" class="page hidden">
+ <div class="page-head"><h1>Clients</h1></div>
+ <div class="filters"><input id="customerSearch" placeholder="Rechercher un client..." oninput="renderCustomers()"></div>
+ <div class="card table-wrap"><table>
+  <thead><tr><th>Nom</th><th>Téléphone</th><th>Commandes</th><th>Montant livré</th><th>Dernière commande</th></tr></thead>
+  <tbody id="customerTable"></tbody>
+ </table></div>
 </div>
 
-<p class="muted" style="margin-top:15px">
-Les statistiques sont calculées à partir des commandes enregistrées.
-</p>
-
+<div id="reports" class="page hidden">
+ <div class="page-head"><h1>Rapports</h1><button class="btn" onclick="exportCSV()">Télécharger CSV</button></div>
+ <div class="grid">
+  <div class="card"><div class="metric-label">Total des commandes</div><div class="metric" id="reportOrders">0</div></div>
+  <div class="card"><div class="metric-label">Ventes livrées</div><div class="metric" id="reportRevenue">0 F</div></div>
+<div class="card"><div class="metric-label">Commandes annulées</div><div class="metric" id="reportCancelled">0</div></div>
+  <div class="card"><div class="metric-label">Clients identifiés</div><div class="metric" id="reportCustomers">0</div></div>
+ </div>
+ <div class="section card"><h2>Produits les plus commandés</h2><div id="topProducts"></div></div>
 </div>
+
+<div id="settings" class="page hidden">
+ <div class="page-head"><h1>Paramètres</h1></div>
+ <div class="card">
+  <h2>Informations de la boutique</h2>
+  <p>Nom : Ibrahim Accessoires</p>
+  <p>WhatsApp commercial : +226 57 61 56 45</p>
+  <p>Devise : FCFA</p>
+  <p class="muted">Les paramètres de connexion et de sécurité devront être configurés avec une authentification serveur.</p>
+ </div>
+</div>
+
+</main>
+</div>
+
+<nav class="bottomnav">
+ <button class="active" data-page="dashboard">▦<span>Accueil</span></button>
+ <button data-page="analytics">▥<span>Analyses</span></button>
+ <button data-page="orders">▣<span>Commandes</span></button>
+ <button data-page="products">◇<span>Produits</span></button>
+ <button data-page="customers">♙<span>Clients</span></button>
+</nav>
 
 <script>
-const STORAGE_KEY = "ibrahim_accessoires_orders";
+const STORAGE_KEY="ibrahim_accessoires_orders";
+let orders=[];
 
-let orders = [];
+const $=id=>document.getElementById(id);
+const money=n=>new Intl.NumberFormat("fr-FR").format(Math.round(n||0))+" F";
+const safe=v=>String(v??"").replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
 
-const money = n => new Intl.NumberFormat("fr-FR").format(n || 0) + " F";
-
-function getDate(o){
-  const d = new Date(o.date  o.createdAt  "");
-  return isNaN(d) ? null : d;
+function dateOf(o){
+ let d=new Date(o.date||o.createdAt||"");
+ return isNaN(d.getTime())?null:d;
 }
-
-function loadOrders(){
-  try {
-    const data = localStorage.getItem(STORAGE_KEY);
-    orders = data ? JSON.parse(data) : [];
-    if(!Array.isArray(orders)) orders = [];
-  } catch(e) {
-    orders = [];
-  }
-  render();
-}
-
-function inPeriod(o,period){
-  const d = getDate(o);
-  if(!d) return false;
-  const now = new Date();
-
-  if(period === "all") return true;
-
-  if(period === "today"){
-    return d.toDateString() === now.toDateString();
-  }
-
-  if(period === "week"){
-    const start = new Date(now);
-    start.setDate(now.getDate() - 6);
-    start.setHours(0,0,0,0);
-    return d >= start && d <= now;
-  }
-
-  if(period === "month"){
-    return d.getMonth() === now.getMonth() &&
-           d.getFullYear() === now.getFullYear();
-  }
-
-  return true;
-}
-
-function status(o){
-  return o.status || "À confirmer";
-}
-
 function amount(o){
-  return Number(o.total  o.totalPrice 
-    (Number(o.unitPrice  0) * Number(o.qty  0)) || 0);
+ return Number(o.total||o.totalPrice||(Number(o.unitPrice||0)*Number(o.qty||0))||0);
+}
+function status(o){return String(o.status||"À confirmer")}
+function delivered(o){return status(o).toLowerCase()==="livrée"}
+function cancelled(o){return status(o).toLowerCase()==="annulée"}
+function waiting(o){return !delivered(o)&&!cancelled(o)}
+function phone(o){return String(o.phone||o.whatsapp||"")}
+function customer(o){return String(o.customer||o.name||"Client")}
+function product(o){return String(o.productName||o.product||"Produit")}
+function quantity(o){return Number(o.qty||0)}
+
+function loadData(){
+ try{
+  const raw=localStorage.getItem(STORAGE_KEY);
+  orders=raw?JSON.parse(raw):[];
+  if(!Array.isArray(orders))orders=[];
+ }catch(e){orders=[]}
+ render();
 }
 
-function isDelivered(o){
-  return status(o).toLowerCase() === "livrée";
-}
-
-function isCancelled(o){
-  return status(o).toLowerCase() === "annulée";
+function periodFilter(list,period){
+ const now=new Date();
+ return list.filter(o=>{
+  const d=dateOf(o);if(!d)return period==="all";
+  if(period==="all")return true;
+  if(period==="today")return d.toDateString()===now.toDateString();
+  if(period==="week"){
+   const start=new Date(now);start.setDate(now.getDate()-6);start.setHours(0,0,0,0);
+   return d>=start&&d<=now;
+  }
+  if(period==="month")return d.getMonth()===now.getMonth()&&d.getFullYear()===now.getFullYear();
+  return true;
+ });
 }
 
 function render(){
-  const period = document.getElementById("period").value;
-  const filtered = orders.filter(o => inPeriod(o,period));
+ const period=$("period").value;
+ const data=periodFilter(orders,period);
+ const done=data.filter(delivered);
+ const revenue=done.reduce((s,o)=>s+amount(o),0);
+ const costs=done.reduce((s,o)=>s+Number(o.buyCost||0)*quantity(o),0);
+ const delivery=done.reduce((s,o)=>s+Number(o.deliveryFee||0),0);
+ const clients=new Set(data.map(phone).filter(Boolean));
+ const totalQty=data.reduce((s,o)=>s+quantity(o),0);
 
-  const delivered = filtered.filter(isDelivered);
-  const active = filtered.filter(o => !isCancelled(o));
-  const revenue = delivered.reduce((s,o)=>s+amount(o),0);
-  const pendingRevenue = active.filter(o=>!isDelivered(o))
-    .reduce((s,o)=>s+amount(o),0);
+ $("revenue").textContent=money(revenue);
+ $("ordersCount").textContent=data.length;
+ $("customersCount").textContent=clients.size;
+ $("average").textContent=money(done.length?revenue/done.length:0);
+ $("waiting").textContent=data.filter(waiting).length;
+ $("delivered").textContent=done.length;
+ $("quantity").textContent=totalQty;
+ $("profit").textContent=money(revenue-costs-delivery);
 
-  const customers = new Set(filtered.map(o=>
-    (o.phone  o.whatsapp  o.customer || "").toString().trim()
-  ).filter(Boolean));
-
-  const qty = filtered.reduce((s,o)=>s+Number(o.qty||0),0);
-
-  const costs = delivered.reduce((s,o)=>
-    s + Number(o.buyCost || 0)*Number(o.qty||0),0);
-
-  const expenses = delivered.reduce((s,o)=>
-    s + Number(o.deliveryFee || 0),0);
-
-  document.getElementById("revenue").textContent=money(revenue);
-  document.getElementById("pendingRevenue").textContent=money(pendingRevenue);
-  document.getElementById("totalOrders").textContent=filtered.length;
-  document.getElementById("delivered").textContent=delivered.length;
-  document.getElementById("pending").textContent=
-    filtered.filter(o=>!isDelivered(o)&&!isCancelled(o)).length;
-  document.getElementById("customers").textContent=customers.size;
-  document.getElementById("quantity").textContent=qty;
-  document.getElementById("profit").textContent=money(revenue-costs-expenses);
-
-  renderOrders(filtered);
-  renderCustomers(filtered);
-  renderChart(filtered);
+ renderRecent(data);
+ renderOrders();
+ renderCustomers();
+ renderProducts(data);
+ renderStock(data);
+ renderChart(data,"salesChart");
+ renderStatus(data);
+ renderAnalytics();
+ renderReports(data);
 }
 
-function renderOrders(data){
-  const search=document.getElementById("search").value.toLowerCase();
-  const filter=document.getElementById("statusFilter").value;
+function renderRecent(data){
+ $("recentOrders").innerHTML=data.slice().reverse().slice(0,6).map(o=>`
+ <tr><td>${safe(o.id||"—")}</td><td>${safe(customer(o))}</td>
+ <td>${safe(o.date||"—")}</td><td>${money(amount(o))}</td>
+ <td>${statusBadge(o)}</td></tr>`).
+join("")||emptyRow(5);
+}
+function statusBadge(o){
+ let s=status(o).toLowerCase();
+ let cls=s==="livrée"?"livree":s==="annulée"?"annulee":
+ s==="confirmée"?"confirmee":"attente";
+ return <span class="status ${cls}">${safe(status(o))}</span>;
+}
+function emptyRow(n){return `<tr><td colspan="${n}" class="empty">Aucune donnée disponible</td></tr>`}
 
-  const list=data.filter(o=>{
-    const name=(o.customer  o.name  "").toLowerCase();
-    return name.includes(search) && (!filter || status(o)===filter);
-  });
-
-  document.getElementById("orderTable").innerHTML=list.map(o=>`
-    <tr>
-      <td>${esc(o.id || "—")}</td>
-      <td>${esc(o.date || "—")}</td>
-      <td>${esc(o.customer  o.name  "—")}</td>
-      <td>${esc(o.phone  o.whatsapp  "—")}</td>
-      <td>${esc(o.productName  o.product  "Montre")}</td>
-      <td>${Number(o.qty||0)}</td>
-      <td>${money(amount(o))}</td>
-      <td><span class="badge">${esc(status(o))}</span></td>
-    </tr>
-  ).
-join("") || `<tr><td colspan="8">Aucune commande trouvée</td></tr>;
+function renderOrders(){
+ const search=($("orderSearch")?.value||"").toLowerCase();
+ const st=$("orderStatus")?.value||"";
+ const data=orders.filter(o=>
+  (customer(o).toLowerCase().includes(search)||phone(o).includes(search))&&(!st||status(o)===st)
+ );
+ $("ordersTable").innerHTML=data.slice().reverse().map(o=>`
+ <tr><td>${safe(o.id||"—")}</td><td>${safe(o.date||"—")}</td>
+ <td>${safe(customer(o))}</td><td>${safe(phone(o))}</td>
+ <td>${safe(product(o))}</td><td>${quantity(o)}</td>
+ <td>${money(amount(o))}</td><td>${statusBadge(o)}</td></tr>`).join("")||emptyRow(8);
 }
 
-function renderCustomers(data){
-  const map={};
-  data.forEach(o=>{
-    const phone=o.phone  o.whatsapp  "";
-    const name=o.customer  o.name  "Client";
-    const key=phone || name;
-    if(!map[key]) map[key]={name,phone,count:0,total:0};
-    map[key].count++;
-    if(isDelivered(o)) map[key].total+=amount(o);
-  });
-
-  document.getElementById("customerTable").innerHTML=
-    Object.values(map).sort((a,b)=>b.count-a.count).map(c=>`
-      <tr>
-        <td>${esc(c.name)}</td>
-        <td>${esc(c.phone)}</td>
-        <td>${c.count}</td>
-        <td>${money(c.total)}</td>
-      </tr>
-    ).join("") || `<tr><td colspan="4">Aucun client</td></tr>;
+function customerMap(data){
+ const map={};
+ data.forEach(o=>{
+  const key=phone(o)||customer(o);
+  if(!map[key])map[key]={name:customer(o),phone:phone(o),count:0,total:0,last:""};
+  map[key].count++;
+  if(delivered(o))map[key].total+=amount(o);
+  if(!map[key].last||String(o.date||"")>map[key].last)map[key].last=String(o.date||"");
+ });
+ return Object.values(map);
+}
+function renderCustomers(){
+ const search=($("customerSearch")?.value||"").toLowerCase();
+ const list=customerMap(orders).filter(c=>c.name.toLowerCase().includes(search)||c.phone.includes(search));
+ $("customerTable").innerHTML=list.map(c=>`
+ <tr><td>${safe(c.name)}</td><td>${safe(c.phone)}</td><td>${c.count}</td>
+ <td>${money(c.total)}</td><td>${safe(c.last||"—")}</td></tr>`).join("")||emptyRow(5);
 }
 
-function renderChart(data){
-  const now=new Date();
-  let days=[];
+function productMap(data){
+ const map={};
+ data.forEach(o=>{
+  const name=product(o);
+  if(!map[name])map[name]={name,qty:0,orders:0,cost:0};
+  map[name].qty+=quantity(o);map[name].orders++;
+  map[name].cost+=Number(o.buyCost||0)*quantity(o);
+ });
+ return Object.values(map).sort((a,b)=>b.qty-a.qty);
+}
+function renderProducts(data){
+ $("productGrid").innerHTML=productMap(data).map(p=>`
+ <div class="product-card"><h3>${safe(p.name)}</h3>
+ <p class="muted">${p.orders} commandes enregistrées</p>
+ <strong>${p.qty} articles commandés</strong></div>`).join("")||`<div class="empty">Aucun produit détecté</div>`;
+}
+function renderStock(data){
+ $("stockTable").innerHTML=productMap(data).map(p=>`
+ <tr><td>${safe(p.name)}</td><td>${p.qty}</td><td>${money(p.cost)}</td></tr>`).join("")||emptyRow(3);
+}
 
-  for(let i=6;i>=0;i--){
-    const d=new Date(now);
-    d.setDate(now.getDate()-i);
-    const key=d.toDateString();
-    const total=data.filter(o=>{
-      const od=getDate(o);
-      return od && od.toDateString()===key && isDelivered(o);
-    }).reduce((s,o)=>s+amount(o),0);
-    days.push({label:d.toLocaleDateString("fr-FR",{weekday:"short"}),total});
-  }
+function renderChart(data,id){
+ const now=new Date(),days=[];
+ for(let i=6;i>=0;i--){
+  const d=new Date(now);d.setDate(now.getDate()-i);
+  const value=data.filter(o=>{
+   const od=dateOf(o);return od&&od.toDateString()===d.toDateString()&&delivered(o);
+  }).reduce((s,o)=>s+amount(o),0);
+  days.push({label:d.toLocaleDateString("fr-FR",{weekday:"short"}),value});
+ }
+ const max=Math.max(1,...days.map(d=>d.value));
+ $(id).innerHTML=days.map(d=>`
+ <div class="chart-col"><small>${money(d.value)}</small>
+ <div class="chart-bar" style="height:${Math.max(2,d.value/max*100)}%"></div>
+ <small>${d.label}</small></div>`).join("");
+}
+function renderStatus(data){
+ const labels=["À confirmer","Confirmée","En préparation","En livraison","Livrée","Annulée"];
+ $("statusSummary").innerHTML=labels.map(s=>{
+  const n=data.filter(o=>status(o)===s).length;
+  return <p>${safe(s)} <strong style="float:right">${n}</strong></p>;
+ }).join("");
+}
 
-  const max=Math.max(...days.map(d=>d.total),1);
-  document.getElementById("chart").innerHTML=days.map(d=>`
-    <div class="barbox">
-      <small>${money(d.total)}</small>
-      <div class="bar" style="height:${Math.max(3,d.total/max*100)}%"></div>
-      <small>${d.label}</small>
-    </div>
-  `).join("");
+function renderAnalytics(){
+ const p=$("analyticsPeriod").value,data=periodFilter(orders,p);
+ const done=data.filter(delivered),gross=data.filter(o=>!cancelled(o)).reduce((s,o)=>s+amount(o),0);
+ const net=done.reduce((s,o)=>s+amount(o),0);
+ $("gross").textContent=money(gross);
+ $("net").textContent=money(net);
+ $("processed").textContent=data.filter(o=>["Confirmée","En préparation","En livraison","Livrée"].includes(status(o))).length;
+ $("deliveryRate").textContent=(data.length?Math.round(done.length/data.length*100):0)+" %";
+ $("salesBreakdown").innerHTML=[
+ ["Ventes brutes",gross],["Réductions",0],
+ ["Annulations",data.filter(cancelled).
+reduce((s,o)=>s+amount(o),0)],
+ ["Ventes nettes livrées",net],
+ ["Frais d'expédition",done.reduce((s,o)=>s+Number(o.deliveryFee||0),0)]
+ ].map(([label,value])=>`<p>${label}<strong style="float:right">${money(value)}</strong></p>`).join("");
+ $("analyticsInfo").innerHTML=`
+ <p>Commandes : <strong>${data.length}</strong></p>
+ <p>Clients : <strong>${new Set(data.map(phone).filter(Boolean)).size}</strong></p>
+ <p>Articles : <strong>${data.reduce((s,o)=>s+quantity(o),0)}</strong></p>
+ <p>Panier moyen livré : <strong>${money(done.length?net/done.length:0)}</strong></p>`;
+ renderChart(data,"analyticsChart");
+}
+
+function renderReports(data){
+ $("reportOrders").textContent=data.length;
+ $("reportRevenue").textContent=money(data.filter(delivered).reduce((s,o)=>s+amount(o),0));
+ $("reportCancelled").textContent=data.filter(cancelled).length;
+ $("reportCustomers").textContent=new Set(data.map(phone).filter(Boolean)).size;
+ $("topProducts").innerHTML=productMap(data).map(p=>
+ <p>${safe(p.name)} <strong style="float:right">${p.qty} articles</strong></p>
+ ).join("")||`<p class="empty">Aucune vente enregistrée</p>`;
 }
 
 function exportCSV(){
-  const rows=[["Référence","Date","Client","Téléphone","Produit","Quantité","Montant","Statut"]];
-  orders.forEach(o=>rows.push([
-    o.id,o.date,o.customer||o.name,o.phone||o.whatsapp,
-    o.productName||o.product,o.qty,amount(o),status(o)
-  ]));
-
-  const csv=rows.map(r=>r.map(v=>'"'+String(v??"").replace(/"/g,'""')+'"').join(";")).join("\n");
-  const blob=new Blob(["\ufeff"+csv],{type:"text/csv;charset=utf-8"});
-  const url=URL.createObjectURL(blob);
-  const a=document.createElement("a");
-  a.href=url;
-  a.download="commandes-ibrahim-accessoires.csv";
-  a.click();
-  URL.revokeObjectURL(url);
+ const rows=[["Référence","Date","Client","Téléphone","Produit","Quantité","Montant","Statut"]];
+ orders.forEach(o=>rows.push([o.id,o.date,customer(o),phone(o),product(o),quantity(o),amount(o),status(o)]));
+ const csv=rows.map(r=>r.map(v=>'"'+String(v??"").replace(/"/g,'""')+'"').join(";")).join("\n");
+ const blob=new Blob(["\ufeff"+csv],{type:"text/csv;charset=utf-8"});
+ const url=URL.createObjectURL(blob),a=document.createElement("a");
+ a.href=url;a.download="ibrahim-accessoires-commandes.csv";a.click();
+ URL.revokeObjectURL(url);
 }
 
-function esc(v){
-  return String(v??"").replace(/[&<>"']/g,c=>({
-    "&":"&amp;","<":"&lt;",">":"&gt;",
-    '"':"&quot;","'":"&#39;"
-  }[c]));
+function showPage(name){
+ document.querySelectorAll(".page").forEach(p=>p.classList.add("hidden"));
+ $(name).classList.remove("hidden");
+ document.querySelectorAll("[data-page]").forEach(n=>n.classList.toggle("active",n.dataset.page===name));
+ if(name==="orders")renderOrders();
+ if(name==="customers")renderCustomers();
+ if(name==="analytics")renderAnalytics();
+ window.scrollTo(0,0);
 }
+document.querySelectorAll("[data-page]").forEach(n=>n.addEventListener("click",()=>showPage(n.dataset.page)));
 
-loadOrders();
+function loadData(){ 
+ try{
+  const raw=localStorage.getItem(STORAGE_KEY);
+  orders=raw?JSON.parse(raw):[];
+  if(!Array.isArray(orders))orders=[];
+ }catch(e){orders=[]}
+ render();
+}
+loadData();
 </script>
 </body>
 </html>
