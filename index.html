@@ -192,51 +192,110 @@
 
                 <div class="flex items-center gap-2.5 overflow-x-auto no-scrollbar pb-1.5" id="models-thumbnails-container">
                     <!-- Modèle 1 -->
-                    <button type="button" onclick="selectModel(0)" id="model-thumb-0" class="shrink-0 w-20 rounded-xl p-1 border-2 border-blue-600 bg-blue-50/40 text-center transition">
-                        <img src="https://images.unsplash.com/photo-1523275335684-37898b6baf30?auto=format&fit=crop&w=200&q=80" alt="Carbone Gris" class="w-full h-14 object-cover rounded-lg mb-1">
-                        <span class="block text-[11px] font-bold text-slate-900 truncate">Carbone</span>
-                    </button>
+                    <div id="model-thumb-0" class="shrink-0 w-24 rounded-xl p-1.5 border-2 border-blue-600 bg-blue-50/40 text-center transition flex flex-col justify-between">
+                        <button type="button" onclick="selectModel(0)" class="w-full text-center">
+                            <img src="https://images.unsplash.com/photo-1523275335684-37898b6baf30?auto=format&fit=crop&w=200&q=80" alt="Carbone Gris" class="w-full h-14 object-cover rounded-lg mb-1">
+                            <span class="block text-[11px] font-bold text-slate-900 truncate">Carbone</span>
+                        </button>
+                        <button type="button" onclick="addToCart(0)" class="mt-1.5 w-full py-1 px-1.5 rounded-lg bg-slate-900 hover:bg-blue-600 text-white text-[10px] font-bold transition flex items-center justify-center gap-1 shadow-2xs active:scale-95">
+                            <i class="fa-solid fa-cart-plus text-[9px]"></i>
+                            <span>Ajouter</span>
+                        </button>
+                    </div>
 
                     <!-- Modèle 2 -->
-                    <button type="button" onclick="selectModel(1)" id="model-thumb-1" class="shrink-0 w-20 rounded-xl p-1 border-2 border-gray-200 opacity-75 hover:opacity-100 text-center transition">
-                        <img src="https://images.unsplash.com/photo-1542496658-e33a6d0d50f6?auto=format&fit=crop&w=200&q=80" alt="Bleu & Blanc" class="w-full h-14 object-cover rounded-lg mb-1">
-                        <span class="block text-[11px] font-bold text-slate-900 truncate">Bleu-Blanc</span>
-                    </button>
+                    <div id="model-thumb-1" class="shrink-0 w-24 rounded-xl p-1.5 border-2 border-gray-200 opacity-85 hover:opacity-100 text-center transition flex flex-col justify-between">
+                        <button type="button" onclick="selectModel(1)" class="w-full text-center">
+                            <img src="https://images.unsplash.com/photo-1542496658-e33a6d0d50f6?auto=format&fit=crop&w=200&q=80" alt="Bleu & Blanc" class="w-full h-14 object-cover rounded-lg mb-1">
+                            <span class="block text-[11px] font-bold text-slate-900 truncate">Bleu-Blanc</span>
+                        </button>
+                        <button type="button" onclick="addToCart(1)" class="mt-1.5 w-full py-1 px-1.5 rounded-lg bg-slate-900 hover:bg-blue-600 text-white text-[10px] font-bold transition flex items-center justify-center gap-1 shadow-2xs active:scale-95">
+                            <i class="fa-solid fa-cart-plus text-[9px]"></i>
+                            <span>Ajouter</span>
+                        </button>
+                    </div>
 
                     <!-- Modèle 3 -->
-                    <button type="button" onclick="selectModel(2)" id="model-thumb-2" class="shrink-0 w-20 rounded-xl p-1 border-2 border-gray-200 opacity-75 hover:opacity-100 text-center transition">
-                        <img src="https://images.unsplash.com/photo-1524592094714-0f0654e20314?auto=format&fit=crop&w=200&q=80" alt="Bleu Lagon" class="w-full h-14 object-cover rounded-lg mb-1">
-                        <span class="block text-[11px] font-bold text-slate-900 truncate">Bleu Lagon</span>
-                    </button>
+                    <div id="model-thumb-2" class="shrink-0 w-24 rounded-xl p-1.5 border-2 border-gray-200 opacity-85 hover:opacity-100 text-center transition flex flex-col justify-between">
+                        <button type="button" onclick="selectModel(2)" class="w-full text-center">
+                            <img src="https://images.unsplash.com/photo-1524592094714-0f0654e20314?auto=format&fit=crop&w=200&q=80" alt="Bleu Lagon" class="w-full h-14 object-cover rounded-lg mb-1">
+                            <span class="block text-[11px] font-bold text-slate-900 truncate">Bleu Lagon</span>
+                        </button>
+                        <button type="button" onclick="addToCart(2)" class="mt-1.5 w-full py-1 px-1.5 rounded-lg bg-slate-900 hover:bg-blue-600 text-white text-[10px] font-bold transition flex items-center justify-center gap-1 shadow-2xs active:scale-95">
+                            <i class="fa-solid fa-cart-plus text-[9px]"></i>
+                            <span>Ajouter</span>
+                        </button>
+                    </div>
 
                     <!-- Modèle 4 -->
-                    <button type="button" onclick="selectModel(3)" id="model-thumb-3" class="shrink-0 w-20 rounded-xl p-1 border-2 border-gray-200 opacity-75 hover:opacity-100 text-center transition">
-                        <img src="https://images.unsplash.com/photo-1522312346375-d1a52e2b99b3?auto=format&fit=crop&w=200&q=80" alt="Blanc & Bleu" class="w-full h-14 object-cover rounded-lg mb-1">
-                        <span class="block text-[11px] font-bold text-slate-900 truncate">Blanc-Bleu</span>
-                    </button>
+                    <div id="model-thumb-3" class="shrink-0 w-24 rounded-xl p-1.5 border-2 border-gray-200 opacity-85 hover:opacity-100 text-center transition flex flex-col justify-between">
+                        <button type="button" onclick="selectModel(3)" class="w-full text-center">
+                            <img src="https://images.unsplash.com/photo-1522312346375-d1a52e2b99b3?auto=format&fit=crop&w=200&q=80" alt="Blanc & Bleu" class="w-full h-14 object-cover rounded-lg mb-1">
+                            <span class="block text-[11px] font-bold text-slate-900 truncate">Blanc-Bleu</span>
+                        </button>
+                        <button type="button" onclick="addToCart(3)" class="mt-1.5 w-full py-1 px-1.5 rounded-lg bg-slate-900 hover:bg-blue-600 text-white text-[10px] font-bold transition flex items-center justify-center gap-1 shadow-2xs active:scale-95">
+                            <i class="fa-solid fa-cart-plus text-[9px]"></i>
+                            <span>Ajouter</span>
+                        </button>
+                    </div>
 
                     <!-- Modèle 5 -->
-                    <button type="button" onclick="selectModel(4)" id="model-thumb-4" class="shrink-0 w-20 rounded-xl p-1 border-2 border-gray-200 opacity-75 hover:opacity-100 text-center transition">
-                        <img src="https://images.unsplash.com/photo-1614164185128-e4ec99c436d7?auto=format&fit=crop&w=200&q=80" alt="Vert Jungle" class="w-full h-14 object-cover rounded-lg mb-1">
-                        <span class="block text-[11px] font-bold text-slate-900 truncate">Vert Jungle</span>
-                    </button>
+                    <div id="model-thumb-4" class="shrink-0 w-24 rounded-xl p-1.5 border-2 border-gray-200 opacity-85 hover:opacity-100 text-center transition flex flex-col justify-between">
+                        <button type="button" onclick="selectModel(4)" class="w-full text-center">
+                            <img src="https://images.unsplash.com/photo-1614164185128-e4ec99c436d7?auto=format&fit=crop&w=200&q=80" alt="Vert Jungle" class="w-full h-14 object-cover rounded-lg mb-1">
+                            <span class="block text-[11px] font-bold text-slate-900 truncate">Vert Jungle</span>
+                        </button>
+                        <button type="button" onclick="addToCart(4)" class="mt-1.5 w-full py-1 px-1.5 rounded-lg bg-slate-900 hover:bg-blue-600 text-white text-[10px] font-bold transition flex items-center justify-center gap-1 shadow-2xs active:scale-95">
+                            <i class="fa-solid fa-cart-plus text-[9px]"></i>
+                            <span>Ajouter</span>
+                        </button>
+                    </div>
 
                     <!-- Modèle 6 -->
-                    <button type="button" onclick="selectModel(5)" id="model-thumb-5" class="shrink-0 w-20 rounded-xl p-1 border-2 border-gray-200 opacity-75 hover:opacity-100 text-center transition">
-                        <img src="https://images.unsplash.com/photo-1547996160-81dfa63595aa?auto=format&fit=crop&w=200&q=80" alt="Jaune Acier" class="w-full h-14 object-cover rounded-lg mb-1">
-                        <span class="block text-[11px] font-bold text-slate-900 truncate">Jaune Acier</span>
-                    </button>
+                    <div id="model-thumb-5" class="shrink-0 w-24 rounded-xl p-1.5 border-2 border-gray-200 opacity-85 hover:opacity-100 text-center transition flex flex-col justify-between">
+                        <button type="button" onclick="selectModel(5)" class="w-full text-center">
+                            <img src="https://images.unsplash.com/photo-1547996160-81dfa63595aa?auto=format&fit=crop&w=200&q=80" alt="Jaune Acier" class="w-full h-14 object-cover rounded-lg mb-1">
+                            <span class="block text-[11px] font-bold text-slate-900 truncate">Jaune Acier</span>
+                        </button>
+                        <button type="button" onclick="addToCart(5)" class="mt-1.5 w-full py-1 px-1.5 rounded-lg bg-slate-900 hover:bg-blue-600 text-white text-[10px] font-bold transition flex items-center justify-center gap-1 shadow-2xs active:scale-95">
+                            <i class="fa-solid fa-cart-plus text-[9px]"></i>
+                            <span>Ajouter</span>
+                        </button>
+                    </div>
 
                     <!-- Modèle 7 -->
-                    <button type="button" onclick="selectModel(6)" id="model-thumb-6" class="shrink-0 w-20 rounded-xl p-1 border-2 border-gray-200 opacity-75 hover:opacity-100 text-center transition">
-                        <img src="https://images.unsplash.com/photo-1523275335684-37898b6baf30?auto=format&fit=crop&w=200&q=80" alt="Blanc Pur" class="w-full h-14 object-cover rounded-lg mb-1">
-                        <span class="block text-[11px] font-bold text-slate-900 truncate">Blanc Pur</span>
-                    </button>
+                    <div id="model-thumb-6" class="shrink-0 w-24 rounded-xl p-1.5 border-2 border-gray-200 opacity-85 hover:opacity-100 text-center transition flex flex-col justify-between">
+                        <button type="button" onclick="selectModel(6)" class="w-full text-center">
+                            <img src="https://images.unsplash.com/photo-1523275335684-37898b6baf30?auto=format&fit=crop&w=200&q=80" alt="Blanc Pur" class="w-full h-14 object-cover rounded-lg mb-1">
+                            <span class="block text-[11px] font-bold text-slate-900 truncate">Blanc Pur</span>
+                        </button>
+                        <button type="button" onclick="addToCart(6)" class="mt-1.5 w-full py-1 px-1.5 rounded-lg bg-slate-900 hover:bg-blue-600 text-white text-[10px] font-bold transition flex items-center justify-center gap-1 shadow-2xs active:scale-95">
+                            <i class="fa-solid fa-cart-plus text-[9px]"></i>
+                            <span>Ajouter</span>
+                        </button>
+                    </div>
 
                     <!-- Modèle 8 -->
-                    <button type="button" onclick="selectModel(7)" id="model-thumb-7" class="shrink-0 w-20 rounded-xl p-1 border-2 border-gray-200 opacity-75 hover:opacity-100 text-center transition">
-                        <img src="https://images.unsplash.com/photo-1542496658-e33a6d0d50f6?auto=format&fit=crop&w=200&q=80" alt="Jaune Sport" class="w-full h-14 object-cover rounded-lg mb-1">
-                        <span class="block text-[11px] font-bold text-slate-900 truncate">Jaune Sport</span>
+                    <div id="model-thumb-7" class="shrink-0 w-24 rounded-xl p-1.5 border-2 border-gray-200 opacity-85 hover:opacity-100 text-center transition flex flex-col justify-between">
+                        <button type="button" onclick="selectModel(7)" class="w-full text-center">
+                            <img src="https://images.unsplash.com/photo-1542496658-e33a6d0d50f6?auto=format&fit=crop&w=200&q=80" alt="Jaune Sport" class="w-full h-14 object-cover rounded-lg mb-1">
+                            <span class="block text-[11px] font-bold text-slate-900 truncate">Jaune Sport</span>
+                        </button>
+                        <button type="button" onclick="addToCart(7)" class="mt-1.5 w-full py-1 px-1.5 rounded-lg bg-slate-900 hover:bg-blue-600 text-white text-[10px] font-bold transition flex items-center justify-center gap-1 shadow-2xs active:scale-95">
+                            <i class="fa-solid fa-cart-plus text-[9px]"></i>
+                            <span>Ajouter</span>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Barre Panier rapide lorsque le client ajoute un ou plusieurs modèles -->
+                <div id="mini-cart-bar" class="hidden mt-2.5 p-2.5 rounded-xl bg-blue-50 border border-blue-200 flex items-center justify-between gap-2">
+                    <div class="flex items-center gap-2 text-xs font-bold text-slate-900">
+                        <span class="w-6 h-6 rounded-full bg-blue-600 text-white flex items-center justify-center text-[11px] font-extrabold" id="mini-cart-count">1</span>
+                        <span><span id="mini-cart-label">1 montre</span> dans votre panier</span>
+                    </div>
+                    <button type="button" onclick="scrollToForm()" class="px-3 py-1.5 rounded-lg bg-blue-600 hover:bg-blue-700 text-white text-xs font-bold transition shrink-0">
+                        Aller au formulaire ↓
                     </button>
                 </div>
             </div>
@@ -316,30 +375,21 @@
             <!-- Cadre noir arrondi du formulaire -->
             <form id="cod-form" onsubmit="handleOrderSubmit(event)" class="border-2 border-slate-900 rounded-2xl p-4 sm:p-5 bg-white shadow-md space-y-3.5">
                 
-                <!-- Récapitulatif Produit + Sélecteur de Quantité -->
+                <!-- Récapitulatif Produit / Panier Multi-Modèles (taille adaptative sur une seule ligne) -->
                 <div class="pb-3 border-b border-gray-200 space-y-3">
-                    <div class="flex items-center justify-between gap-3">
-                        <div class="flex items-center gap-3">
-                            <div class="relative w-14 h-14 rounded-lg bg-gray-100 border border-gray-200 shrink-0">
-                                <img id="summary-product-img" src="https://images.unsplash.com/photo-1523275335684-37898b6baf30?auto=format&fit=crop&w=200&q=80" alt="Montre Richard Mille" class="w-full h-full object-cover rounded-lg">
-                                <span id="summary-qty-badge" class="absolute -top-2 -right-2 w-5 h-5 rounded-full bg-slate-600 text-white text-xs font-bold flex items-center justify-center shadow-xs">1</span>
-                            </div>
-                            <div>
-                                <p class="text-xs sm:text-sm font-bold text-slate-900 leading-snug">Montre Prestige Richard Mille™</p>
-                                <p class="text-xs font-medium text-blue-600">Modèle : <span id="summary-model-name">Carbone Gris</span></p>
-                            </div>
+                    <div class="flex items-center justify-between gap-2">
+                        <div>
+                            <p class="text-xs sm:text-sm font-bold text-slate-900 leading-snug">Montre Prestige Richard Mille™</p>
+                            <p class="text-[11px] font-medium text-blue-600" id="cart-models-subtitle">Modèle : Carbone Gris</p>
                         </div>
-                        <span id="summary-unit-price" class="text-sm font-extrabold text-slate-900 shrink-0">12,000 FCFA</span>
+                        <span id="cart-total-items" class="text-[11px] font-extrabold bg-blue-50 text-blue-700 border border-blue-200 px-2.5 py-1 rounded-full shrink-0">
+                            1 montre
+                        </span>
                     </div>
 
-                    <!-- Sélecteur de Quantité -->
-                    <div class="flex items-center justify-between bg-gray-50 px-3 py-2 rounded-xl border border-gray-200">
-                        <span class="text-xs sm:text-sm font-bold text-slate-800">Quantité :</span>
-                        <div class="flex items-center gap-3">
-                            <button type="button" onclick="updateQuantity(-1)" aria-label="Diminuer la quantité" class="w-8 h-8 rounded-lg bg-white border border-gray-300 text-slate-900 font-bold text-base hover:bg-gray-100 active:scale-95 transition flex items-center justify-center shadow-2xs">−</button>
-                            <span id="qty-display" class="w-6 text-center text-sm font-extrabold text-slate-900">1</span>
-                            <button type="button" onclick="updateQuantity(1)" aria-label="Augmenter la quantité" class="w-8 h-8 rounded-lg bg-white border border-gray-300 text-slate-900 font-bold text-base hover:bg-gray-100 active:scale-95 transition flex items-center justify-center shadow-2xs">+</button>
-                        </div>
+                    <!-- Grille adaptative sur 1 seule ligne : rétrécit automatiquement selon le nombre d'articles (1, 2, 3, 4+) -->
+                    <div id="cart-items-container" class="grid grid-cols-1 gap-2 items-stretch">
+                        <!-- Rendu dynamiquement par JavaScript -->
                     </div>
 
                     <!-- Encadré Sous-total / Expédition / Livraison / Total -->
@@ -608,7 +658,7 @@
         <section id="engagements" class="pt-6 pb-8 bg-white">
             <h2 class="text-xl sm:text-2xl font-bold text-center text-slate-900 uppercase">NOS ENGAGEMENTS!</h2>
             <div class="w-24 h-0.5 bg-blue-600 mx-auto mt-2 mb-6 rounded-full"></div>
-
+            <!-- Cartes d'Engagements -->
             <div class="grid grid-cols-2 gap-1.5 px-2">
                 <!-- Carte 1 : Satisfaction Garantie -->
                 <div class="bg-[#f3f4f6] p-4 rounded-lg text-center flex flex-col items-center">
@@ -769,7 +819,7 @@
             </div>
             <h3 class="text-xl font-extrabold text-slate-900">Commande Validée avec Succès !</h3>
             <p class="text-sm text-slate-600 leading-relaxed">
-                Merci <strong id="modal-customer-name" class="text-slate-900"></strong> ! Votre commande de <strong id="modal-qty-text" class="text-slate-900">1x</strong> <strong class="text-slate-900">Montre POEDAGAR 857™</strong> (<strong id="modal-model-text" class="text-slate-900">Noir & Bleu</strong>) d'un total de <strong id="modal-total-text" class="text-green-700">22,500 FCFA</strong> a bien été enregistrée.
+                Merci <strong id="modal-customer-name" class="text-slate-900"></strong> ! Votre commande de <strong id="modal-qty-text" class="text-slate-900">1 montre</strong> (<strong id="modal-model-text" class="text-slate-900">Carbone Gris</strong>) d'un total de <strong id="modal-total-text" class="text-green-700">12,000 FCFA</strong> a bien été enregistrée.
             </p>
             <div class="bg-gray-50 border border-gray-200 rounded-xl p-3 text-xs text-left space-y-1.5 text-slate-700">
                 <p><i class="fa-brands fa-whatsapp text-green-600 mr-1.5"></i> <strong>WhatsApp :</strong> <span id="modal-whatsapp"></span></p>
@@ -836,26 +886,34 @@
         ];
         let currentModelIndex = 0;
 
+        // Panier multi-modèles (initialisé avec le 1er modèle à quantité 1)
+        let cart = [{ index: 0, qty: 1 }];
+        let hasUsedAddToCart = false;
+
         function selectModel(index) {
             currentModelIndex = index;
             const selectedModel = productModels[index];
             const mainImg = document.getElementById('main-product-image');
             mainImg.src = selectedModel.image;
 
-            // Mettre à jour le nom du modèle et la vignette dans le formulaire
+            // Mettre à jour le nom du modèle affiché sous le carrousel
             document.getElementById('selected-color-name').textContent = selectedModel.name;
-            document.getElementById('summary-model-name').textContent = selectedModel.name;
-            document.getElementById('summary-product-img').src = selectedModel.image;
 
-            // Mise à jour visuelle des 8 cartes modèles et des points du carrousel
+            // Si le client n'a pas encore ajouté plusieurs modèles via "Ajouter", synchroniser l'article unique du panier
+            if (!hasUsedAddToCart && cart.length === 1) {
+                cart[0].index = index;
+                renderCart();
+            }
+
+            // Mise à jour visuelle des 8 cartes modèles
             productModels.forEach((_, i) => {
                 const thumb = document.getElementById(`model-thumb-${i}`);
                 if (thumb) {
                     if (i === index) {
-                        thumb.classList.remove('border-gray-200', 'opacity-75');
+                        thumb.classList.remove('border-gray-200', 'opacity-85');
                         thumb.classList.add('border-blue-600', 'bg-blue-50/40', 'opacity-100');
                     } else {
-                        thumb.classList.add('border-gray-200', 'opacity-75');
+                        thumb.classList.add('border-gray-200', 'opacity-85');
                         thumb.classList.remove('border-blue-600', 'bg-blue-50/40', 'opacity-100');
                     }
                 }
@@ -878,12 +936,161 @@
             selectModel(prev);
         }
 
-        // 1c. Gestion dynamique de la quantité et du prix total (12 000 FCFA)
+        // 1c. Gestion du Panier Multi-Modèles & du prix total (12 000 FCFA)
         const UNIT_PRICE = 12000;
-        let quantity = 1;
 
         function formatFCFA(amount) {
             return amount.toLocaleString('en-US') + ' FCFA';
+        }
+
+        function addToCart(index) {
+            selectModel(index);
+            if (!hasUsedAddToCart) {
+                hasUsedAddToCart = true;
+                cart = [{ index: index, qty: 1 }];
+            } else {
+                const existing = cart.find(item => item.index === index);
+                if (existing) {
+                    existing.qty = Math.min(20, existing.qty + 1);
+                } else {
+                    cart.push({ index: index, qty: 1 });
+                }
+            }
+            renderCart();
+
+            // Afficher le toast de confirmation
+            const toast = document.getElementById('toast-notification');
+            toast.textContent = `✓ Modèle « ${productModels[index].name} » ajouté au panier !`;
+            toast.classList.remove('hidden');
+            setTimeout(() => {
+                toast.classList.add('hidden');
+            }, 2500);
+        }
+
+        function changeCartItemQty(index, delta) {
+            const itemPos = cart.findIndex(item => item.index === index);
+            if (itemPos === -1) return;
+
+            const newQty = cart[itemPos].qty + delta;
+            if (newQty <= 0) {
+                if (cart.length > 1) {
+                    cart.splice(itemPos, 1);
+                } else {
+                    cart[itemPos].qty = 1;
+                }
+            } else {
+                cart[itemPos].qty = Math.min(20, newQty);
+            }
+            renderCart();
+        }
+
+        function removeCartItem(index) {
+            if (cart.length <= 1) return;
+            cart = cart.filter(item => item.index !== index);
+            renderCart();
+        }
+
+        function renderCart() {
+            const container = document.getElementById('cart-items-container');
+            const subtitleEl = document.getElementById('cart-models-subtitle');
+            if (!container) return;
+
+            const count = cart.length;
+            let totalQty = 0;
+            let html = '';
+
+            // Ajuster automatiquement le nombre de colonnes sur 1 seule ligne selon le nombre de modèles
+            container.className = 'grid gap-1.5 items-stretch';
+            if (count === 1) {
+                container.style.gridTemplateColumns = 'repeat(1, minmax(0, 1fr))';
+            } else if (count === 2) {
+                container.style.gridTemplateColumns = 'repeat(2, minmax(0, 1fr))';
+            } else if (count === 3) {
+                container.style.gridTemplateColumns = 'repeat(3, minmax(0, 1fr))';
+            } else {
+                container.style.gridTemplateColumns = `repeat(${count}, minmax(0, 1fr))`;
+            }
+
+            // Tailles progressives selon le nombre de montres dans le panier (2 = moyen, 3 = plus petit, 4+ = compact)
+            const imgSizeClass = count === 1 ? 'w-14 h-14' : count === 2 ? 'w-12 h-12' : count === 3 ? 'w-10 h-10' : 'w-8 h-8';
+            const titleSizeClass = count === 1 ? 'text-xs' : count === 2 ? 'text-[11px]' : count === 3 ? 'text-[10px]' : 'text-[9px]';
+            const priceSizeClass = count <= 2 ? 'text-[11px]' : 'text-[9px]';
+            const btnSizeClass = count <= 2 ? 'w-6 h-6 text-xs' : count === 3 ? 'w-5 h-5 text-[11px]' : 'w-4 h-4 text-[10px]';
+            const padClass = count === 1 ? 'p-2.5' : count === 2 ? 'p-2' : 'p-1.5';
+
+            cart.forEach(item => {
+                const model = productModels[item.index];
+                totalQty += item.qty;
+                const itemTotal = UNIT_PRICE * item.qty;
+
+                if (count === 1) {
+                    // Affichage classique 1 modèle
+                    html += `
+                        <div class="flex items-center justify-between gap-3 bg-gray-50 ${padClass} rounded-xl border border-gray-200">
+                            <div class="flex items-center gap-3 min-w-0">
+                                <div class="relative ${imgSizeClass} rounded-lg bg-white border border-gray-200 shrink-0">
+                                    <img src="${model.image}" alt="${model.name}" class="w-full h-full object-cover rounded-lg">
+                                    <span class="absolute -top-2 -right-2 w-5 h-5 rounded-full bg-slate-700 text-white text-xs font-bold flex items-center justify-center shadow-xs">${item.qty}</span>
+                                </div>
+                                <div class="min-w-0">
+                                    <p class="${titleSizeClass} font-bold text-blue-600 truncate">${model.name}</p>
+                                    <p class="${priceSizeClass} font-extrabold text-slate-900">${formatFCFA(itemTotal)}</p>
+                                </div>
+                            </div>
+                            <div class="flex items-center gap-1.5 shrink-0">
+                                <button type="button" onclick="changeCartItemQty(${item.index}, -1)" aria-label="Diminuer" class="w-7 h-7 rounded-lg bg-white border border-gray-300 text-slate-900 font-bold text-sm hover:bg-gray-100 flex items-center justify-center">−</button>
+                                <span class="w-6 text-center text-sm font-extrabold text-slate-900">${item.qty}</span>
+                                <button type="button" onclick="changeCartItemQty(${item.index}, 1)" aria-label="Augmenter" class="w-7 h-7 rounded-lg bg-white border border-gray-300 text-slate-900 font-bold text-sm hover:bg-gray-100 flex items-center justify-center">+</button>
+                            </div>
+                        </div>
+                    `;
+                } else {
+                    // Affichage compact côte à côte (2, 3, 4+ montres réduisent leur taille automatiquement)
+                    html += `
+                        <div class="bg-gray-50 ${padClass} rounded-xl border border-gray-200 flex flex-col items-center justify-between text-center min-w-0">
+                            <div class="relative ${imgSizeClass} rounded-lg bg-white border border-gray-200 mb-1 shrink-0">
+                                <img src="${model.image}" alt="${model.name}" class="w-full h-full object-cover rounded-lg">
+                                <span class="absolute -top-1.5 -right-1.5 w-4 h-4 rounded-full bg-slate-800 text-white text-[10px] font-bold flex items-center justify-center">${item.qty}</span>
+                                <button type="button" onclick="removeCartItem(${item.index})" aria-label="Retirer" class="absolute -top-1.5 -left-1.5 w-4 h-4 rounded-full bg-red-500 text-white text-[9px] flex items-center justify-center shadow-2xs">
+                                    <i class="fa-solid fa-xmark"></i>
+                                </button>
+                            </div>
+                            <p class="${titleSizeClass} font-extrabold text-blue-600 truncate w-full leading-tight">${model.name}</p>
+                            <p class="${priceSizeClass} font-bold text-slate-900 truncate w-full mb-1">${formatFCFA(itemTotal)}</p>
+                            <div class="flex items-center justify-center gap-1 w-full pt-1 border-t border-gray-200">
+                                <button type="button" onclick="changeCartItemQty(${item.index}, -1)" aria-label="Diminuer" class="${btnSizeClass} rounded bg-white border border-gray-300 text-slate-900 font-bold flex items-center justify-center shrink-0">−</button>
+                                <span class="${titleSizeClass} font-extrabold text-slate-900 px-0.5">${item.qty}</span>
+                                <button type="button" onclick="changeCartItemQty(${item.index}, 1)" aria-label="Augmenter" class="${btnSizeClass} rounded bg-white border border-gray-300 text-slate-900 font-bold flex items-center justify-center shrink-0">+</button>
+                            </div>
+                        </div>
+                    `;
+                }
+            });
+
+            container.innerHTML = html;
+
+            if (subtitleEl) {
+                subtitleEl.textContent = count === 1
+                    ? `Modèle : ${productModels[cart[0].index].name}`
+                    : `${count} modèles sélectionnés`;
+            }
+
+            const subtotal = UNIT_PRICE * totalQty;
+            const isExpedition = document.getElementById('mode-expedition')?.checked;
+
+            document.getElementById('cart-total-items').textContent = totalQty > 1 ? `${totalQty} montres` : `1 montre`;
+            document.getElementById('summary-subtotal').textContent = formatFCFA(subtotal);
+            document.getElementById('summary-total').textContent = isExpedition
+                ? `${formatFCFA(subtotal)} + expédition (dès 1,000 FCFA)`
+                : formatFCFA(subtotal);
+
+            // Mise à jour de la barre rapide sous les miniatures
+            const miniCartBar = document.getElementById('mini-cart-bar');
+            if (miniCartBar && hasUsedAddToCart) {
+                miniCartBar.classList.remove('hidden');
+                document.getElementById('mini-cart-count').textContent = totalQty;
+                document.getElementById('mini-cart-label').textContent = totalQty > 1 ? `${totalQty} montres` : `1 montre`;
+            }
         }
 
         function toggleShippingOption(selected) {
@@ -912,7 +1119,7 @@
                 dotExp.classList.add('scale-0');
                 citySelect.value = 'Ouagadougou';
             }
-            updateQuantity(0);
+            renderCart();
         }
 
         function onCitySelectChange() {
@@ -925,116 +1132,52 @@
             }
         }
 
-        function updateQuantity(delta) {
-            quantity = Math.max(1, Math.min(20, quantity + delta));
-            const subtotal = UNIT_PRICE * quantity;
-            const isExpedition = document.getElementById('mode-expedition')?.checked;
+        // Initialiser l'affichage du panier au chargement
+        window.addEventListener('DOMContentLoaded', renderCart);
 
-            document.getElementById('qty-display').textContent = quantity;
-            document.getElementById('summary-qty-badge').textContent = quantity;
-            document.getElementById('summary-subtotal').textContent = formatFCFA(subtotal);
-            document.getElementById('summary-total').textContent = isExpedition
-                ? `${formatFCFA(subtotal)} + expédition (dès 1,000 FCFA)`
-                : formatFCFA(subtotal);
-        }
-
-        // 2. Défilement fluide vers le formulaire de commande
         function scrollToForm() {
             const formSection = document.getElementById('formulaire-commande');
-            formSection.scrollIntoView({ behavior: 'smooth', block: 'center' });
-            setTimeout(() => {
-                document.getElementById('fullName').focus();
-            }, 600);
+            if (formSection) {
+                formSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            }
         }
 
-        // 3. Menu tiroir et recherche
-        document.getElementById('menu-btn').addEventListener('click', toggleDrawer);
-
-        function toggleDrawer() {
-            const drawer = document.getElementById('mobile-drawer');
-            drawer.classList.toggle('hidden');
+        function onReadyCheckChange() {
+            const readyCheck = document.getElementById('readyCheck');
+            const wrapper = document.getElementById('readyCheckWrapper');
+            const errorEl = document.getElementById('readyCheckError');
+            if (readyCheck.checked) {
+                wrapper.classList.remove('border-red-400', 'bg-red-50/60', 'animate-check-attention');
+                wrapper.classList.add('border-green-600', 'bg-green-50/70');
+                errorEl.classList.add('hidden');
+            } else {
+                wrapper.classList.add('border-red-400', 'bg-red-50/60', 'animate-check-attention');
+                wrapper.classList.remove('border-green-600', 'bg-green-50/70');
+            }
         }
 
         function toggleSearch() {
-            const searchBar = document.getElementById('search-bar');
-            searchBar.classList.toggle('hidden');
+            document.getElementById('search-bar')?.classList.toggle('hidden');
         }
 
-        // 4. Gestion de l'accordéon FAQ (4 questions)
+        function toggleDrawer() {
+            document.getElementById('mobile-drawer')?.classList.toggle('hidden');
+        }
+
+        document.getElementById('menu-btn')?.addEventListener('click', toggleDrawer);
+
         function toggleFaq(index) {
             const content = document.getElementById(`faq-content-${index}`);
-            const iconWrapper = document.getElementById(`faq-icon-${index}`);
-            const icon = iconWrapper.querySelector('i');
-
-            const isHidden = content.classList.contains('hidden');
-
-            // Fermer toutes les autres questions pour un rendu épuré
-            for (let i = 0; i < 4; i++) {
-                const otherContent = document.getElementById(`faq-content-${i}`);
-                const otherIcon = document.getElementById(`faq-icon-${i}`).querySelector('i');
-                if (otherContent && i !== index) {
-                    otherContent.classList.add('hidden');
-                    otherIcon.classList.remove('fa-xmark');
-                    otherIcon.classList.add('fa-plus');
-                }
-            }
-
-            if (isHidden) {
-                content.classList.remove('hidden');
-                icon.classList.remove('fa-plus');
-                icon.classList.add('fa-xmark');
-            } else {
-                content.classList.add('hidden');
-                icon.classList.remove('fa-xmark');
-                icon.classList.add('fa-plus');
-            }
+            const icon = document.getElementById(`faq-icon-${index}`);
+            if (content) content.classList.toggle('hidden');
+            if (icon) icon.classList.toggle('rotate-45');
         }
 
-        // 5. Accordéon Footer
         function toggleFooterSection(id) {
             const section = document.getElementById(id);
             const icon = document.getElementById(`icon-${id}`);
-            section.classList.toggle('hidden');
-            if (section.classList.contains('hidden')) {
-                icon.classList.remove('fa-minus');
-                icon.classList.add('fa-plus');
-            } else {
-                icon.classList.remove('fa-plus');
-                icon.classList.add('fa-minus');
-            }
-        }
-
-        // 6. Simulation dynamique des visiteurs et commandes en cours (Preuve sociale)
-        setInterval(() => {
-            const visitorsEl = document.getElementById('live-visitors');
-            const currentVisitors = parseInt(visitorsEl.textContent, 10);
-            const delta = Math.floor(Math.random() * 5) - 2; // entre -2 et +2
-            const nextVisitors = Math.max(24, Math.min(85, currentVisitors + delta));
-            visitorsEl.textContent = nextVisitors;
-        }, 4500);
-
-        setInterval(() => {
-            const ordersEl = document.getElementById('live-orders');
-            const currentOrders = parseInt(ordersEl.textContent, 10);
-            const delta = Math.random() > 0.5 ? 1 : -1;
-            const nextOrders = Math.max(11, Math.min(27, currentOrders + delta));
-            ordersEl.textContent = nextOrders;
-        }, 7000);
-
-        // 7. Traitement du formulaire de commande COD
-        function onReadyCheckChange() {
-            const readyCheck = document.getElementById('readyCheck');
-            const errorEl = document.getElementById('readyCheckError');
-            const wrapperEl = document.getElementById('readyCheckWrapper');
-
-            if (readyCheck.checked) {
-                errorEl.classList.add('hidden');
-                wrapperEl.classList.remove('border-red-400', 'bg-red-50/60', 'animate-check-attention');
-                wrapperEl.classList.add('border-green-500', 'bg-green-50');
-            } else {
-                wrapperEl.classList.remove('border-green-500', 'bg-green-50');
-                wrapperEl.classList.add('border-red-400', 'bg-red-50/60', 'animate-check-attention');
-            }
+            if (section) section.classList.toggle('hidden');
+            if (icon) icon.classList.toggle('rotate-45');
         }
 
         function handleOrderSubmit(event) {
@@ -1052,9 +1195,17 @@
             const whatsapp = document.getElementById('whatsapp').value.trim();
             const city = document.getElementById('city').value.trim();
             const quartier = document.getElementById('quartier').value.trim();
-            const selectedModelName = productModels[currentModelIndex].name;
             const isExpedition = document.getElementById('mode-expedition').checked;
-            const subtotalFormatted = formatFCFA(UNIT_PRICE * quantity);
+
+            const totalQty = cart.reduce((acc, item) => acc + item.qty, 0);
+            const modelsSummaryList = cart
+                .map(item => `${item.qty}x ${productModels[item.index].name}`)
+                .join(', ');
+            const modelsWhatsAppLines = cart
+                .map(item => `   • ${item.qty}x ${productModels[item.index].name} (${formatFCFA(UNIT_PRICE * item.qty)})`)
+                .join('\n');
+
+            const subtotalFormatted = formatFCFA(UNIT_PRICE * totalQty);
             const deliveryText = isExpedition
                 ? 'Expédition hors Ouagadougou (à partir de 1,000 FCFA selon la ville)'
                 : 'Livraison gratuite (Ouagadougou)';
@@ -1065,8 +1216,8 @@
 
             // Remplir la modale de confirmation
             document.getElementById('modal-customer-name').textContent = fullName;
-            document.getElementById('modal-qty-text').textContent = `${quantity}x`;
-            document.getElementById('modal-model-text').textContent = selectedModelName;
+            document.getElementById('modal-qty-text').textContent = totalQty > 1 ? `${totalQty} montres` : `1 montre`;
+            document.getElementById('modal-model-text').textContent = modelsSummaryList;
             document.getElementById('modal-total-text').textContent = totalPriceFormatted;
             document.getElementById('modal-whatsapp').textContent = whatsapp;
             document.getElementById('modal-city').textContent = `${fullAddress} (${isExpedition ? 'Expédition' : 'Livraison'})`;
@@ -1076,8 +1227,7 @@
             const message = encodeURIComponent(
                 `Bonjour Ibrahim Accessoires, je souhaite confirmer ma commande (Paiement à la livraison) :\n\n` +
                 `⌚ *Produit :* Montre Richard Mille™\n` +
-                `🎨 *Modèle / Couleur :* ${selectedModelName}\n` +
-                `🔢 *Quantité :* ${quantity}\n` +
+                `🎨 *Modèles choisis (${totalQty}) :*\n${modelsWhatsAppLines}\n` +
                 `🚚 *Mode :* ${deliveryText}\n` +
                 `💰 *Total :* ${totalPriceFormatted}\n` +
                 `👤 *Nom complet :* ${fullName}\n` +
@@ -1096,13 +1246,15 @@
             // Ouvrir directement WhatsApp avec les détails de la commande
             window.open(whatsappUrl, '_blank');
 
-            // Réinitialiser le formulaire et la quantité (case décochée par défaut)
+            // Réinitialiser le formulaire et le panier (case décochée par défaut)
             document.getElementById('cod-form').reset();
             toggleShippingOption('livraison');
             document.getElementById('readyCheck').checked = false;
             onReadyCheckChange();
-            quantity = 1;
-            updateQuantity(0);
+            hasUsedAddToCart = false;
+            cart = [{ index: currentModelIndex, qty: 1 }];
+            document.getElementById('mini-cart-bar').classList.add('hidden');
+            renderCart();
         }
 
         function closeOrderModal() {
