@@ -70,6 +70,13 @@ display: none;
 scrollbar-width: none;
 }
 </style>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script>
+  // Connexion Supabase de la boutique Ibrahim Accessoires
+  const SUPABASE_URL = "https://qrnwqkfsjcwuovnmtoov.supabase.co";
+  const SUPABASE_ANON_KEY = "sb_publishable_zcOINkGeJRqWotP4iUx0pw_w6xgytSA";
+  const supabaseClient = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+</script>
 </head>
 <body class="antialiased selection:bg-blue-600 selection:text-white">
 <header class="sticky top-0 z-40 bg-white/95 backdrop-blur-sm border-b border-gray-100">
@@ -1084,72 +1091,137 @@ const icon = document.getElementById(`icon-${id}`);
 if (section) section.classList.toggle('hidden');
 if (icon) icon.classList.toggle('rotate-45');
 }
-function handleOrderSubmit(event) {
+async function handleOrderSubmit(event) {
 event.preventDefault();
+
 const readyCheck = document.getElementById('readyCheck');
 if (!readyCheck.checked) {
-const errorEl = document.getElementById('readyCheckError');
-errorEl.classList.remove('hidden');
-readyCheck.focus();
-return;
+  const errorEl = document.getElementById('readyCheckError');
+  errorEl.classList.remove('hidden');
+  readyCheck.focus();
+  return;
 }
+
+const form = document.getElementById('cod-form');
+const submitButton = form.querySelector('button[type="submit"]');
+const submitLabel = submitButton.innerHTML;
+
 const fullName = document.getElementById('fullName').value.trim();
 const whatsapp = document.getElementById('whatsapp').value.trim();
 const city = document.getElementById('city').value.trim();
 const quartier = document.getElementById('quartier').value.trim();
 const isExpedition = document.getElementById('mode-expedition').checked;
 const totalQty = cart.reduce((acc, item) => acc + item.qty, 0);
+const subtotal = UNIT_PRICE * totalQty;
 const modelsSummaryList = cart
-.map(item => `${item.qty}x ${productModels[item.index].name}`)
-.join(', ');
+  .map(item => `${item.qty}x ${productModels[item.index].name}`)
+  .join(', ');
 const modelsWhatsAppLines = cart
-.map(item => `   • ${item.qty}x ${productModels[item.index].name} (${formatFCFA(UNIT_PRICE * item.qty)})`)
-.join('\n');
-const subtotalFormatted = formatFCFA(UNIT_PRICE * totalQty);
+  .map(item => `   • ${item.qty}x ${productModels[item.index].name} (${formatFCFA(UNIT_PRICE * item.qty)})`)
+  .join('\n');
+const subtotalFormatted = formatFCFA(subtotal);
 const deliveryText = isExpedition
-? 'Expédition hors Ouagadougou (à partir de 1,000 FCFA selon la ville)'
-: 'Livraison gratuite (Ouagadougou)';
+  ? 'Expédition hors Ouagadougou (frais à confirmer selon la ville)'
+  : 'Livraison gratuite (Ouagadougou)';
 const totalPriceFormatted = isExpedition
-? `${subtotalFormatted} + frais d'expédition (dès 1,000 FCFA)`
-: subtotalFormatted;
+  ? `${subtotalFormatted} + frais d'expédition à confirmer`
+  : subtotalFormatted;
 const fullAddress = `${city} - ${quartier}`;
-// Remplir la modale de confirmation
-document.getElementById('modal-customer-name').textContent = fullName;
-document.getElementById('modal-qty-text').textContent = totalQty > 1 ? `${totalQty} montres` : `1 montre`;
-document.getElementById('modal-model-text').textContent = modelsSummaryList;
-document.getElementById('modal-total-text').textContent = totalPriceFormatted;
-document.getElementById('modal-whatsapp').textContent = whatsapp;
-document.getElementById('modal-city').textContent = `${fullAddress} (${isExpedition ? 'Expédition' : 'Livraison'})`;
-// Numéro WhatsApp Business : +226 57 61 56 45
-const businessPhone = "22657615645";
-const message = encodeURIComponent(
-`Bonjour Ibrahim Accessoires, je souhaite confirmer ma commande (Paiement à la livraison) :\n\n` +
-`⌚ *Produit :* Montre Richard Mille™\n` +
-`🎨 *Modèles choisis (${totalQty}) :*\n${modelsWhatsAppLines}\n` +
-`🚚 *Mode :* ${deliveryText}\n` +
-`💰 *Total :* ${totalPriceFormatted}\n` +
-`👤 *Nom complet :* ${fullName}\n` +
-`💬 *WhatsApp :* ${whatsapp}\n` +
-`🏙️ *Ville :* ${city}\n` +
-`📍 *Quartier :* ${quartier}`
-);
-const whatsappUrl = `https://wa.me/${businessPhone}?text=${message}`;
-document.getElementById('modal-wa-redirect').href = whatsappUrl;
-// Afficher la modale
-const modal = document.getElementById('order-modal');
-modal.classList.remove('hidden');
-modal.classList.add('flex');
-// Ouvrir directement WhatsApp avec les détails de la commande
-window.open(whatsappUrl, '_blank');
-// Réinitialiser le formulaire et le panier (case décochée par défaut)
-document.getElementById('cod-form').reset();
-toggleShippingOption('livraison');
-document.getElementById('readyCheck').checked = false;
-onReadyCheckChange();
-hasUsedAddToCart = false;
-cart = [{ index: currentModelIndex, qty: 1 }];
-document.getElementById('mini-cart-bar').classList.add('hidden');
-renderCart();
+const reference = 'IA-' + Date.now().toString().slice(-8);
+
+submitButton.disabled = true;
+submitButton.classList.add('opacity-60', 'cursor-wait');
+submitButton.innerHTML = '<i class="fa-solid fa-spinner fa-spin text-xl"></i><span>Enregistrement de la commande...</span>';
+
+try {
+  const orderItems = cart.map(item => ({
+    model: productModels[item.index].name,
+    quantity: item.qty,
+    unit_price: UNIT_PRICE,
+    subtotal: UNIT_PRICE * item.qty
+  }));
+
+  // Enregistrer d'abord la commande dans Supabase.
+  const { data, error } = await supabaseClient
+    .from('orders')
+    .insert([{
+      reference: reference,
+      customer_name: fullName,
+      whatsapp: whatsapp,
+      city: city,
+      district: quartier,
+      shipping_mode: isExpedition ? 'expedition' : 'livraison',
+      shipping_label: deliveryText,
+      delivery_fee: null,
+      subtotal: subtotal,
+      total: subtotal,
+      quantity: totalQty,
+      items: orderItems,
+      status: 'À confirmer',
+      source: 'storefront'
+    }])
+    .select('id, reference')
+    .single();
+
+  if (error) throw error;
+
+  // Préparer le message WhatsApp avec la référence enregistrée.
+  document.getElementById('modal-customer-name').textContent = fullName;
+  document.getElementById('modal-qty-text').textContent = totalQty > 1 ? `${totalQty} montres` : '1 montre';
+  document.getElementById('modal-model-text').textContent = modelsSummaryList;
+  document.getElementById('modal-total-text').textContent = totalPriceFormatted;
+  document.getElementById('modal-whatsapp').textContent = whatsapp;
+  document.getElementById('modal-city').textContent = `${fullAddress} (${isExpedition ? 'Expédition' : 'Livraison'})`;
+
+  const businessPhone = "22657615645";
+  const message = encodeURIComponent(
+    `Bonjour Ibrahim Accessoires, je souhaite confirmer ma commande (Paiement à la livraison) :\n\n` +
+    `🧾 *Référence :* ${reference}\n` +
+    `⌚ *Produit :* Montre POEDAGAR 857™\n` +
+    `🎨 *Modèles choisis (${totalQty}) :*\n${modelsWhatsAppLines}\n` +
+    `🚚 *Mode :* ${deliveryText}\n` +
+    `💰 *Total :* ${totalPriceFormatted}\n` +
+    `👤 *Nom complet :* ${fullName}\n` +
+    `💬 *WhatsApp :* ${whatsapp}\n` +
+    `🏙️ *Ville :* ${city}\n` +
+    `📍 *Quartier :* ${quartier}`
+  );
+
+  const whatsappUrl = `https://wa.me/${businessPhone}?text=${message}`;
+  document.getElementById('modal-wa-redirect').href = whatsappUrl;
+
+  const modal = document.getElementById('order-modal');
+  modal.classList.remove('hidden');
+  modal.classList.add('flex');
+
+  // Ouvrir WhatsApp après confirmation de l'enregistrement Supabase.
+  window.open(whatsappUrl, '_blank');
+
+  form.reset();
+  toggleShippingOption('livraison');
+  document.getElementById('readyCheck').checked = false;
+  onReadyCheckChange();
+  hasUsedAddToCart = false;
+  cart = [{ index: currentModelIndex, qty: 1 }];
+  document.getElementById('mini-cart-bar').classList.add('hidden');
+  renderCart();
+
+} catch (error) {
+  console.error('Erreur enregistrement commande Supabase :', error);
+  const toast = document.getElementById('toast-notification');
+  toast.textContent = "Impossible d'enregistrer la commande. Vérifiez votre connexion puis réessayez.";
+  toast.classList.remove('hidden');
+  toast.classList.add('bg-red-700');
+  setTimeout(() => {
+    toast.classList.add('hidden');
+    toast.classList.remove('bg-red-700');
+    toast.textContent = 'Merci pour votre inscription à notre newsletter !';
+  }, 5000);
+} finally {
+  submitButton.disabled = false;
+  submitButton.classList.remove('opacity-60', 'cursor-wait');
+  submitButton.innerHTML = submitLabel;
+}
 }
 function closeOrderModal() {
 const modal = document.getElementById('order-modal');
