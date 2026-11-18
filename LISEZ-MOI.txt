@@ -1,0 +1,26 @@
+IBRAHIM ACCESSOIRES — DOSSIER GITHUB
+
+Ce dossier contient les deux applications séparées :
+
+1) boutique/ : site de vente + fichiers PWA (manifest, icônes, service worker).
+2) administration/ : espace de gestion + fichiers PWA (manifest, icônes, service worker).
+3) identite/ : copie du logo original fourni.
+
+MISE EN LIGNE SUR GITHUB PAGES
+- Décompressez ce dossier sur votre ordinateur.
+- Ouvrez votre dépôt GitHub.
+- Importez les dossiers boutique, administration et identite, ainsi que ce fichier LISEZ-MOI.txt, à la racine du dépôt.
+- Gardez les sous-dossiers et les noms de fichiers tels quels.
+- Activez GitHub Pages dans les paramètres du dépôt.
+- Boutique : https://VOTRE-NOM.github.io/VOTRE-DEPOT/boutique/
+- Administration : https://VOTRE-NOM.github.io/VOTRE-DEPOT/administration/
+
+INSTALLATION SUR TÉLÉPHONE
+- Android : ouvrez l'adresse de l'application dans Chrome, puis menu ⋮ > Installer l'application (ou Ajouter à l'écran d'accueil).
+- iPhone : ouvrez l'adresse dans Safari > Partager > Sur l'écran d'accueil.
+
+À SAVOIR
+- Chaque application possède ses propres icônes, manifeste et service worker.
+- L'administration utilise l'authentification Supabase. Gardez son adresse privée.
+- Les photos des 8 modèles Image1.png à Image8.png n'étaient pas présentes parmi les fichiers reçus. Il faudra les ajouter dans boutique/ et administration/ si vous voulez que les photos des montres apparaissent aussi dans les deux applications. La boutique possède des images de secours si elles sont absentes.
+- Les applications nécessitent Internet pour communiquer avec Supabase et charger les bibliothèques externes.
