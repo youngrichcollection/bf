@@ -144,7 +144,7 @@ Ibrahim Accessoires
 <section class="relative">
 <div class="relative aspect-square w-full overflow-hidden bg-gray-100">
 <img id="main-product-image"
-src="./Image1.png"
+src="./ImageA1.png"
 onerror="this.src='https://placehold.co/800x800/111827/ffffff?text=1.+Noir+Carbone'"
 alt="Montre Richard Mille"
 onclick="openImageLightbox(this.src)"
@@ -189,7 +189,7 @@ Imposez votre style en toute circonstance : <span id="product-heading-name">Mont
 <i class="fa-solid fa-star"></i>
 <i class="fa-solid fa-star-half-stroke"></i>
 </div>
-<span class="font-semibold text-slate-800">4.8/5 <span class="font-normal text-slate-600">(Basé sur 148 évaluations)</span></span>
+<span class="font-semibold text-slate-800">4.8/5 <span class="font-normal text-slate-600">(<span id="product-rating-count">Basé sur 148 évaluations</span>)</span></span>
 </div>
 <div class="flex items-center justify-center gap-2.5 mb-2">
 <span id="product-price" class="text-2xl sm:text-[26px] font-extrabold text-[#14532d]">12,000 FCFA</span>
@@ -342,24 +342,33 @@ class="w-full py-3.5 px-4 rounded-xl bg-[#25D366] hover:bg-[#1ebe5d] animate-cta
 </button>
 </form>
 </section>
-<section id="caracteristiques" class="px-4 py-6 space-y-5 text-slate-900">
+<section id="caracteristiques" class="px-4 py-6 space-y-6 text-slate-900">
  <div class="space-y-2">
   <h2 class="text-base sm:text-lg font-extrabold uppercase tracking-wide text-slate-900">ÉLÉGANCE . PUISSANCE . CONFIANCE</h2>
   <p class="text-sm sm:text-base font-bold uppercase text-slate-800 leading-snug">L'ACCESSOIRE QUI IMPOSE LE RESPECT AVANT MÊME QUE VOUS NE PRENIEZ LA PAROLE.</p>
  </div>
- <div id="selected-model-description" class="space-y-3">
-  <h3 id="description-title" class="text-lg font-extrabold text-slate-900">Montre Richard Mille</h3>
-  <p id="description-text" class="text-sm sm:text-[15px] text-slate-700 leading-relaxed">Conçue pour les hommes qui aiment affirmer leur présence, la montre Richard Mille se distingue par son cadran squelette et son design sportif. Un modèle remarquable pour vos rendez-vous, vos déplacements et vos sorties.</p>
-  <div class="rounded-xl overflow-hidden shadow-md">
-   <img id="description-image" onclick="openImageLightbox(this.src)" src="./ImageA2.png" alt="Montre Richard Mille" class="w-full h-auto object-cover">
-  </div>
- </div>
- <div class="pt-2 space-y-3">
+ <p class="text-sm sm:text-[15px] text-slate-700 leading-relaxed">Découvrez nos trois modèles de montres, sélectionnés pour apporter une touche de caractère et d'élégance à votre style.</p>
+ <article class="space-y-3">
+  <h3 class="text-lg font-extrabold text-slate-900">1. Richard Mille — 12 000 FCFA</h3>
+  <p class="text-sm sm:text-[15px] text-slate-700 leading-relaxed">Conçue pour les hommes qui aiment affirmer leur présence, la montre Richard Mille se distingue par son cadran squelette et son design sportif. Un modèle remarquable pour vos rendez-vous, vos déplacements et vos sorties.</p>
+  <div class="rounded-xl overflow-hidden shadow-md"><img onclick="openImageLightbox(this.src)" src="./ImageA2.png" alt="Montre Richard Mille" class="w-full h-auto object-cover"></div>
+ </article>
+ <article class="space-y-3">
+  <h3 class="text-lg font-extrabold text-slate-900">2. Casio — 11 000 FCFA</h3>
+  <p class="text-sm sm:text-[15px] text-slate-700 leading-relaxed">Le modèle Casio apporte une allure moderne et polyvalente. Son style accompagne aussi bien vos activités quotidiennes que vos occasions spéciales.</p>
+  <div class="rounded-xl overflow-hidden shadow-md"><img onclick="openImageLightbox(this.src)" src="./ImageB1.png" alt="Montre Casio" class="w-full h-auto object-cover"></div>
+ </article>
+ <article class="space-y-3">
+  <h3 class="text-lg font-extrabold text-slate-900">3. Casio Jordan — 11 000 FCFA</h3>
+  <p class="text-sm sm:text-[15px] text-slate-700 leading-relaxed">Le modèle Casio Jordan affiche une identité sportive et affirmée. Il complète votre tenue avec une touche originale et dynamique.</p>
+  <div class="rounded-xl overflow-hidden shadow-md"><img onclick="openImageLightbox(this.src)" src="./Imageunique.png" alt="Montre Casio Jordan" class="w-full h-auto object-cover"></div>
+ </article>
+ <div class="pt-3 space-y-3">
   <h3 class="text-lg font-extrabold text-slate-900">Caractéristiques :</h3>
   <ul class="space-y-2.5 text-sm sm:text-[15px] text-slate-800 font-medium">
    <li class="flex items-start gap-2.5"><span class="inline-flex items-center justify-center w-5 h-5 rounded bg-green-600 text-white text-xs shrink-0 mt-0.5"><i class="fa-solid fa-check"></i></span><span>Un design élégant pour affirmer votre style</span></li>
-   <li class="flex items-start gap-2.5"><span class="inline-flex items-center justify-center w-5 h-5 rounded bg-green-600 text-white text-xs shrink-0 mt-0.5"><i class="fa-solid fa-check"></i></span><span>Un modèle adapté à vos activités quotidiennes et aux occasions spéciales</span></li>
-   <li class="flex items-start gap-2.5"><span class="inline-flex items-center justify-center w-5 h-5 rounded bg-green-600 text-white text-xs shrink-0 mt-0.5"><i class="fa-solid fa-check"></i></span><span>Un choix de style pour compléter votre tenue</span></li>
+   <li class="flex items-start gap-2.5"><span class="inline-flex items-center justify-center w-5 h-5 rounded bg-green-600 text-white text-xs shrink-0 mt-0.5"><i class="fa-solid fa-check"></i></span><span>Des modèles adaptés à différentes occasions</span></li>
+   <li class="flex items-start gap-2.5"><span class="inline-flex items-center justify-center w-5 h-5 rounded bg-green-600 text-white text-xs shrink-0 mt-0.5"><i class="fa-solid fa-check"></i></span><span>Un choix de modèles et de styles selon vos préférences</span></li>
   </ul>
  </div>
 </section>
@@ -631,43 +640,56 @@ document.addEventListener('keydown', function (event) {
 if (event.key === 'Escape') closeImageLightbox();
 });
 window.addEventListener('DOMContentLoaded', updateVisitorCounter);
-// Catalogue des trois modèles et de leurs galeries d'images.
+// Catalogue des trois modèles et de leurs variantes/couleurs.
 const productModels = [
- { name:"Richard Mille", shortName:"Richard Mille", price:12000, oldPrice:20000, images:Array.from({length:8},(_,i)=>`./ImageA${i+1}.png`), colorHex:"#15803d", description:"Conçue pour les hommes qui aiment affirmer leur présence, la montre Richard Mille se distingue par son cadran squelette et son design sportif. Un modèle remarquable pour vos rendez-vous, vos déplacements et vos sorties.", descriptionImage:"./ImageA2.png" },
- { name:"Casio", shortName:"Casio", price:11000, oldPrice:null, images:Array.from({length:4},(_,i)=>`./ImageB${i+1}.png`), colorHex:"#2563eb", description:"Le modèle Casio apporte une allure moderne et polyvalente. Son style accompagne aussi bien vos activités quotidiennes que vos occasions spéciales.", descriptionImage:"./ImageB1.png" },
- { name:"Casio Jordan", shortName:"Casio Jordan", price:11000, oldPrice:null, images:["./Imageunique.png"], colorHex:"#2563eb", description:"Le modèle Casio Jordan affiche une identité sportive et affirmée. Il complète votre tenue avec une touche originale et dynamique.", descriptionImage:"./Imageunique.png" }
+ { name:"Richard Mille", shortName:"Richard Mille", price:12000, oldPrice:20000, ratingCount:148, images:Array.from({length:8},(_,i)=>`./ImageA${i+1}.png`), colors:["NOIR CARBONE","VERT","BLEU","BLEU CIEL & BLANC","JAUNE & ACIER","VERT & JAUNE","BLANC","BLEU & BLANC"], colorHex:"#15803d" },
+ { name:"Casio", shortName:"Casio", price:11000, oldPrice:18900, ratingCount:115, images:Array.from({length:4},(_,i)=>`./ImageB${i+1}.png`), colors:["BLEU & ARGENTÉ","DORÉ & BLANC","DORÉ & NOIR","ARGENTÉ & BLANC"], colorHex:"#2563eb" },
+ { name:"Casio Jordan", shortName:"Casio Jordan", price:11000, oldPrice:18900, ratingCount:115, images:["./Imageunique.png"], colors:["ARGENTÉ & NOIR"], colorHex:"#2563eb" }
 ];
 let currentModelIndex = 0;
 let currentImageIndex = 0;
 function modelImage(model, imageIndex=0) { return model.images[imageIndex] || model.images[0]; }
+function currentVariantName(model=productModels[currentModelIndex], imageIndex=currentImageIndex) { return model.colors?.[imageIndex] || "Couleur sélectionnée"; }
 function renderModelGallery() {
  const model=productModels[currentModelIndex];
  const main=document.getElementById('main-product-image');
  main.onerror=function(){this.onerror=null;this.src='https://placehold.co/800x800/111827/ffffff?text='+encodeURIComponent(model.name);};
  main.src=modelImage(model,currentImageIndex);
- main.alt='Montre '+model.name;
+ main.alt='Montre '+model.name+' - '+currentVariantName(model,currentImageIndex);
  const dots=document.getElementById('carousel-dots');
- dots.innerHTML=model.images.map((_,i)=>`<button type="button" aria-label="Afficher la photo ${i+1}" onclick="showGalleryImage(${i})" class="w-2 h-2 rounded-full transition ${i===currentImageIndex?'bg-blue-600 scale-125':'bg-white/70'}"></button>`).join('');
+ dots.innerHTML=model.images.map((_,i)=>`<button type="button" aria-label="Afficher ${currentVariantName(model,i)}" onclick="showGalleryImage(${i})" class="w-2 h-2 rounded-full transition ${i===currentImageIndex?'bg-blue-600 scale-125':'bg-white/70'}"></button>`).join('');
+ const label=document.getElementById('selected-color-name');
+ if(label){label.textContent=currentVariantName(model);label.style.color=model.colorHex;}
+ // La miniature du modèle actif suit exactement la photo affichée dans la grande galerie.
+ renderModelCards();
 }
 function showGalleryImage(index) {
  const model=productModels[currentModelIndex];
  currentImageIndex=(index+model.images.length)%model.images.length;
  renderModelGallery();
+ if(!hasUsedAddToCart && cart.length===1){cart[0].imageIndex=currentImageIndex;renderCart();}
 }
 function renderModelCards() {
  const container=document.getElementById('models-thumbnails-container');
- container.innerHTML=productModels.map((model,i)=>`
+ if(!container) return;
+ container.innerHTML=productModels.map((model,i)=>{
+  const previewIndex=i===currentModelIndex?currentImageIndex:0;
+  const preview=modelImage(model,previewIndex);
+  const color=i===currentModelIndex?currentVariantName(model,previewIndex):model.colors[0];
+  return `
  <div id="model-thumb-${i}" class="shrink-0 w-28 rounded-xl p-1.5 border-2 ${i===currentModelIndex?'border-blue-600 bg-blue-50/40':'border-gray-200'} text-center transition flex flex-col justify-between">
   <button type="button" onclick="selectModel(${i})" class="w-full text-center">
-   <img src="${model.images[0]}" alt="${model.name}" class="w-full h-16 object-cover rounded-lg mb-1">
+   <img src="${preview}" alt="${model.name} - ${color}" class="w-full h-16 object-cover rounded-lg mb-1">
    <span class="block text-[11px] font-bold text-slate-900 truncate">${model.name}</span>
+   <span class="block text-[10px] font-semibold text-slate-500 mt-0.5 truncate">${color}</span>
    <span class="block text-[11px] font-extrabold text-[#14532d] mt-0.5">${model.price.toLocaleString('fr-FR')} FCFA</span>
   </button>
   <button type="button" onclick="addToCart(${i})" class="mt-1.5 w-full py-1.5 px-1.5 rounded-lg bg-slate-900 text-white text-[10px] font-bold flex items-center justify-center gap-1"><i class="fa-solid fa-cart-plus"></i><span>Ajouter</span></button>
- </div>`).join('');
+ </div>`;
+ }).join('');
 }
-// Panier multi-modèles (initialisé avec le 1er modèle à quantité 1)
-let cart = [{ index: 0, qty: 1 }];
+// Panier multi-modèles et variantes.
+let cart = [{ index: 0, imageIndex: 0, qty: 1 }];
 let hasUsedAddToCart = false;
 function selectModel(index) {
  if(index<0 || index>=productModels.length) return;
@@ -675,38 +697,19 @@ function selectModel(index) {
  currentImageIndex=0;
  const model=productModels[index];
  renderModelGallery();
- renderModelCards();
  const label=document.getElementById('selected-color-name');
- label.textContent=model.name;
+ label.textContent=currentVariantName(model,0);
  label.style.color=model.colorHex;
  document.getElementById('product-heading-name').textContent='Montre '+model.name;
- const priceEl=document.getElementById('product-price');
- if(priceEl) priceEl.textContent=formatFCFA(model.price);
- const descTitle=document.getElementById('description-title');
- const descText=document.getElementById('description-text');
- const descImage=document.getElementById('description-image');
- if(descTitle) descTitle.textContent='Montre '+model.name;
- if(descText) descText.textContent=model.description;
- if(descImage){
-  descImage.onerror=function(){this.onerror=null;this.src=model.images[0];};
-  descImage.src=model.descriptionImage || model.images[0];
-  descImage.alt='Montre '+model.name;
- }
+ document.getElementById('product-price').textContent=formatFCFA(model.price);
+ document.getElementById('product-rating-count').textContent=`Basé sur ${model.ratingCount || 115} évaluations`;
  const old=document.getElementById('product-old-price');
  const savings=document.getElementById('product-savings');
- if(model.oldPrice){
-  if(old){old.textContent=formatFCFA(model.oldPrice);old.classList.remove('hidden');}
-  if(savings){
-   const saving=model.oldPrice-model.price;
-   savings.textContent=`${formatFCFA(saving)} (${Math.round(saving/model.oldPrice*100)}%)`;
-   savings.parentElement.classList.remove('hidden');
-  }
- } else {
-  if(old) old.classList.add('hidden');
-  if(savings) savings.parentElement.classList.add('hidden');
- }
+ if(model.oldPrice){old.textContent=formatFCFA(model.oldPrice);old.classList.remove('hidden');}else{old.classList.add('hidden');}
+ if(index===0){savings.textContent='8,000 FCFA (40%)';savings.parentElement.classList.remove('hidden');}
+ else{savings.parentElement.classList.add('hidden');}
  document.getElementById('cart-product-title').textContent='Montre '+model.name;
- if(!hasUsedAddToCart && cart.length===1){cart[0].index=index;renderCart();}
+ if(!hasUsedAddToCart && cart.length===1){cart[0].index=index;cart[0].imageIndex=0;renderCart();}
  const active=document.getElementById(`model-thumb-${index}`);
  if(active) active.scrollIntoView({behavior:'smooth',block:'nearest',inline:'center'});
 }
@@ -715,29 +718,24 @@ function prevImage(){ showGalleryImage(currentImageIndex-1); }
 const UNIT_PRICE = 12000;
 function formatFCFA(amount){return amount.toLocaleString('en-US')+' FCFA';}
 function addToCart(index) {
-selectModel(index);
-if (!hasUsedAddToCart) {
-hasUsedAddToCart = true;
-cart = [{ index: index, qty: 1 }];
-} else {
-const existing = cart.find(item => item.index === index);
-if (existing) {
-existing.qty = Math.min(20, existing.qty + 1);
-} else {
-cart.push({ index: index, qty: 1 });
+ if(index!==currentModelIndex) selectModel(index);
+ const imageIndex=index===currentModelIndex?currentImageIndex:0;
+ if (!hasUsedAddToCart) {
+  hasUsedAddToCart = true;
+  cart = [{ index, imageIndex, qty: 1 }];
+ } else {
+  const existing = cart.find(item => item.index === index && item.imageIndex === imageIndex);
+  if (existing) existing.qty = Math.min(20, existing.qty + 1);
+  else cart.push({ index, imageIndex, qty: 1 });
+ }
+ renderCart();
+ const toast = document.getElementById('toast-notification');
+ toast.textContent = `✓ ${productModels[index].name} — ${currentVariantName(productModels[index],imageIndex)} ajouté au panier !`;
+ toast.classList.remove('hidden');
+ setTimeout(() => toast.classList.add('hidden'), 2500);
 }
-}
-renderCart();
-// Afficher le toast de confirmation
-const toast = document.getElementById('toast-notification');
-toast.textContent = `✓ Modèle « ${productModels[index].name} » ajouté au panier !`;
-toast.classList.remove('hidden');
-setTimeout(() => {
-toast.classList.add('hidden');
-}, 2500);
-}
-function changeCartItemQty(index, delta) {
-const itemPos = cart.findIndex(item => item.index === index);
+function changeCartItemQty(index, delta, imageIndex=0) {
+const itemPos = cart.findIndex(item => item.index === index && item.imageIndex === imageIndex);
 if (itemPos === -1) return;
 const newQty = cart[itemPos].qty + delta;
 if (newQty <= 0) {
@@ -751,9 +749,9 @@ cart[itemPos].qty = Math.min(20, newQty);
 }
 renderCart();
 }
-function removeCartItem(index) {
+function removeCartItem(index, imageIndex=0) {
 if (cart.length <= 1) return;
-cart = cart.filter(item => item.index !== index);
+cart = cart.filter(item => !(item.index === index && item.imageIndex === imageIndex));
 renderCart();
 }
 function renderCart() {
@@ -782,6 +780,8 @@ const btnSizeClass = count <= 2 ? 'w-6 h-6 text-xs' : count === 3 ? 'w-5 h-5 tex
 const padClass = count === 1 ? 'p-2.5' : count === 2 ? 'p-2' : 'p-1.5';
 cart.forEach(item => {
 const model = productModels[item.index];
+const variantName = currentVariantName(model,item.imageIndex || 0);
+const variantImage = modelImage(model,item.imageIndex || 0);
 totalQty += item.qty;
 const itemTotal = model.price * item.qty;
 if (count === 1) {
@@ -790,18 +790,19 @@ html += `
 <div class="flex items-center justify-between gap-3 bg-gray-50 ${padClass} rounded-xl border border-gray-200">
 <div class="flex items-center gap-3 min-w-0">
 <div class="relative ${imgSizeClass} rounded-lg bg-white border border-gray-200 shrink-0">
-<img src="${model.images[0]}" alt="${model.name}" class="w-full h-full object-cover rounded-lg">
+<img src="${variantImage}" alt="${model.name} - ${variantName}" class="w-full h-full object-cover rounded-lg">
 <span class="absolute -top-2 -right-2 w-5 h-5 rounded-full bg-slate-700 text-white text-xs font-bold flex items-center justify-center shadow-xs">${item.qty}</span>
 </div>
 <div class="min-w-0">
 <p class="${titleSizeClass} font-bold truncate" style="color:${model.colorHex}">${model.name}</p>
+<p class="text-[10px] text-slate-600 truncate">${variantName}</p>
 <p class="${priceSizeClass} font-extrabold text-slate-900">${formatFCFA(itemTotal)}</p>
 </div>
 </div>
 <div class="flex items-center gap-1.5 shrink-0">
-<button type="button" onclick="changeCartItemQty(${item.index}, -1)" aria-label="Diminuer" class="w-7 h-7 rounded-lg bg-white border border-gray-300 text-slate-900 font-bold text-sm hover:bg-gray-100 flex items-center justify-center">−</button>
+<button type="button" onclick="changeCartItemQty(${item.index}, -1, ${item.imageIndex || 0})" aria-label="Diminuer" class="w-7 h-7 rounded-lg bg-white border border-gray-300 text-slate-900 font-bold text-sm hover:bg-gray-100 flex items-center justify-center">−</button>
 <span class="w-6 text-center text-sm font-extrabold text-slate-900">${item.qty}</span>
-<button type="button" onclick="changeCartItemQty(${item.index}, 1)" aria-label="Augmenter" class="w-7 h-7 rounded-lg bg-white border border-gray-300 text-slate-900 font-bold text-sm hover:bg-gray-100 flex items-center justify-center">+</button>
+<button type="button" onclick="changeCartItemQty(${item.index}, 1, ${item.imageIndex || 0})" aria-label="Augmenter" class="w-7 h-7 rounded-lg bg-white border border-gray-300 text-slate-900 font-bold text-sm hover:bg-gray-100 flex items-center justify-center">+</button>
 </div>
 </div>
 `;
@@ -810,18 +811,19 @@ html += `
 html += `
 <div class="bg-gray-50 ${padClass} rounded-xl border border-gray-200 flex flex-col items-center justify-between text-center min-w-0">
 <div class="relative ${imgSizeClass} rounded-lg bg-white border border-gray-200 mb-1 shrink-0">
-<img src="${model.images[0]}" alt="${model.name}" class="w-full h-full object-cover rounded-lg">
+<img src="${variantImage}" alt="${model.name} - ${variantName}" class="w-full h-full object-cover rounded-lg">
 <span class="absolute -top-1.5 -right-1.5 w-4 h-4 rounded-full bg-slate-800 text-white text-[10px] font-bold flex items-center justify-center">${item.qty}</span>
-<button type="button" onclick="removeCartItem(${item.index})" aria-label="Retirer" class="absolute -top-1.5 -left-1.5 w-4 h-4 rounded-full bg-red-500 text-white text-[9px] flex items-center justify-center shadow-2xs">
+<button type="button" onclick="removeCartItem(${item.index}, ${item.imageIndex || 0})" aria-label="Retirer" class="absolute -top-1.5 -left-1.5 w-4 h-4 rounded-full bg-red-500 text-white text-[9px] flex items-center justify-center shadow-2xs">
 <i class="fa-solid fa-xmark"></i>
 </button>
 </div>
 <p class="${titleSizeClass} font-extrabold truncate w-full leading-tight" style="color:${model.colorHex}">${model.name}</p>
+<p class="text-[9px] text-slate-600 truncate w-full">${variantName}</p>
 <p class="${priceSizeClass} font-bold text-slate-900 truncate w-full mb-1">${formatFCFA(itemTotal)}</p>
 <div class="flex items-center justify-center gap-1 w-full pt-1 border-t border-gray-200">
-<button type="button" onclick="changeCartItemQty(${item.index}, -1)" aria-label="Diminuer" class="${btnSizeClass} rounded bg-white border border-gray-300 text-slate-900 font-bold flex items-center justify-center shrink-0">−</button>
+<button type="button" onclick="changeCartItemQty(${item.index}, -1, ${item.imageIndex || 0})" aria-label="Diminuer" class="${btnSizeClass} rounded bg-white border border-gray-300 text-slate-900 font-bold flex items-center justify-center shrink-0">−</button>
 <span class="${titleSizeClass} font-extrabold text-slate-900 px-0.5">${item.qty}</span>
-<button type="button" onclick="changeCartItemQty(${item.index}, 1)" aria-label="Augmenter" class="${btnSizeClass} rounded bg-white border border-gray-300 text-slate-900 font-bold flex items-center justify-center shrink-0">+</button>
+<button type="button" onclick="changeCartItemQty(${item.index}, 1, ${item.imageIndex || 0})" aria-label="Augmenter" class="${btnSizeClass} rounded bg-white border border-gray-300 text-slate-900 font-bold flex items-center justify-center shrink-0">+</button>
 </div>
 </div>
 `;
@@ -830,7 +832,7 @@ html += `
 container.innerHTML = html;
 if (subtitleEl) {
 subtitleEl.textContent = count === 1
-? `Modèle : ${productModels[cart[0].index].name}`
+? `Modèle : ${productModels[cart[0].index].name} — ${currentVariantName(productModels[cart[0].index],cart[0].imageIndex || 0)}`
 : `${count} modèles sélectionnés`;
 }
 const subtotal = cart.reduce((sum,item)=>sum + productModels[item.index].price * item.qty,0);
@@ -945,8 +947,8 @@ const quartier = document.getElementById('quartier').value.trim();
 const isExpedition = document.getElementById('mode-expedition').checked;
 const totalQty = cart.reduce((acc, item) => acc + item.qty, 0);
 const subtotal = cart.reduce((sum,item)=>sum + productModels[item.index].price * item.qty,0);
-const modelsSummaryList = cart.map(item => `${item.qty}x ${productModels[item.index].name}`).join(', ');
-const modelsWhatsAppLines = cart.map(item => `• ${item.qty} x ${productModels[item.index].name} — ${formatFCFA(productModels[item.index].price * item.qty)}`).join('\n');
+const modelsSummaryList = cart.map(item => `${item.qty}x ${productModels[item.index].name} (${currentVariantName(productModels[item.index],item.imageIndex || 0)})`).join(', ');
+const modelsWhatsAppLines = cart.map(item => `• ${item.qty} x ${productModels[item.index].name} — ${currentVariantName(productModels[item.index],item.imageIndex || 0)} — ${formatFCFA(productModels[item.index].price * item.qty)}`).join('\n');
 const subtotalFormatted = formatFCFA(subtotal);
 const deliveryText = isExpedition
   ? 'Expédition hors Ouagadougou (frais à confirmer selon la ville)'
@@ -995,6 +997,8 @@ try {
   const orderItems = cart.map(item => ({
     name: productModels[item.index].name,
     model: productModels[item.index].name,
+    color: currentVariantName(productModels[item.index],item.imageIndex || 0),
+    image: modelImage(productModels[item.index],item.imageIndex || 0),
     quantity: item.qty,
     unit_price: productModels[item.index].price,
     subtotal: productModels[item.index].price * item.qty
