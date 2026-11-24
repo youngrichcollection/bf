@@ -171,7 +171,7 @@ Modèle choisi : <span id="selected-color-name" class="text-[#15803d]">Richard M
 <span><span id="mini-cart-label">1 montre</span> dans votre panier</span>
 </div>
 <button type="button" onclick="scrollToForm()" class="px-3 py-1.5 rounded-lg bg-blue-600 hover:bg-blue-700 text-white text-xs font-bold transition shrink-0">
-Aller au formulaire ↓
+Aller au panier ↓
 </button>
 </div>
 </div>
@@ -192,8 +192,8 @@ Imposez votre style en toute circonstance : <span id="product-heading-name">Mont
 <span class="font-semibold text-slate-800">4.8/5 <span class="font-normal text-slate-600">(Basé sur 148 évaluations)</span></span>
 </div>
 <div class="flex items-center justify-center gap-2.5 mb-2">
-<span class="text-2xl sm:text-[26px] font-extrabold text-[#14532d]">12,000 FCFA</span>
-<span class="text-lg text-slate-500 line-through font-medium">20,000 FCFA</span>
+<span id="product-price" class="text-2xl sm:text-[26px] font-extrabold text-[#14532d]">12,000 FCFA</span>
+<span id="product-old-price" class="text-lg text-slate-500 line-through font-medium">20,000 FCFA</span>
 </div>
 <div class="inline-block bg-[#14532d] text-white text-xs sm:text-sm font-semibold px-3.5 py-1 rounded-md mb-2 shadow-xs">
 Cette offre expire aujourd'hui
@@ -342,33 +342,24 @@ class="w-full py-3.5 px-4 rounded-xl bg-[#25D366] hover:bg-[#1ebe5d] animate-cta
 </button>
 </form>
 </section>
-<section id="caracteristiques" class="px-4 py-6 space-y-6 text-slate-900">
+<section id="caracteristiques" class="px-4 py-6 space-y-5 text-slate-900">
  <div class="space-y-2">
   <h2 class="text-base sm:text-lg font-extrabold uppercase tracking-wide text-slate-900">ÉLÉGANCE . PUISSANCE . CONFIANCE</h2>
   <p class="text-sm sm:text-base font-bold uppercase text-slate-800 leading-snug">L'ACCESSOIRE QUI IMPOSE LE RESPECT AVANT MÊME QUE VOUS NE PRENIEZ LA PAROLE.</p>
  </div>
- <p class="text-sm sm:text-[15px] text-slate-700 leading-relaxed">Découvrez nos trois modèles de montres, sélectionnés pour apporter une touche de caractère et d'élégance à votre style.</p>
- <article class="space-y-3">
-  <h3 class="text-lg font-extrabold text-slate-900">1. Richard Mille — 12 000 FCFA</h3>
-  <p class="text-sm sm:text-[15px] text-slate-700 leading-relaxed">Conçue pour les hommes qui aiment affirmer leur présence, la montre Richard Mille se distingue par son cadran squelette et son design sportif. Un modèle remarquable pour vos rendez-vous, vos déplacements et vos sorties.</p>
-  <div class="rounded-xl overflow-hidden shadow-md"><img onclick="openImageLightbox(this.src)" src="./ImageA2.png" alt="Montre Richard Mille" class="w-full h-auto object-cover"></div>
- </article>
- <article class="space-y-3">
-  <h3 class="text-lg font-extrabold text-slate-900">2. Casio — 11 000 FCFA</h3>
-  <p class="text-sm sm:text-[15px] text-slate-700 leading-relaxed">Le modèle Casio apporte une allure moderne et polyvalente. Son style accompagne aussi bien vos activités quotidiennes que vos occasions spéciales.</p>
-  <div class="rounded-xl overflow-hidden shadow-md"><img onclick="openImageLightbox(this.src)" src="./ImageB1.png" alt="Montre Casio" class="w-full h-auto object-cover"></div>
- </article>
- <article class="space-y-3">
-  <h3 class="text-lg font-extrabold text-slate-900">3. Casio Jordan — 11 000 FCFA</h3>
-  <p class="text-sm sm:text-[15px] text-slate-700 leading-relaxed">Le modèle Casio Jordan affiche une identité sportive et affirmée. Il complète votre tenue avec une touche originale et dynamique.</p>
-  <div class="rounded-xl overflow-hidden shadow-md"><img onclick="openImageLightbox(this.src)" src="./Imageunique.png" alt="Montre Casio Jordan" class="w-full h-auto object-cover"></div>
- </article>
- <div class="pt-3 space-y-3">
+ <div id="selected-model-description" class="space-y-3">
+  <h3 id="description-title" class="text-lg font-extrabold text-slate-900">Montre Richard Mille</h3>
+  <p id="description-text" class="text-sm sm:text-[15px] text-slate-700 leading-relaxed">Conçue pour les hommes qui aiment affirmer leur présence, la montre Richard Mille se distingue par son cadran squelette et son design sportif. Un modèle remarquable pour vos rendez-vous, vos déplacements et vos sorties.</p>
+  <div class="rounded-xl overflow-hidden shadow-md">
+   <img id="description-image" onclick="openImageLightbox(this.src)" src="./ImageA2.png" alt="Montre Richard Mille" class="w-full h-auto object-cover">
+  </div>
+ </div>
+ <div class="pt-2 space-y-3">
   <h3 class="text-lg font-extrabold text-slate-900">Caractéristiques :</h3>
   <ul class="space-y-2.5 text-sm sm:text-[15px] text-slate-800 font-medium">
    <li class="flex items-start gap-2.5"><span class="inline-flex items-center justify-center w-5 h-5 rounded bg-green-600 text-white text-xs shrink-0 mt-0.5"><i class="fa-solid fa-check"></i></span><span>Un design élégant pour affirmer votre style</span></li>
-   <li class="flex items-start gap-2.5"><span class="inline-flex items-center justify-center w-5 h-5 rounded bg-green-600 text-white text-xs shrink-0 mt-0.5"><i class="fa-solid fa-check"></i></span><span>Des modèles adaptés à différentes occasions</span></li>
-   <li class="flex items-start gap-2.5"><span class="inline-flex items-center justify-center w-5 h-5 rounded bg-green-600 text-white text-xs shrink-0 mt-0.5"><i class="fa-solid fa-check"></i></span><span>Un choix de modèles et de styles selon vos préférences</span></li>
+   <li class="flex items-start gap-2.5"><span class="inline-flex items-center justify-center w-5 h-5 rounded bg-green-600 text-white text-xs shrink-0 mt-0.5"><i class="fa-solid fa-check"></i></span><span>Un modèle adapté à vos activités quotidiennes et aux occasions spéciales</span></li>
+   <li class="flex items-start gap-2.5"><span class="inline-flex items-center justify-center w-5 h-5 rounded bg-green-600 text-white text-xs shrink-0 mt-0.5"><i class="fa-solid fa-check"></i></span><span>Un choix de style pour compléter votre tenue</span></li>
   </ul>
  </div>
 </section>
@@ -642,9 +633,9 @@ if (event.key === 'Escape') closeImageLightbox();
 window.addEventListener('DOMContentLoaded', updateVisitorCounter);
 // Catalogue des trois modèles et de leurs galeries d'images.
 const productModels = [
- { name:"Richard Mille", shortName:"Richard Mille", price:12000, oldPrice:20000, images:Array.from({length:8},(_,i)=>`./ImageA${i+1}.png`), colorHex:"#15803d" },
- { name:"Casio", shortName:"Casio", price:11000, oldPrice:null, images:Array.from({length:4},(_,i)=>`./ImageB${i+1}.png`), colorHex:"#2563eb" },
- { name:"Casio Jordan", shortName:"Casio Jordan", price:11000, oldPrice:null, images:["./Imageunique.png"], colorHex:"#2563eb" }
+ { name:"Richard Mille", shortName:"Richard Mille", price:12000, oldPrice:20000, images:Array.from({length:8},(_,i)=>`./ImageA${i+1}.png`), colorHex:"#15803d", description:"Conçue pour les hommes qui aiment affirmer leur présence, la montre Richard Mille se distingue par son cadran squelette et son design sportif. Un modèle remarquable pour vos rendez-vous, vos déplacements et vos sorties.", descriptionImage:"./ImageA2.png" },
+ { name:"Casio", shortName:"Casio", price:11000, oldPrice:null, images:Array.from({length:4},(_,i)=>`./ImageB${i+1}.png`), colorHex:"#2563eb", description:"Le modèle Casio apporte une allure moderne et polyvalente. Son style accompagne aussi bien vos activités quotidiennes que vos occasions spéciales.", descriptionImage:"./ImageB1.png" },
+ { name:"Casio Jordan", shortName:"Casio Jordan", price:11000, oldPrice:null, images:["./Imageunique.png"], colorHex:"#2563eb", description:"Le modèle Casio Jordan affiche une identité sportive et affirmée. Il complète votre tenue avec une touche originale et dynamique.", descriptionImage:"./Imageunique.png" }
 ];
 let currentModelIndex = 0;
 let currentImageIndex = 0;
@@ -689,18 +680,30 @@ function selectModel(index) {
  label.textContent=model.name;
  label.style.color=model.colorHex;
  document.getElementById('product-heading-name').textContent='Montre '+model.name;
- document.getElementById('product-price').textContent=formatFCFA(model.price);
+ const priceEl=document.getElementById('product-price');
+ if(priceEl) priceEl.textContent=formatFCFA(model.price);
+ const descTitle=document.getElementById('description-title');
+ const descText=document.getElementById('description-text');
+ const descImage=document.getElementById('description-image');
+ if(descTitle) descTitle.textContent='Montre '+model.name;
+ if(descText) descText.textContent=model.description;
+ if(descImage){
+  descImage.onerror=function(){this.onerror=null;this.src=model.images[0];};
+  descImage.src=model.descriptionImage || model.images[0];
+  descImage.alt='Montre '+model.name;
+ }
  const old=document.getElementById('product-old-price');
  const savings=document.getElementById('product-savings');
  if(model.oldPrice){
-  old.textContent=formatFCFA(model.oldPrice);
-  old.classList.remove('hidden');
-  const saving=model.oldPrice-model.price;
-  savings.textContent=`${formatFCFA(saving)} (${Math.round(saving/model.oldPrice*100)}%)`;
-  savings.parentElement.classList.remove('hidden');
+  if(old){old.textContent=formatFCFA(model.oldPrice);old.classList.remove('hidden');}
+  if(savings){
+   const saving=model.oldPrice-model.price;
+   savings.textContent=`${formatFCFA(saving)} (${Math.round(saving/model.oldPrice*100)}%)`;
+   savings.parentElement.classList.remove('hidden');
+  }
  } else {
-  old.classList.add('hidden');
-  savings.parentElement.classList.add('hidden');
+  if(old) old.classList.add('hidden');
+  if(savings) savings.parentElement.classList.add('hidden');
  }
  document.getElementById('cart-product-title').textContent='Montre '+model.name;
  if(!hasUsedAddToCart && cart.length===1){cart[0].index=index;renderCart();}
@@ -787,7 +790,7 @@ html += `
 <div class="flex items-center justify-between gap-3 bg-gray-50 ${padClass} rounded-xl border border-gray-200">
 <div class="flex items-center gap-3 min-w-0">
 <div class="relative ${imgSizeClass} rounded-lg bg-white border border-gray-200 shrink-0">
-<img src="${model.image}" onerror="this.src='${model.fallback}'" alt="${model.name}" class="w-full h-full object-cover rounded-lg">
+<img src="${model.images[0]}" alt="${model.name}" class="w-full h-full object-cover rounded-lg">
 <span class="absolute -top-2 -right-2 w-5 h-5 rounded-full bg-slate-700 text-white text-xs font-bold flex items-center justify-center shadow-xs">${item.qty}</span>
 </div>
 <div class="min-w-0">
@@ -807,7 +810,7 @@ html += `
 html += `
 <div class="bg-gray-50 ${padClass} rounded-xl border border-gray-200 flex flex-col items-center justify-between text-center min-w-0">
 <div class="relative ${imgSizeClass} rounded-lg bg-white border border-gray-200 mb-1 shrink-0">
-<img src="${model.image}" onerror="this.src='${model.fallback}'" alt="${model.name}" class="w-full h-full object-cover rounded-lg">
+<img src="${model.images[0]}" alt="${model.name}" class="w-full h-full object-cover rounded-lg">
 <span class="absolute -top-1.5 -right-1.5 w-4 h-4 rounded-full bg-slate-800 text-white text-[10px] font-bold flex items-center justify-center">${item.qty}</span>
 <button type="button" onclick="removeCartItem(${item.index})" aria-label="Retirer" class="absolute -top-1.5 -left-1.5 w-4 h-4 rounded-full bg-red-500 text-white text-[9px] flex items-center justify-center shadow-2xs">
 <i class="fa-solid fa-xmark"></i>
