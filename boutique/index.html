@@ -594,7 +594,7 @@ Fermer
 Merci pour votre inscription à notre newsletter !
 </div>
 <div id="image-lightbox" class="fixed inset-0 z-[100] hidden items-center justify-center bg-black/95 p-3" onclick="closeImageLightbox()" role="dialog" aria-modal="true" aria-label="Agrandissement de la photo">
-<button type="button" onclick="closeImageLightbox()" aria-label="Fermer la photo" class="absolute top-4 right-4 z-10 w-11 h-11 rounded-full bg-white/15 text-white text-2xl flex items-center justify-center hover:bg-white/25">&times;</button>
+<button type="button" onclick="event.stopPropagation(); closeImageLightbox()" aria-label="Fermer la photo" class="absolute top-4 right-4 z-10 w-11 h-11 rounded-full bg-white/15 text-white text-2xl flex items-center justify-center hover:bg-white/25">&times;</button>
 <img id="lightbox-image" src="" alt="Photo agrandie" class="max-w-full max-h-[92vh] object-contain rounded-lg shadow-2xl" onclick="event.stopPropagation()">
 </div>
 <script>
@@ -620,22 +620,39 @@ updateVisitorCounter();
 }
 }
 // Agrandir une photo sans quitter la boutique.
+// Le bouton Retour du téléphone ferme d'abord l'agrandissement.
+let imageLightboxHistoryOpen = false;
 function openImageLightbox(src) {
 const lightbox = document.getElementById('image-lightbox');
 const image = document.getElementById('lightbox-image');
 if (!lightbox || !image || !src) return;
+if (lightbox.classList.contains('hidden')) {
+  history.pushState({ ...(history.state || {}), imageLightbox: true }, '', location.href);
+  imageLightboxHistoryOpen = true;
+}
 image.src = src;
 lightbox.classList.remove('hidden');
 lightbox.classList.add('flex');
 document.body.style.overflow = 'hidden';
 }
-function closeImageLightbox() {
+function closeImageLightbox(fromPopState = false) {
 const lightbox = document.getElementById('image-lightbox');
-if (!lightbox) return;
+if (!lightbox || lightbox.classList.contains('hidden')) return;
 lightbox.classList.add('hidden');
 lightbox.classList.remove('flex');
 document.body.style.overflow = '';
+if (!fromPopState && imageLightboxHistoryOpen) {
+  imageLightboxHistoryOpen = false;
+  history.back();
 }
+}
+window.addEventListener('popstate', function () {
+const lightbox = document.getElementById('image-lightbox');
+if (lightbox && !lightbox.classList.contains('hidden')) {
+  imageLightboxHistoryOpen = false;
+  closeImageLightbox(true);
+}
+});
 document.addEventListener('keydown', function (event) {
 if (event.key === 'Escape') closeImageLightbox();
 });
@@ -710,7 +727,7 @@ function selectModel(index) {
   savings.textContent='8,000 FCFA (40%)';
   savings.parentElement.classList.remove('hidden');
 } else {
-  savings.textContent='7,900 FCFA';
+  savings.textContent='7,900 FCFA (42%)';
   savings.parentElement.classList.remove('hidden');
 }
  document.getElementById('cart-product-title').textContent='Montre '+model.name;
