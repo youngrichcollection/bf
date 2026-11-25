@@ -678,12 +678,12 @@ function renderModelCards() {
   const color=i===currentModelIndex?currentVariantName(model,previewIndex):model.colors[0];
   return `
  <div id="model-thumb-${i}" class="shrink-0 w-28 rounded-xl p-1.5 border-2 ${i===currentModelIndex?'border-blue-600 bg-blue-50/40':'border-gray-200'} text-center transition flex flex-col justify-between">
-  <button type="button" onclick="selectModel(${i})" class="w-full text-center">
-   <img src="${preview}" alt="${model.name} - ${color}" class="w-full h-16 object-cover rounded-lg mb-1">
+  <div class="w-full text-center select-none">
+   <img src="${preview}" alt="${model.name} - ${color}" class="w-full h-16 object-cover rounded-lg mb-1 pointer-events-none">
    <span class="block text-[11px] font-bold text-slate-900 truncate">${model.name}</span>
    <span class="block text-[10px] font-semibold text-slate-500 mt-0.5 truncate">${color}</span>
    <span class="block text-[11px] font-extrabold text-[#14532d] mt-0.5">${model.price.toLocaleString('fr-FR')} FCFA</span>
-  </button>
+  </div>
   <button type="button" onclick="addToCart(${i})" class="mt-1.5 w-full py-1.5 px-1.5 rounded-lg bg-slate-900 text-white text-[10px] font-bold flex items-center justify-center gap-1"><i class="fa-solid fa-cart-plus"></i><span>Ajouter</span></button>
  </div>`;
  }).join('');
@@ -706,8 +706,14 @@ function selectModel(index) {
  const old=document.getElementById('product-old-price');
  const savings=document.getElementById('product-savings');
  if(model.oldPrice){old.textContent=formatFCFA(model.oldPrice);old.classList.remove('hidden');}else{old.classList.add('hidden');}
- if(index===0){savings.textContent='8,000 FCFA (40%)';savings.parentElement.classList.remove('hidden');}
- else{savings.parentElement.classList.add('hidden');}
+ const savedAmount = model.oldPrice ? model.oldPrice - model.price : 0;
+ const savingsPercent = model.oldPrice ? Math.round((savedAmount / model.oldPrice) * 100) : 0;
+ if(savedAmount > 0){
+  savings.textContent = `${formatFCFA(savedAmount)} (${savingsPercent}%)`;
+  savings.parentElement.classList.remove('hidden');
+ } else {
+  savings.parentElement.classList.add('hidden');
+ }
  document.getElementById('cart-product-title').textContent='Montre '+model.name;
  if(!hasUsedAddToCart && cart.length===1){cart[0].index=index;cart[0].imageIndex=0;renderCart();}
  const active=document.getElementById(`model-thumb-${index}`);
