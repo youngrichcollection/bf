@@ -93,7 +93,7 @@ scrollbar-width: none;
 </button>
 <a href="#" class="flex flex-col items-center text-center px-1">
 <span class="text-lg sm:text-xl font-extrabold tracking-tight text-slate-900 leading-tight flex items-center justify-center">
-<img src="./logo.png" alt="Logo Ibrahim Accessoires" class="ia-brand-logo">
+<img src="./icon-192.png" alt="Logo Ibrahim Accessoires" class="ia-brand-logo">
 Ibrahim Accessoires
 </span>
 <span class="text-[11px] sm:text-xs font-bold text-[#14532d] flex items-center justify-center gap-1.5 mt-0.5 leading-tight">
@@ -351,17 +351,17 @@ class="w-full py-3.5 px-4 rounded-xl bg-[#25D366] hover:bg-[#1ebe5d] animate-cta
  <article class="space-y-3">
   <h3 class="text-lg font-extrabold text-slate-900">1. Richard Mille — 12 000 FCFA</h3>
   <p class="text-sm sm:text-[15px] text-slate-700 leading-relaxed">Conçue pour les hommes qui aiment affirmer leur présence, la montre Richard Mille se distingue par son cadran squelette et son design sportif. Un modèle remarquable pour vos rendez-vous, vos déplacements et vos sorties.</p>
-  <div class="rounded-xl overflow-hidden shadow-md"><img src="./ImageA2.png" alt="Montre Richard Mille" class="w-full h-auto object-cover"></div>
+  <div class="rounded-xl overflow-hidden shadow-md"><img onclick="openImageLightbox(this.src)" src="./ImageA2.png" alt="Montre Richard Mille" class="w-full h-auto object-cover"></div>
  </article>
  <article class="space-y-3">
   <h3 class="text-lg font-extrabold text-slate-900">2. Casio — 11 000 FCFA</h3>
   <p class="text-sm sm:text-[15px] text-slate-700 leading-relaxed">Le modèle Casio apporte une allure moderne et polyvalente. Son style accompagne aussi bien vos activités quotidiennes que vos occasions spéciales.</p>
-  <div class="rounded-xl overflow-hidden shadow-md"><img src="./ImageB1.png" alt="Montre Casio" class="w-full h-auto object-cover"></div>
+  <div class="rounded-xl overflow-hidden shadow-md"><img onclick="openImageLightbox(this.src)" src="./ImageB1.png" alt="Montre Casio" class="w-full h-auto object-cover"></div>
  </article>
  <article class="space-y-3">
   <h3 class="text-lg font-extrabold text-slate-900">3. Casio Jordan — 11 000 FCFA</h3>
   <p class="text-sm sm:text-[15px] text-slate-700 leading-relaxed">Le modèle Casio Jordan affiche une identité sportive et affirmée. Il complète votre tenue avec une touche originale et dynamique.</p>
-  <div class="rounded-xl overflow-hidden shadow-md"><img src="./Imageunique.png" alt="Montre Casio Jordan" class="w-full h-auto object-cover"></div>
+  <div class="rounded-xl overflow-hidden shadow-md"><img onclick="openImageLightbox(this.src)" src="./Imageunique.png" alt="Montre Casio Jordan" class="w-full h-auto object-cover"></div>
  </article>
  <div class="pt-3 space-y-3">
   <h3 class="text-lg font-extrabold text-slate-900">Caractéristiques :</h3>
@@ -678,12 +678,12 @@ function renderModelCards() {
   const color=i===currentModelIndex?currentVariantName(model,previewIndex):model.colors[0];
   return `
  <div id="model-thumb-${i}" class="shrink-0 w-28 rounded-xl p-1.5 border-2 ${i===currentModelIndex?'border-blue-600 bg-blue-50/40':'border-gray-200'} text-center transition flex flex-col justify-between">
-  <div class="w-full text-center select-none">
-   <img src="${preview}" alt="${model.name} - ${color}" class="w-full h-16 object-cover rounded-lg mb-1 pointer-events-none">
+  <button type="button" onclick="selectModel(${i})" class="w-full text-center">
+   <img src="${preview}" alt="${model.name} - ${color}" class="w-full h-16 object-cover rounded-lg mb-1">
    <span class="block text-[11px] font-bold text-slate-900 truncate">${model.name}</span>
    <span class="block text-[10px] font-semibold text-slate-500 mt-0.5 truncate">${color}</span>
    <span class="block text-[11px] font-extrabold text-[#14532d] mt-0.5">${model.price.toLocaleString('fr-FR')} FCFA</span>
-  </div>
+  </button>
   <button type="button" onclick="addToCart(${i})" class="mt-1.5 w-full py-1.5 px-1.5 rounded-lg bg-slate-900 text-white text-[10px] font-bold flex items-center justify-center gap-1"><i class="fa-solid fa-cart-plus"></i><span>Ajouter</span></button>
  </div>`;
  }).join('');
@@ -706,14 +706,8 @@ function selectModel(index) {
  const old=document.getElementById('product-old-price');
  const savings=document.getElementById('product-savings');
  if(model.oldPrice){old.textContent=formatFCFA(model.oldPrice);old.classList.remove('hidden');}else{old.classList.add('hidden');}
- const savedAmount = model.oldPrice ? model.oldPrice - model.price : 0;
- const savingsPercent = model.oldPrice ? Math.round((savedAmount / model.oldPrice) * 100) : 0;
- if(savedAmount > 0){
-  savings.textContent = `${formatFCFA(savedAmount)} (${savingsPercent}%)`;
-  savings.parentElement.classList.remove('hidden');
- } else {
-  savings.parentElement.classList.add('hidden');
- }
+ if(index===0){savings.textContent='8,000 FCFA (40%)';savings.parentElement.classList.remove('hidden');}
+ else{savings.parentElement.classList.add('hidden');}
  document.getElementById('cart-product-title').textContent='Montre '+model.name;
  if(!hasUsedAddToCart && cart.length===1){cart[0].index=index;cart[0].imageIndex=0;renderCart();}
  const active=document.getElementById(`model-thumb-${index}`);
