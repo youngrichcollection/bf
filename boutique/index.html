@@ -69,16 +69,6 @@ display: none;
 -ms-overflow-style: none;
 scrollbar-width: none;
 }
-
-/* Invitation d'installation courte : 6 secondes à chaque visite */
-.install-prompt-card{position:fixed;top:14px;left:50%;transform:translateX(-50%);width:calc(100% - 28px);max-width:430px;z-index:120;background:#111827;color:#fff;border:1px solid #d6a84f;border-radius:16px;padding:14px 16px;box-shadow:0 14px 35px rgba(0,0,0,.28);display:flex;align-items:center;gap:12px}
-.install-prompt-card[hidden]{display:none}
-.install-prompt-logo{width:42px;height:42px;object-fit:cover;border-radius:10px;flex-shrink:0}
-.install-prompt-copy{min-width:0;flex:1}
-.install-prompt-copy strong{display:block;font-size:14px;line-height:1.25}
-.install-prompt-copy span{display:block;font-size:11px;color:#e5e7eb;margin-top:3px}
-.install-prompt-button{background:#d6a84f;color:#111827;font-weight:800;font-size:12px;padding:9px 12px;border-radius:9px;white-space:nowrap}
-.install-prompt-close{align-self:flex-start;color:#d1d5db;font-size:20px;line-height:1;padding:0 2px}
 </style>
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 <script>
@@ -96,15 +86,6 @@ scrollbar-width: none;
 <style>.ia-brand-logo{width:34px;height:34px;object-fit:contain;border-radius:50%;margin-right:7px;vertical-align:middle}</style>
 </head>
 <body class="antialiased selection:bg-blue-600 selection:text-white">
-<div id="install-prompt-card" class="install-prompt-card" hidden role="dialog" aria-label="Installer Ibrahim Accessoires">
-  <img class="install-prompt-logo" src="./icon-192.png" alt="">
-  <div class="install-prompt-copy">
-    <strong>Installer Ibrahim Accessoires</strong>
-    <span>Retrouvez votre boutique directement sur votre téléphone.</span>
-  </div>
-  <button type="button" id="install-prompt-button" class="install-prompt-button">Installer</button>
-  <button type="button" id="install-prompt-close" class="install-prompt-close" aria-label="Fermer">&times;</button>
-</div>
 <header class="sticky top-0 z-40 bg-white/95 backdrop-blur-sm border-b border-gray-100">
 <div class="max-w-xl mx-auto px-3 sm:px-4 py-2.5 flex items-center justify-between">
 <button id="menu-btn" aria-label="Menu" class="p-2 text-slate-800 hover:bg-gray-100 rounded-lg transition shrink-0">
@@ -639,6 +620,7 @@ updateVisitorCounter();
 }
 }
 // Agrandir une photo sans quitter la boutique.
+// Le bouton Retour du téléphone ferme d'abord l'agrandissement.
 let imageLightboxHistoryOpen = false;
 function openImageLightbox(src) {
 const lightbox = document.getElementById('image-lightbox');
@@ -1140,65 +1122,6 @@ setTimeout(() => {
 toast.classList.add('hidden');
 }, 3500);
 }
-</script>
-<script>
-// Invitation d'installation : affichée à chaque visite pendant 6 secondes
-// si la boutique n'est pas déjà installée comme application.
-(function () {
-  let deferredInstallPrompt = null;
-  const card = document.getElementById('install-prompt-card');
-  const installButton = document.getElementById('install-prompt-button');
-  const closeButton = document.getElementById('install-prompt-close');
-  if (!card || !installButton || !closeButton) return;
-
-  const isRunningAsApp =
-    window.matchMedia('(display-mode: standalone)').matches ||
-    window.navigator.standalone === true;
-
-  if (isRunningAsApp) return;
-
-  window.addEventListener('beforeinstallprompt', function (event) {
-    event.preventDefault();
-    deferredInstallPrompt = event;
-  });
-
-  function hideInstallCard() {
-    card.hidden = true;
-  }
-
-  // Aucun indicateur "déjà vu" n'est enregistré : la fenêtre revient
-  // à chaque nouvelle ouverture du lien tant que l'application n'est pas installée.
-  card.hidden = false;
-  const hideTimer = window.setTimeout(hideInstallCard, 6000);
-
-  closeButton.addEventListener('click', function () {
-    window.clearTimeout(hideTimer);
-    hideInstallCard();
-  });
-
-  installButton.addEventListener('click', async function () {
-    if (!deferredInstallPrompt) {
-      alert('Pour installer Ibrahim Accessoires :\n\nAndroid (Chrome) : ouvrez le menu ⋮ puis choisissez « Installer l’application » ou « Ajouter à l’écran d’accueil ».\n\niPhone (Safari) : touchez le bouton Partager puis « Sur l’écran d’accueil ».');
-      return;
-    }
-
-    deferredInstallPrompt.prompt();
-    try {
-      await deferredInstallPrompt.userChoice;
-    } catch (error) {
-      // Le navigateur gère le résultat de la demande d'installation.
-    }
-    deferredInstallPrompt = null;
-    window.clearTimeout(hideTimer);
-    hideInstallCard();
-  });
-
-  window.addEventListener('appinstalled', function () {
-    window.clearTimeout(hideTimer);
-    hideInstallCard();
-    deferredInstallPrompt = null;
-  });
-})();
 </script>
 <script>
 if ('serviceWorker' in navigator) {
