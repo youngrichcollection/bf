@@ -72,10 +72,13 @@ scrollbar-width: none;
 </style>
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 <script>
-  // Connexion Supabase de la boutique Ibrahim Accessoires
+  // Connexion Supabase de la boutique Ibrahim Accessoires.
+  // L'instance est placée sur window pour éviter les erreurs de portée/initialisation.
   const SUPABASE_URL = "https://qrnwqkfsjcwuovnmtoov.supabase.co";
   const SUPABASE_ANON_KEY = "sb_publishable_zcOINkGeJRqWotP4iUx0pw_w6xgytSA";
-  const supabaseClient = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+  window.supabaseClient = (window.supabase && typeof window.supabase.createClient === 'function')
+    ? window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY)
+    : null;
 </script>
 <meta name="theme-color" content="#0b1c5e">
 <link rel="manifest" href="./manifest.webmanifest">
@@ -758,6 +761,11 @@ const UNIT_PRICE = 12000;
 function formatFCFA(amount){return amount.toLocaleString('en-US')+' FCFA';}
 function addToCart(index) {
  if(index!==currentModelIndex) selectModel(index);
+ // Événement Meta déclenché uniquement lorsqu'un visiteur ajoute réellement un article.
+ if (typeof window.fbq === 'function') {
+   const addedModel = productModels[index];
+   window.fbq('track', 'AddToCart', {content_name: addedModel.name, content_type: 'product', value: addedModel.price, currency: 'XOF'});
+ }
  const imageIndex=index===currentModelIndex?currentImageIndex:0;
  if (!hasUsedAddToCart) {
   hasUsedAddToCart = true;
@@ -1043,7 +1051,8 @@ try {
     subtotal: productModels[item.index].price * item.qty
   }));
 
-  const { error } = await supabaseClient
+  if (!window.supabaseClient) throw new Error('Connexion à la base de données indisponible.');
+  const { error } = await window.supabaseClient
     .from('orders')
     .insert([{
       reference,
@@ -1069,31 +1078,26 @@ try {
   console.error('Erreur enregistrement commande Supabase :', error);
 }
 
-// Ne pas envoyer le client vers WhatsApp tant que Supabase n'a pas confirmé
-// l'enregistrement : chaque commande doit d'abord être sauvegardée.
-if (!savedInDatabase) {
-  if (whatsappWindow && !whatsappWindow.closed) whatsappWindow.close();
-  const toast = document.getElementById('toast-notification');
-  const detail = databaseError?.message || databaseError?.details || 'Erreur inconnue';
-  toast.textContent = `Commande non enregistrée : ${detail}`;
-  toast.classList.remove('hidden', 'bg-amber-600');
-  toast.classList.add('bg-red-700');
-  setTimeout(() => {
-    toast.classList.add('hidden');
-    toast.classList.remove('bg-red-700');
-    toast.textContent = 'Merci pour votre inscription à notre newsletter !';
-  }, 10000);
-  submitButton.disabled = false;
-  submitButton.classList.remove('opacity-60', 'cursor-wait');
-  submitButton.innerHTML = submitLabel;
-  return; // Garder le formulaire et le panier pour pouvoir réessayer.
-}
-
-// La commande est confirmée dans Supabase : ouvrir WhatsApp avec le récapitulatif.
+// Ouvrir WhatsApp même si Supabase rencontre une panne ou un délai réseau.
+// Si l'enregistrement échoue, la commande sera reçue sur WhatsApp mais ne figurera
+// pas automatiquement dans le tableau de bord : l'avertissement le précise.
 if (whatsappWindow && !whatsappWindow.closed) {
   whatsappWindow.location.href = whatsappUrl;
 } else {
   window.location.href = whatsappUrl;
+}
+
+if (!savedInDatabase) {
+  const toast = document.getElementById('toast-notification');
+  const detail = databaseError?.message || databaseError?.details || 'Erreur inconnue';
+  toast.textContent = `WhatsApp ouvert. Attention : commande non enregistrée dans le tableau de bord (${detail}).`;
+  toast.classList.remove('hidden', 'bg-red-700');
+  toast.classList.add('bg-amber-600');
+  setTimeout(() => {
+    toast.classList.add('hidden');
+    toast.classList.remove('bg-amber-600');
+    toast.textContent = 'Merci pour votre inscription à notre newsletter !';
+  }, 12000);
 }
 
 // Préparer le récapitulatif affiché sur la boutique.
